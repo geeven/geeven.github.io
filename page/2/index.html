@@ -84,22 +84,12 @@
 
 
 
-<meta name="description" content="app提交审核上架时检测IDFA:IDFA是苹果系统的广告标识符，用来标识设备，推送广告等。
-但是有的时候你并没有使用，照样说使用了，这是因为好多数据分析sdk，比如talkingdata，友盟等都会使用这个有获取 IDFA，用于标识用户，帮助更准确的追踪数据。
-解决办法:1.重新下载Xcode   如果你的xcode不是最新版本的，建议下载最新版本的。重新打包后，再次提交审核。   如果你的xc">
-<meta property="og:type" content="article">
-<meta property="og:title" content="app上架(一) IDFA">
-<meta property="og:url" content="http://yoursite.com/2016/05/25/关于IDFA/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Geeven'blog">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="Geeven'blog">
-<meta property="og:description" content="app提交审核上架时检测IDFA:IDFA是苹果系统的广告标识符，用来标识设备，推送广告等。
-但是有的时候你并没有使用，照样说使用了，这是因为好多数据分析sdk，比如talkingdata，友盟等都会使用这个有获取 IDFA，用于标识用户，帮助更准确的追踪数据。
-解决办法:1.重新下载Xcode   如果你的xcode不是最新版本的，建议下载最新版本的。重新打包后，再次提交审核。   如果你的xc">
-<meta property="og:updated_time" content="2016-07-07T16:34:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="app上架(一) IDFA">
-<meta name="twitter:description" content="app提交审核上架时检测IDFA:IDFA是苹果系统的广告标识符，用来标识设备，推送广告等。
-但是有的时候你并没有使用，照样说使用了，这是因为好多数据分析sdk，比如talkingdata，友盟等都会使用这个有获取 IDFA，用于标识用户，帮助更准确的追踪数据。
-解决办法:1.重新下载Xcode   如果你的xcode不是最新版本的，建议下载最新版本的。重新打包后，再次提交审核。   如果你的xc">
+<meta name="twitter:title" content="Geeven'blog">
 
 
 
@@ -120,9 +110,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/05/25/关于IDFA/"/>
+  <link rel="canonical" href="http://yoursite.com/page/2/"/>
 
-  <title> app上架(一) IDFA | Geeven'blog </title>
+  <title> Geeven'blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -143,7 +133,9 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -220,9 +212,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
   
@@ -242,7 +234,10 @@
             
             
               
-                app上架(一) IDFA
+                
+                <a class="post-title-link" href="/2016/05/25/关于IDFA/" itemprop="url">
+                  app上架(一) IDFA
+                </a>
               
             
           </h1>
@@ -282,7 +277,9 @@
       
 
       
-        <p>app提交审核上架时检测IDFA:IDFA是苹果系统的广告标识符，用来标识设备，推送广告等。</p>
+        
+          
+            <p>app提交审核上架时检测IDFA:IDFA是苹果系统的广告标识符，用来标识设备，推送广告等。</p>
 <p>但是有的时候你并没有使用，照样说使用了，这是因为好多数据分析sdk，比如talkingdata，友盟等都会使用这个有获取 IDFA，用于标识用户，帮助更准确的追踪数据。</p>
 <h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法:"></a>解决办法:</h2><h3 id="1-重新下载Xcode"><a href="#1-重新下载Xcode" class="headerlink" title="1.重新下载Xcode"></a>1.重新下载Xcode</h3><p>   如果你的xcode不是最新版本的，建议下载最新版本的。重新打包后，再次提交审核。<br>   如果你的xcode不是正规渠道下载的，建议从苹果官方下载。<br>   尝试过方案一，问题得到解决。如果解决不了，还有方案二。</p>
 <h3 id="2-判断自己的项目是否使用IDFA"><a href="#2-判断自己的项目是否使用IDFA" class="headerlink" title="2.判断自己的项目是否使用IDFA"></a>2.判断自己的项目是否使用IDFA</h3><p> cd到你的工程目录下，然后执行命令:</p>
@@ -290,20 +287,16 @@
 <h4 id="关于IDFA项目中的选择"><a href="#关于IDFA项目中的选择" class="headerlink" title="关于IDFA项目中的选择"></a>关于IDFA项目中的选择</h4><p>一般只是分析软件可以选择2，3，当然4是必选的。</p>
 <p>   苹果给出了4个复选框。<br>   1.serve advertisements within the app<br>   服务应用中的广告。如果你的应用中集成了广告的时候，你需要勾选这一项。<br>   2.Attribute this app installation to a previously served advertisement.<br>   跟踪广告带来的安装。如果你使用了第三方的工具来跟踪广告带来的激活以及一些其他事件，但是应用里并没有展示广告你需要勾选这一项。<br>   3.Attribute an action taken within this app to a previously served advertisement<br>   跟踪广告带来的用户的后续行为。如果你使用了第三方的工具来跟踪广告带来的激活以及一些其他事件，但是应用里并没有展示广告你需要勾选第2项和第3项。<br>   4.Limit Ad Tracking setting in iOS<br>   这一项下的内容其实就是对你的应用使用idfa的目的做下确认，只要你选择了采集idfa，那么这一项都是需要勾选的。<br>   总结一下，<br>   （1）如果你的应用里只是集成了广告，不追踪广告带来的激活行为，那么选择1和4；<br>   （2）如果你的应用里没有集成广告，但是需要追踪广告带来的激活行为，那么选择2,3和4；<br>   （3）如果你的应用里集成了广告，而且使用了sdk等用来追踪广告带来的激活行为，需要选择1,2,3和4 </p>
 
+          
+        
       
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
-      
-        
-
       
     </div>
 
@@ -311,32 +304,23 @@
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/25/在同一工程中创建不同版本的应用/" rel="prev" title="iOS开发在同一工程中创建不同版本的应用">
-                iOS开发在同一工程中创建不同版本的应用 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
 
       
+      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -344,10 +328,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -367,17 +347,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -413,17 +384,6 @@
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解决办法"><span class="nav-number">1.</span> <span class="nav-text">解决办法:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-重新下载Xcode"><span class="nav-number">1.1.</span> <span class="nav-text">1.重新下载Xcode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-判断自己的项目是否使用IDFA"><span class="nav-number">1.2.</span> <span class="nav-text">2.判断自己的项目是否使用IDFA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于IDFA项目中的选择"><span class="nav-number">1.2.1.</span> <span class="nav-text">关于IDFA项目中的选择</span></a></li></ol></li></ol></li></ol></div>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -520,10 +480,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
 
   
 

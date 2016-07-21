@@ -84,22 +84,24 @@
 
 
 
-<meta name="description" content="app提交审核上架时检测IDFA:IDFA是苹果系统的广告标识符，用来标识设备，推送广告等。
-但是有的时候你并没有使用，照样说使用了，这是因为好多数据分析sdk，比如talkingdata，友盟等都会使用这个有获取 IDFA，用于标识用户，帮助更准确的追踪数据。
-解决办法:1.重新下载Xcode   如果你的xcode不是最新版本的，建议下载最新版本的。重新打包后，再次提交审核。   如果你的xc">
+<meta name="description" content="在工作中会遇到这种情况，需要在某个地区单独进行一个版本发布用于适应区域设备，该怎么简单的实现，并方便后期的维护呢？
+把当前工程拷贝后再修改就不用说了，此方法维护成本太高，不做考虑。可以在同一个Project里面创建两个Target,然后通过判断Target来修改代码，这样都是基于同一套代码修改，只是不同的地方通过Target判断来区分不同的代码，维护成本低。
+一、新增Target1.选中原有的Ta">
 <meta property="og:type" content="article">
-<meta property="og:title" content="app上架(一) IDFA">
-<meta property="og:url" content="http://yoursite.com/2016/05/25/关于IDFA/index.html">
+<meta property="og:title" content="iOS开发在同一工程中创建不同版本的应用">
+<meta property="og:url" content="http://yoursite.com/2016/05/25/在同一工程中创建不同版本的应用/index.html">
 <meta property="og:site_name" content="Geeven'blog">
-<meta property="og:description" content="app提交审核上架时检测IDFA:IDFA是苹果系统的广告标识符，用来标识设备，推送广告等。
-但是有的时候你并没有使用，照样说使用了，这是因为好多数据分析sdk，比如talkingdata，友盟等都会使用这个有获取 IDFA，用于标识用户，帮助更准确的追踪数据。
-解决办法:1.重新下载Xcode   如果你的xcode不是最新版本的，建议下载最新版本的。重新打包后，再次提交审核。   如果你的xc">
-<meta property="og:updated_time" content="2016-07-07T16:34:14.000Z">
+<meta property="og:description" content="在工作中会遇到这种情况，需要在某个地区单独进行一个版本发布用于适应区域设备，该怎么简单的实现，并方便后期的维护呢？
+把当前工程拷贝后再修改就不用说了，此方法维护成本太高，不做考虑。可以在同一个Project里面创建两个Target,然后通过判断Target来修改代码，这样都是基于同一套代码修改，只是不同的地方通过Target判断来区分不同的代码，维护成本低。
+一、新增Target1.选中原有的Ta">
+<meta property="og:image" content="http://yoursite.com/Users/geeven/Desktop/屏幕快照 2016-07-10 下午1.00.01.png">
+<meta property="og:updated_time" content="2016-07-17T13:42:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="app上架(一) IDFA">
-<meta name="twitter:description" content="app提交审核上架时检测IDFA:IDFA是苹果系统的广告标识符，用来标识设备，推送广告等。
-但是有的时候你并没有使用，照样说使用了，这是因为好多数据分析sdk，比如talkingdata，友盟等都会使用这个有获取 IDFA，用于标识用户，帮助更准确的追踪数据。
-解决办法:1.重新下载Xcode   如果你的xcode不是最新版本的，建议下载最新版本的。重新打包后，再次提交审核。   如果你的xc">
+<meta name="twitter:title" content="iOS开发在同一工程中创建不同版本的应用">
+<meta name="twitter:description" content="在工作中会遇到这种情况，需要在某个地区单独进行一个版本发布用于适应区域设备，该怎么简单的实现，并方便后期的维护呢？
+把当前工程拷贝后再修改就不用说了，此方法维护成本太高，不做考虑。可以在同一个Project里面创建两个Target,然后通过判断Target来修改代码，这样都是基于同一套代码修改，只是不同的地方通过Target判断来区分不同的代码，维护成本低。
+一、新增Target1.选中原有的Ta">
+<meta name="twitter:image" content="http://yoursite.com/Users/geeven/Desktop/屏幕快照 2016-07-10 下午1.00.01.png">
 
 
 
@@ -120,9 +122,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/05/25/关于IDFA/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/05/25/在同一工程中创建不同版本的应用/"/>
 
-  <title> app上架(一) IDFA | Geeven'blog </title>
+  <title> iOS开发在同一工程中创建不同版本的应用 | Geeven'blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -242,7 +244,7 @@
             
             
               
-                app上架(一) IDFA
+                iOS开发在同一工程中创建不同版本的应用
               
             
           </h1>
@@ -282,13 +284,11 @@
       
 
       
-        <p>app提交审核上架时检测IDFA:IDFA是苹果系统的广告标识符，用来标识设备，推送广告等。</p>
-<p>但是有的时候你并没有使用，照样说使用了，这是因为好多数据分析sdk，比如talkingdata，友盟等都会使用这个有获取 IDFA，用于标识用户，帮助更准确的追踪数据。</p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法:"></a>解决办法:</h2><h3 id="1-重新下载Xcode"><a href="#1-重新下载Xcode" class="headerlink" title="1.重新下载Xcode"></a>1.重新下载Xcode</h3><p>   如果你的xcode不是最新版本的，建议下载最新版本的。重新打包后，再次提交审核。<br>   如果你的xcode不是正规渠道下载的，建议从苹果官方下载。<br>   尝试过方案一，问题得到解决。如果解决不了，还有方案二。</p>
-<h3 id="2-判断自己的项目是否使用IDFA"><a href="#2-判断自己的项目是否使用IDFA" class="headerlink" title="2.判断自己的项目是否使用IDFA"></a>2.判断自己的项目是否使用IDFA</h3><p> cd到你的工程目录下，然后执行命令:</p>
-<p><code>grep -r advertisingIdentifier .</code></p>
-<h4 id="关于IDFA项目中的选择"><a href="#关于IDFA项目中的选择" class="headerlink" title="关于IDFA项目中的选择"></a>关于IDFA项目中的选择</h4><p>一般只是分析软件可以选择2，3，当然4是必选的。</p>
-<p>   苹果给出了4个复选框。<br>   1.serve advertisements within the app<br>   服务应用中的广告。如果你的应用中集成了广告的时候，你需要勾选这一项。<br>   2.Attribute this app installation to a previously served advertisement.<br>   跟踪广告带来的安装。如果你使用了第三方的工具来跟踪广告带来的激活以及一些其他事件，但是应用里并没有展示广告你需要勾选这一项。<br>   3.Attribute an action taken within this app to a previously served advertisement<br>   跟踪广告带来的用户的后续行为。如果你使用了第三方的工具来跟踪广告带来的激活以及一些其他事件，但是应用里并没有展示广告你需要勾选第2项和第3项。<br>   4.Limit Ad Tracking setting in iOS<br>   这一项下的内容其实就是对你的应用使用idfa的目的做下确认，只要你选择了采集idfa，那么这一项都是需要勾选的。<br>   总结一下，<br>   （1）如果你的应用里只是集成了广告，不追踪广告带来的激活行为，那么选择1和4；<br>   （2）如果你的应用里没有集成广告，但是需要追踪广告带来的激活行为，那么选择2,3和4；<br>   （3）如果你的应用里集成了广告，而且使用了sdk等用来追踪广告带来的激活行为，需要选择1,2,3和4 </p>
+        <p>在工作中会遇到这种情况，需要在某个地区单独进行一个版本发布用于适应区域设备，该怎么简单的实现，并方便后期的维护呢？</p>
+<p>把当前工程拷贝后再修改就不用说了，此方法维护成本太高，不做考虑。可以在同一个Project里面创建两个Target,然后通过判断Target来修改代码，这样都是基于同一套代码修改，只是不同的地方通过Target判断来区分不同的代码，维护成本低。</p>
+<h2 id="一、新增Target"><a href="#一、新增Target" class="headerlink" title="一、新增Target"></a>一、新增Target</h2><h4 id="1-选中原有的Target，右键"><a href="#1-选中原有的Target，右键" class="headerlink" title="1.选中原有的Target，右键 "></a>1.选中原有的Target，右键 <figure class="highlight plain"><figcaption><span>```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">![Mou icon](/Users/geeven/Desktop/屏幕快照 2016-07-10 下午12.59.50.png)</div><div class="line">#### 2.在弹框中选择 ``` Duplicate Only</div></pre></td></tr></table></figure></h4><p><img src="/Users/geeven/Desktop/屏幕快照 2016-07-10 下午1.00.01.png" alt="Mou icon"></p>
+<h4 id="3-创建好后如下，再修改Target-Scheme-info-plist-如图"><a href="#3-创建好后如下，再修改Target-Scheme-info-plist-如图" class="headerlink" title="3.创建好后如下，再修改Target,Scheme,info-plist,如图"></a>3.创建好后如下，再修改Target,Scheme,info-plist,如图</h4><p><img src="" alt="Mou icon"></p>
+<h4 id="4-全部修改完成后，在新的Target中添加对应的plist文件，同时修改"><a href="#4-全部修改完成后，在新的Target中添加对应的plist文件，同时修改" class="headerlink" title="4.全部修改完成后，在新的Target中添加对应的plist文件，同时修改"></a>4.全部修改完成后，在新的Target中添加对应的plist文件，同时修改<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 二、分别为不同的应用添加不同的AppIcon,LaunchImage</div><div class="line">#### 在```General```中的```App Icons and Launch Images```中设置不同的资源图片，如图</div><div class="line"></div><div class="line">![Mou icon]()</div><div class="line"></div><div class="line"></div><div class="line">## 三、设置以区分代码中不同的Target</div><div class="line">#### 1.在新的Target选中```Build Settings```，搜索```Macros```,双击新增一项```Target_New</div></pre></td></tr></table></figure></h4><h4 id="2-在不同的代码中利用-ifdf-Target-New"><a href="#2-在不同的代码中利用-ifdf-Target-New" class="headerlink" title="2.在不同的代码中利用#ifdf Target_New"></a>2.在不同的代码中利用<code>#ifdf Target_New</code></h4><p>Demo请查看我的github: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Geeven’github</a></p>
 
       
     </div>
@@ -314,12 +314,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/05/25/关于IDFA/" rel="next" title="app上架(一) IDFA">
+                <i class="fa fa-chevron-left"></i> app上架(一) IDFA
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/25/在同一工程中创建不同版本的应用/" rel="prev" title="iOS开发在同一工程中创建不同版本的应用">
-                iOS开发在同一工程中创建不同版本的应用 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/29/wifi相关/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -420,7 +424,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解决办法"><span class="nav-number">1.</span> <span class="nav-text">解决办法:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-重新下载Xcode"><span class="nav-number">1.1.</span> <span class="nav-text">1.重新下载Xcode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-判断自己的项目是否使用IDFA"><span class="nav-number">1.2.</span> <span class="nav-text">2.判断自己的项目是否使用IDFA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于IDFA项目中的选择"><span class="nav-number">1.2.1.</span> <span class="nav-text">关于IDFA项目中的选择</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、新增Target"><span class="nav-number">1.</span> <span class="nav-text">一、新增Target</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-选中原有的Target，右键"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.选中原有的Target，右键 ```12![Mou icon](/Users/geeven/Desktop/屏幕快照 2016-07-10 下午12.59.50.png)#### 2.在弹框中选择 ``` Duplicate Only</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-创建好后如下，再修改Target-Scheme-info-plist-如图"><span class="nav-number">1.0.2.</span> <span class="nav-text">3.创建好后如下，再修改Target,Scheme,info-plist,如图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-全部修改完成后，在新的Target中添加对应的plist文件，同时修改"><span class="nav-number">1.0.3.</span> <span class="nav-text">4.全部修改完成后，在新的Target中添加对应的plist文件，同时修改123456789## 二、分别为不同的应用添加不同的AppIcon,LaunchImage#### 在```General```中的```App Icons and Launch Images```中设置不同的资源图片，如图![Mou icon]()## 三、设置以区分代码中不同的Target#### 1.在新的Target选中```Build Settings```，搜索```Macros```,双击新增一项```Target_New</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-在不同的代码中利用-ifdf-Target-New"><span class="nav-number">1.0.4.</span> <span class="nav-text">2.在不同的代码中利用#ifdf Target_New</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
