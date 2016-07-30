@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -84,12 +84,19 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Geeven'blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="app提交审核上架时检测IDFA:IDFA是苹果系统的广告标识符，用来标识设备，推送广告等。
+但是有的时候你并没有使用，照样说使用了，这是因为好多数据分析sdk，比如talkingdata，友盟等都会使用这个有获取 IDFA，用于标识用户，帮助更准确的追踪数据。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="app上架(一) IDFA">
+<meta property="og:url" content="http://yoursite.com/2015/06/09/aboutIDFA/index.html">
 <meta property="og:site_name" content="Geeven'blog">
+<meta property="og:description" content="app提交审核上架时检测IDFA:IDFA是苹果系统的广告标识符，用来标识设备，推送广告等。
+但是有的时候你并没有使用，照样说使用了，这是因为好多数据分析sdk，比如talkingdata，友盟等都会使用这个有获取 IDFA，用于标识用户，帮助更准确的追踪数据。">
+<meta property="og:updated_time" content="2016-07-30T13:21:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Geeven'blog">
+<meta name="twitter:title" content="app上架(一) IDFA">
+<meta name="twitter:description" content="app提交审核上架时检测IDFA:IDFA是苹果系统的广告标识符，用来标识设备，推送广告等。
+但是有的时候你并没有使用，照样说使用了，这是因为好多数据分析sdk，比如talkingdata，友盟等都会使用这个有获取 IDFA，用于标识用户，帮助更准确的追踪数据。">
 
 
 
@@ -110,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2015/06/09/aboutIDFA/"/>
 
-  <title> Geeven'blog </title>
+  <title> app上架(一) IDFA | Geeven'blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -133,9 +140,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -232,9 +237,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -254,107 +259,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/04/07/cocopods/" itemprop="url">
-                  Cocoapods
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-04-07T00:00:00+08:00" content="2016-04-07">
-              2016-04-07
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。</p>
-<h4 id="利用taobao镜像来安装"><a href="#利用taobao镜像来安装" class="headerlink" title="利用taobao镜像来安装"></a>利用taobao镜像来安装</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"><span class="comment">//  删除源</span></div><div class="line">  	$ sudo gem sources --remove https:<span class="comment">//rubygems.org/</span></div><div class="line"><span class="comment">//  添加源</span></div><div class="line">    $ sudo gem sources -a https:<span class="comment">//ruby.taobao.org/</span></div><div class="line"><span class="comment">//  查看gem源    </span></div><div class="line">    $ gem sources -l</div><div class="line">	*** CURRENT SOURCES ***</div><div class="line">	https:<span class="comment">//ruby.taobao.org/</span></div><div class="line"><span class="comment">//  安装</span></div><div class="line">    $ sudo gem install cocoapods</div><div class="line">	<span class="comment">//  设置</span></div><div class="line">    $ pod setup</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/07/cocopods/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/06/09/aboutIDFA/" itemprop="url">
-                  app上架(一) IDFA
-                </a>
+                app上架(一) IDFA
               
             
           </h1>
@@ -394,239 +299,81 @@
       
 
       
-        
-          <p>app提交审核上架时检测IDFA:IDFA是苹果系统的广告标识符，用来标识设备，推送广告等。</p>
-<p>但是有的时候你并没有使用，照样说使用了，这是因为好多数据分析sdk，比如talkingdata，友盟等都会使用这个有获取 IDFA，用于标识用户，帮助更准确的追踪数据。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/06/09/aboutIDFA/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
+        <p>app提交审核上架时检测IDFA:IDFA是苹果系统的广告标识符，用来标识设备，推送广告等。</p>
+<p>但是有的时候你并没有使用，照样说使用了，这是因为好多数据分析sdk，比如talkingdata，友盟等都会使用这个有获取 IDFA，用于标识用户，帮助更准确的追踪数据。<br><a id="more"></a></p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法:"></a>解决办法:</h2><h3 id="1-重新下载Xcode"><a href="#1-重新下载Xcode" class="headerlink" title="1.重新下载Xcode"></a>1.重新下载Xcode</h3><p>   如果你的xcode不是最新版本的，建议下载最新版本的。重新打包后，再次提交审核。<br>   如果你的xcode不是正规渠道下载的，建议从苹果官方下载。<br>   尝试过方案一，问题得到解决。如果解决不了，还有方案二。</p>
+<h3 id="2-判断自己的项目是否使用IDFA"><a href="#2-判断自己的项目是否使用IDFA" class="headerlink" title="2.判断自己的项目是否使用IDFA"></a>2.判断自己的项目是否使用IDFA</h3><p> cd到你的工程目录下，然后执行命令:</p>
+<p><code>grep -r advertisingIdentifier .</code></p>
+<h4 id="关于IDFA项目中的选择"><a href="#关于IDFA项目中的选择" class="headerlink" title="关于IDFA项目中的选择"></a>关于IDFA项目中的选择</h4><p>一般只是分析软件可以选择2，3，当然4是必选的。<br>苹果给出了4个复选框：</p>
+<ol>
+<li>serve advertisements within the app<br>服务应用中的广告。如果你的应用中集成了广告的时候，你需要勾选这一项。</li>
+<li>Attribute this app installation to a previously served advertisement.<br>跟踪广告带来的安装。如果你使用了第三方的工具来跟踪广告带来的激活以及一些其他事件，但是应用里并没有展示广告你需要勾选这一项。</li>
+<li>Attribute an action taken within this app to a previously served advertisement<br>跟踪广告带来的用户的后续行为。如果你使用了第三方的工具来跟踪广告带来的激活以及一些其他事件，但是应用里并没有展示广告你需要勾选第2项和第3项。</li>
+<li>Limit Ad Tracking setting in iOS<br>这一项下的内容其实就是对你的应用使用idfa的目的做下确认，只要你选择了采集idfa，那么这一项都是需要勾选的。</li>
+</ol>
+<h4 id="总结一下"><a href="#总结一下" class="headerlink" title="总结一下:"></a>总结一下:</h4><ul>
+<li>如果你的应用里只是集成了广告，不追踪广告带来的激活行为，那么选择1和4；</li>
+<li>如果你的应用里没有集成广告，但是需要追踪广告带来的激活行为，那么选择2,3和4；</li>
+<li>如果你的应用里集成了广告，而且使用了sdk等用来追踪广告带来的激活行为，需要选择1,2,3和4 </li>
+</ul>
+
       
     </div>
 
     <div>
       
+        
+
+      
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/09/XcodeSomePath/" itemprop="url">
-                  Xcode相关路径
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2015-05-09T00:00:00+08:00" content="2015-05-09">
-              2015-05-09
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
-          
-            
-          
-
-          
-
-          
-          
-
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>在开发中经常有需要调整Xcode相关设置，需果了解其路径.</p>
-<h3 id="模拟器的位置"><a href="#模拟器的位置" class="headerlink" title="模拟器的位置"></a>模拟器的位置</h3><p><code>/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs</code><br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/09/XcodeSomePath/#more" rel="contents">
-              Read more &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/05/09/XcodeSomePath/" rel="next" title="Xcode相关路径">
+                <i class="fa fa-chevron-left"></i> Xcode相关路径
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
+              <a href="/2016/04/07/cocopods/" rel="prev" title="Cocoapods">
+                Cocoapods <i class="fa fa-chevron-right"></i>
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2015/05/07/sandboxPath/" itemprop="url">
-                  沙盒路径
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2015-05-07T00:00:00+08:00" content="2015-05-07">
-              2015-05-07
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h3 id="目录介绍"><a href="#目录介绍" class="headerlink" title="目录介绍"></a>目录介绍</h3><p><code>Documents</code>:存放用户重要文档，会被备份到 iCloud</p>
-<ul>
-<li>如果保存<code>下载</code>文件，无法上架！</li>
-<li><p>由应用程序本身生成的文件，例如：用户登录之后的个人信息、游戏进度记录</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/07/sandboxPath/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -634,6 +381,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -653,8 +404,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -697,6 +457,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解决办法"><span class="nav-number">1.</span> <span class="nav-text">解决办法:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-重新下载Xcode"><span class="nav-number">1.1.</span> <span class="nav-text">1.重新下载Xcode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-判断自己的项目是否使用IDFA"><span class="nav-number">1.2.</span> <span class="nav-text">2.判断自己的项目是否使用IDFA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于IDFA项目中的选择"><span class="nav-number">1.2.1.</span> <span class="nav-text">关于IDFA项目中的选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结一下"><span class="nav-number">1.2.2.</span> <span class="nav-text">总结一下:</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -793,6 +564,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

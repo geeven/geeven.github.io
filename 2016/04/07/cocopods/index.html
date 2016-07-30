@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -84,12 +84,19 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Geeven'blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。
+利用taobao镜像来安装1234567891011121314&amp;#123;//  删除源  	$ sudo gem sources --remove https://rubygems.org///  添加源    $ sudo gem sources -a https://ruby.taobao.o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocoapods">
+<meta property="og:url" content="http://yoursite.com/2016/04/07/cocopods/index.html">
 <meta property="og:site_name" content="Geeven'blog">
+<meta property="og:description" content="在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。
+利用taobao镜像来安装1234567891011121314&amp;#123;//  删除源  	$ sudo gem sources --remove https://rubygems.org///  添加源    $ sudo gem sources -a https://ruby.taobao.o">
+<meta property="og:updated_time" content="2016-07-30T13:24:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Geeven'blog">
+<meta name="twitter:title" content="Cocoapods">
+<meta name="twitter:description" content="在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。
+利用taobao镜像来安装1234567891011121314&amp;#123;//  删除源  	$ sudo gem sources --remove https://rubygems.org///  添加源    $ sudo gem sources -a https://ruby.taobao.o">
 
 
 
@@ -110,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/04/07/cocopods/"/>
 
-  <title> Geeven'blog </title>
+  <title> Cocoapods | Geeven'blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -133,9 +140,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -232,9 +237,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -254,10 +259,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/04/07/cocopods/" itemprop="url">
-                  Cocoapods
-                </a>
+                Cocoapods
               
             
           </h1>
@@ -297,336 +299,72 @@
       
 
       
-        
-          <p>在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。</p>
+        <p>在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。</p>
 <h4 id="利用taobao镜像来安装"><a href="#利用taobao镜像来安装" class="headerlink" title="利用taobao镜像来安装"></a>利用taobao镜像来安装</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"><span class="comment">//  删除源</span></div><div class="line">  	$ sudo gem sources --remove https:<span class="comment">//rubygems.org/</span></div><div class="line"><span class="comment">//  添加源</span></div><div class="line">    $ sudo gem sources -a https:<span class="comment">//ruby.taobao.org/</span></div><div class="line"><span class="comment">//  查看gem源    </span></div><div class="line">    $ gem sources -l</div><div class="line">	*** CURRENT SOURCES ***</div><div class="line">	https:<span class="comment">//ruby.taobao.org/</span></div><div class="line"><span class="comment">//  安装</span></div><div class="line">    $ sudo gem install cocoapods</div><div class="line">	<span class="comment">//  设置</span></div><div class="line">    $ pod setup</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/07/cocopods/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
+<a id="more"></a>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"><span class="comment">//  查看版本</span></div><div class="line">    $ gem --version</div><div class="line"><span class="comment">//  创建默认的 Podfile</span></div><div class="line">    $ pod init</div><div class="line"><span class="comment">//  第一次使用安装框架</span></div><div class="line">    $ pod install</div><div class="line"><span class="comment">//  安装框架，不更新本地索引，速度快</span></div><div class="line">    $ pod install --no-repo-update</div><div class="line"><span class="comment">//  今后升级、添加、删除框架，或者框架不好用都使用这个命令</span></div><div class="line">    $ pod update</div><div class="line"><span class="comment">//  更新框架，不更新本地索引，速度快</span></div><div class="line">    $ pod update --no-repo-update</div><div class="line"><span class="comment">//  搜索框架</span></div><div class="line">    $ pod search XXX    </div><div class="line"><span class="comment">//  帮助</span></div><div class="line">    $ pod --help</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当执行<code>$ pod search XXX</code>时发现显示的tag版本低于最新版时，需要升级Cocoapods，升级过程和重新安装基本一样</p>
+<h4 id="安装出错解决"><a href="#安装出错解决" class="headerlink" title="安装出错解决"></a>安装出错解决</h4><p>当执行如下如错时</p>
+<p><code>$ sudo gem install cocoapods
+ERROR:  While executing gem ... (Errno::EPERM)
+Operation not permitted - /usr/bin/xcodeproj</code></p>
+<p>用如下命令即可解决</p>
+<p><code>$ sudo gem install -n /usr/local/bin/ cocoapods --pre</code></p>
+<h4 id="gem服务器在国外，原本安装方式但需要翻墙-不建议使用-太耗时"><a href="#gem服务器在国外，原本安装方式但需要翻墙-不建议使用-太耗时" class="headerlink" title="gem服务器在国外，原本安装方式但需要翻墙(不建议使用,太耗时)"></a>gem服务器在国外，原本安装方式但需要翻墙(不建议使用,太耗时)</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"><span class="comment">//  查看gem源</span></div><div class="line">    $ gem sources –l</div><div class="line"><span class="comment">//  gem自身升级</span></div><div class="line">    $ sudo gem update --system</div><div class="line"><span class="comment">//  查看版本</span></div><div class="line">    $ gem --version</div><div class="line"><span class="comment">//  清除过期的gem</span></div><div class="line">    $ sudo gem cleanup</div><div class="line"><span class="comment">//  安装包</span></div><div class="line">    $ sudo gem install cocoapods</div><div class="line"><span class="comment">//  删除包</span></div><div class="line">    $ gem uninstall cocoapods</div><div class="line"><span class="comment">//  更新包</span></div><div class="line">    $ sudo gem update</div><div class="line"><span class="comment">//  列出本地安装的包</span></div><div class="line">    $ gem list</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/06/09/aboutIDFA/" itemprop="url">
-                  app上架(一) IDFA
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2015-06-09T00:00:00+08:00" content="2015-06-09">
-              2015-06-09
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
-          
-            
-          
-
-          
-
-          
-          
-
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>app提交审核上架时检测IDFA:IDFA是苹果系统的广告标识符，用来标识设备，推送广告等。</p>
-<p>但是有的时候你并没有使用，照样说使用了，这是因为好多数据分析sdk，比如talkingdata，友盟等都会使用这个有获取 IDFA，用于标识用户，帮助更准确的追踪数据。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/06/09/aboutIDFA/#more" rel="contents">
-              Read more &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/06/09/aboutIDFA/" rel="next" title="app上架(一) IDFA">
+                <i class="fa fa-chevron-left"></i> app上架(一) IDFA
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/09/XcodeSomePath/" itemprop="url">
-                  Xcode相关路径
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2015-05-09T00:00:00+08:00" content="2015-05-09">
-              2015-05-09
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>在开发中经常有需要调整Xcode相关设置，需果了解其路径.</p>
-<h3 id="模拟器的位置"><a href="#模拟器的位置" class="headerlink" title="模拟器的位置"></a>模拟器的位置</h3><p><code>/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs</code><br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/09/XcodeSomePath/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/07/sandboxPath/" itemprop="url">
-                  沙盒路径
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2015-05-07T00:00:00+08:00" content="2015-05-07">
-              2015-05-07
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="目录介绍"><a href="#目录介绍" class="headerlink" title="目录介绍"></a>目录介绍</h3><p><code>Documents</code>:存放用户重要文档，会被备份到 iCloud</p>
-<ul>
-<li>如果保存<code>下载</code>文件，无法上架！</li>
-<li><p>由应用程序本身生成的文件，例如：用户登录之后的个人信息、游戏进度记录</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/07/sandboxPath/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -634,6 +372,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -653,8 +395,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -697,6 +448,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#利用taobao镜像来安装"><span class="nav-number">1.</span> <span class="nav-text">利用taobao镜像来安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用命令"><span class="nav-number">2.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装出错解决"><span class="nav-number">3.</span> <span class="nav-text">安装出错解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gem服务器在国外，原本安装方式但需要翻墙-不建议使用-太耗时"><span class="nav-number">4.</span> <span class="nav-text">gem服务器在国外，原本安装方式但需要翻墙(不建议使用,太耗时)</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -793,6 +555,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
