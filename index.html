@@ -172,17 +172,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            Categories
+            Startseite
           </a>
         </li>
       
@@ -192,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -203,16 +193,6 @@
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             Tags
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
-            
-            公益404
           </a>
         </li>
       
@@ -255,6 +235,205 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/07/encryRSA/" itemprop="url">
+                  加密之RSA
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-07T00:00:00+08:00" content="2016-06-07">
+              2016-06-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>前段时间在app中加入了<a href="">JSPatch</a>以方便快速修复线上bug，在设计中考虑安全性，就使用了相关加密算法，其中包括RSA。本文就针对RSA进行了部分总结。</p>
+<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><ul>
+<li>什么是RSA？<br>  RSA算法是第一个能同时用于加密和数字签名的算法,它是一种非对称加密算法。</li>
+<li>加密和加签有什么区别？<ul>
+<li>加密：公钥放在客户端，并使用公钥对数据进行加密，服务端拿到数据后用私钥进行解密；</li>
+<li>私钥放在客户端，并使用私钥对数据进行加签，服务端拿到数据后用公钥进行验签。</li>
+<li>前者完全为了加密；后者主要是为了防恶意攻击，防止别人模拟我们的客户端对我们的服务器进行攻击，导致服务器瘫痪。
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/06/07/encryRSA/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/07/oneProjectMorTargets/" itemprop="url">
+                  iOS开发在同一工程中创建不同版本的应用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-07T00:00:00+08:00" content="2016-06-07">
+              2016-06-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在工作中会遇到这种情况，需要在某个地区单独进行一个版本发布用于适应区域设备，该怎么简单的实现，并方便后期的维护呢？</p>
+<p>把当前工程拷贝后再修改就不用说了，此方法维护成本太高，不做考虑。可以在同一个Project里面创建两个Target,然后通过判断Target来修改代码，这样都是基于同一套代码修改，只是不同的地方通过Target判断来区分不同的代码，维护成本低。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/06/07/oneProjectMorTargets/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/07/cocopods/" itemprop="url">
                   Cocoapods
                 </a>
@@ -268,7 +447,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-04-07T00:00:00+08:00" content="2016-04-07">
               2016-04-07
             </time>
@@ -302,7 +481,7 @@
 <h4 id="利用taobao镜像来安装"><a href="#利用taobao镜像来安装" class="headerlink" title="利用taobao镜像来安装"></a>利用taobao镜像来安装</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"><span class="comment">//  删除源</span></div><div class="line">  	$ sudo gem sources --remove https:<span class="comment">//rubygems.org/</span></div><div class="line"><span class="comment">//  添加源</span></div><div class="line">    $ sudo gem sources -a https:<span class="comment">//ruby.taobao.org/</span></div><div class="line"><span class="comment">//  查看gem源    </span></div><div class="line">    $ gem sources -l</div><div class="line">	*** CURRENT SOURCES ***</div><div class="line">	https:<span class="comment">//ruby.taobao.org/</span></div><div class="line"><span class="comment">//  安装</span></div><div class="line">    $ sudo gem install cocoapods</div><div class="line">	<span class="comment">//  设置</span></div><div class="line">    $ pod setup</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/07/cocopods/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
         
@@ -365,7 +544,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2015-06-09T00:00:00+08:00" content="2015-06-09">
               2015-06-09
             </time>
@@ -399,7 +578,7 @@
 <p>但是有的时候你并没有使用，照样说使用了，这是因为好多数据分析sdk，比如talkingdata，友盟等都会使用这个有获取 IDFA，用于标识用户，帮助更准确的追踪数据。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/06/09/aboutIDFA/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
         
@@ -462,7 +641,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2015-05-09T00:00:00+08:00" content="2015-05-09">
               2015-05-09
             </time>
@@ -496,7 +675,7 @@
 <h3 id="模拟器的位置"><a href="#模拟器的位置" class="headerlink" title="模拟器的位置"></a>模拟器的位置</h3><p><code>/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs</code><br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/05/09/XcodeSomePath/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
         
@@ -559,7 +738,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2015-05-07T00:00:00+08:00" content="2015-05-07">
               2015-05-07
             </time>
@@ -595,7 +774,7 @@
 <li><p>由应用程序本身生成的文件，例如：用户登录之后的个人信息、游戏进度记录</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/05/07/sandboxPath/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
         
@@ -665,8 +844,8 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -676,7 +855,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -720,7 +899,7 @@
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">

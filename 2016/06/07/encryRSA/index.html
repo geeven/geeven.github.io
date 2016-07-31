@@ -84,25 +84,31 @@
 
 
 
-<meta name="description" content="目录介绍Documents:存放用户重要文档，会被备份到 iCloud
-
-如果保存下载文件，无法上架！
-由应用程序本身生成的文件，例如：用户登录之后的个人信息、游戏进度记录">
+<meta name="description" content="前段时间在app中加入了JSPatch以方便快速修复线上bug，在设计中考虑安全性，就使用了相关加密算法，其中包括RSA。本文就针对RSA进行了部分总结。
+基础知识
+什么是RSA？  RSA算法是第一个能同时用于加密和数字签名的算法,它是一种非对称加密算法。
+加密和加签有什么区别？
+加密：公钥放在客户端，并使用公钥对数据进行加密，服务端拿到数据后用私钥进行解密；
+私钥放在客户端，并使用私钥对数据进">
 <meta property="og:type" content="article">
-<meta property="og:title" content="沙盒路径">
-<meta property="og:url" content="http://yoursite.com/2015/05/07/sandboxPath/index.html">
+<meta property="og:title" content="加密之RSA">
+<meta property="og:url" content="http://yoursite.com/2016/06/07/encryRSA/index.html">
 <meta property="og:site_name" content="Geeven'blog">
-<meta property="og:description" content="目录介绍Documents:存放用户重要文档，会被备份到 iCloud
-
-如果保存下载文件，无法上架！
-由应用程序本身生成的文件，例如：用户登录之后的个人信息、游戏进度记录">
-<meta property="og:updated_time" content="2016-07-30T13:20:28.000Z">
+<meta property="og:description" content="前段时间在app中加入了JSPatch以方便快速修复线上bug，在设计中考虑安全性，就使用了相关加密算法，其中包括RSA。本文就针对RSA进行了部分总结。
+基础知识
+什么是RSA？  RSA算法是第一个能同时用于加密和数字签名的算法,它是一种非对称加密算法。
+加密和加签有什么区别？
+加密：公钥放在客户端，并使用公钥对数据进行加密，服务端拿到数据后用私钥进行解密；
+私钥放在客户端，并使用私钥对数据进">
+<meta property="og:updated_time" content="2016-07-31T04:17:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="沙盒路径">
-<meta name="twitter:description" content="目录介绍Documents:存放用户重要文档，会被备份到 iCloud
-
-如果保存下载文件，无法上架！
-由应用程序本身生成的文件，例如：用户登录之后的个人信息、游戏进度记录">
+<meta name="twitter:title" content="加密之RSA">
+<meta name="twitter:description" content="前段时间在app中加入了JSPatch以方便快速修复线上bug，在设计中考虑安全性，就使用了相关加密算法，其中包括RSA。本文就针对RSA进行了部分总结。
+基础知识
+什么是RSA？  RSA算法是第一个能同时用于加密和数字签名的算法,它是一种非对称加密算法。
+加密和加签有什么区别？
+加密：公钥放在客户端，并使用公钥对数据进行加密，服务端拿到数据后用私钥进行解密；
+私钥放在客户端，并使用私钥对数据进">
 
 
 
@@ -123,9 +129,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2015/05/07/sandboxPath/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/06/07/encryRSA/"/>
 
-  <title> 沙盒路径 | Geeven'blog </title>
+  <title> 加密之RSA | Geeven'blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -245,7 +251,7 @@
             
             
               
-                沙盒路径
+                加密之RSA
               
             
           </h1>
@@ -257,8 +263,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2015-05-07T00:00:00+08:00" content="2015-05-07">
-              2015-05-07
+            <time itemprop="dateCreated" datetime="2016-06-07T00:00:00+08:00" content="2016-06-07">
+              2016-06-07
             </time>
           </span>
 
@@ -285,29 +291,60 @@
       
 
       
-        <h3 id="目录介绍"><a href="#目录介绍" class="headerlink" title="目录介绍"></a>目录介绍</h3><p><code>Documents</code>:存放用户重要文档，会被备份到 iCloud</p>
-<ul>
-<li>如果保存<code>下载</code>文件，无法上架！</li>
-<li><p>由应用程序本身生成的文件，例如：用户登录之后的个人信息、游戏进度记录</p>
-<a id="more"></a>  
-<p><code>tmp</code>:存放临时文件，磁盘空间不够／重新启动会自动清空，程序员不需要关心内部文件，可以有，没有也没问题</p>
+        <p>前段时间在app中加入了<a href="">JSPatch</a>以方便快速修复线上bug，在设计中考虑安全性，就使用了相关加密算法，其中包括RSA。本文就针对RSA进行了部分总结。</p>
+<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><ul>
+<li>什么是RSA？<br>  RSA算法是第一个能同时用于加密和数字签名的算法,它是一种非对称加密算法。</li>
+<li>加密和加签有什么区别？<ul>
+<li>加密：公钥放在客户端，并使用公钥对数据进行加密，服务端拿到数据后用私钥进行解密；</li>
+<li>私钥放在客户端，并使用私钥对数据进行加签，服务端拿到数据后用公钥进行验签。</li>
+<li>前者完全为了加密；后者主要是为了防恶意攻击，防止别人模拟我们的客户端对我们的服务器进行攻击，导致服务器瘫痪。<a id="more"></a>
 </li>
-<li><p>不需要长久使用缓存</p>
+</ul>
 </li>
-<li>NSURLSession downloadTask 下载文件保存在 tmp 目录中，一旦完成，如果用户不做任何处理，会自动删除</li>
 </ul>
-<p><code>Caches</code>:保存缓存文件，需要再次使用，不会备份到 iCloud</p>
+<h3 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h3><h4 id="RSA加解密之公私钥"><a href="#RSA加解密之公私钥" class="headerlink" title="RSA加解密之公私钥"></a>RSA加解密之公私钥</h4><p>RSA使用“密钥对”对数据进行加密解密，在加密解密前需要先生存公钥<code>Public Key</code>和私钥<code>Private Key</code>。</p>
 <ul>
-<li>SDWebImage/YYWebImage 把网络图片缓存在此目录</li>
-<li>该目录下文件不会自动删除</li>
-<li><code>程序必须提供解决方案</code>，定期删除缓存空间:SDWebImage 1 周</li>
+<li>公钥(Public key): 用于加密数据. 用于公开, 一般存放在数据提供方, 例如iOS客户端。</li>
+<li>私钥(Private key): 用于解密数据. 必须保密, 私钥泄露会造成安全问题。</li>
+<li>iOS中的<code>Security.framework</code>提供了对RSA算法的支持，这种方式需要对密匙对进行处理, 根据<code>public key</code>生成证书, 通过<code>private key</code>生成<code>p12格式</code>的密匙。</li>
 </ul>
-<p><code>Preferences</code> 用户偏好，会定期备份到iCloud</p>
+<h4 id="RSA加密中padding"><a href="#RSA加密中padding" class="headerlink" title="RSA加密中padding"></a>RSA加密中padding</h4><p>padding即填充方式，由于RSA加密算法中要加密的明文是要比模数小的，padding就是通过一些填充方式来限制明文的长度。后面会详细介绍padding的几种模式以及分段加密。</p>
 <ul>
-<li>直接通过 NSUserDefaults 操作</li>
-<li>会备份到 iCloud</li>
+<li><p>RSA_PKCS1_PADDING 填充模式，最常用的模式</p>
+<ul>
+<li>输入:必须 比 RSA 钥模长(modulus) 短至少11个字节, 也就是　RSA_size(rsa) – 11 如果输入的明文过长，必须切割，然后填充。</li>
+<li>输出:和modulus一样长<br>根据这个要求，对于1024bit的密钥，block length = 1024/8 – 11 = 117 字节</li>
 </ul>
-<p><code>Documentation</code>:在iOS开发的时候，基本用不着;Mac OS开发使用</p>
+</li>
+<li><p>RSA_PKCS1_OAEP_PADDING</p>
+<ul>
+<li>输入:RSA_size(rsa) – 41</li>
+<li>输出:和modulus一样长</li>
+</ul>
+</li>
+<li><p>RSA_NO_PADDING　　不填充</p>
+<ul>
+<li>输入:可以和RSA钥模长一样长，如果输入的明文过长，必须切割，　然后填充</li>
+<li>输出:和modulus一样长</li>
+</ul>
+</li>
+</ul>
+<h3 id="相关命令及代码"><a href="#相关命令及代码" class="headerlink" title="相关命令及代码"></a>相关命令及代码</h3><h4 id="证书生成"><a href="#证书生成" class="headerlink" title="证书生成"></a>证书生成</h4><p>RSA加密这块公钥、私钥必不可少的。Apple是不支持直接使用字符串进行加密解密的，推荐使用p12文件。下面会生成在加密中使用到的所有文件，并提供给Java使用。</p>
+<hr>
+<ul>
+<li>生成模长为1024bit的私钥<br><code>openssl genrsa -out private_key.pem 1024</code></li>
+<li>生成certification require file<br><code>openssl req -new -key private_key.pem -out rsaCertReq.csr</code></li>
+<li>生成certification 并指定过期时间<br><code>openssl x509 -req -days 3650 -in rsaCertReq.csr -signkey private_key.pem -out rsaCert.crt</code></li>
+<li>生成公钥供iOS使用<br><code>openssl x509 -outform der -in rsaCert.crt -out public_key.der</code></li>
+<li>生成私钥供iOS使用 这边会让你输入密码，后期用到在生成secKeyRef的时候会用到这个密码<br><code>openssl pkcs12 -export -out private_key.p12 -inkey private_key.pem -in rsaCert.crt</code></li>
+<li>生成pem结尾的公钥供Java使用<br><code>openssl rsa -in private_key.pem -out rsa_public_key.pem -pubout</code></li>
+<li>生成pem结尾的私钥供Java使用<br><code>openssl pkcs8 -topk8 -in private_key.pem -out pkcs8_private_key.pem -nocrypt</code></li>
+</ul>
+<hr>
+<p>相关Demo:<a href="https://github.com/geeven/BlogDemo/tree/master/RSA" target="_blank" rel="external">RSA</a></p>
+<p>参考及相关链接:</p>
+<p><a href="http://www.jianshu.com/p/a1bad1e2be55" target="_blank" rel="external">Panda_iOS</a></p>
+<p><a href="http://baike.baidu.com/link?url=P1BaY7NEuUo6OGwLBO6VcMBCNKqv9K4aFgKu-s4_xdV16TspvyWngxF_wdZ0SDwLhzmr4SVm3Ed6p88RjinBGRAxIspSuAYJ4sr0NEezvB1vBqt1rtRCxFXfAOrmQZDq" target="_blank" rel="external">百度百科RSA算法</a></p>
 
       
     </div>
@@ -339,13 +376,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/06/07/oneProjectMorTargets/" rel="next" title="iOS开发在同一工程中创建不同版本的应用">
+                <i class="fa fa-chevron-left"></i> iOS开发在同一工程中创建不同版本的应用
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/05/09/XcodeSomePath/" rel="prev" title="Xcode相关路径">
-                Xcode相关路径 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -452,7 +489,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录介绍"><span class="nav-number">1.</span> <span class="nav-text">目录介绍</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本原理"><span class="nav-number">2.</span> <span class="nav-text">基本原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RSA加解密之公私钥"><span class="nav-number">2.1.</span> <span class="nav-text">RSA加解密之公私钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RSA加密中padding"><span class="nav-number">2.2.</span> <span class="nav-text">RSA加密中padding</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关命令及代码"><span class="nav-number">3.</span> <span class="nav-text">相关命令及代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#证书生成"><span class="nav-number">3.1.</span> <span class="nav-text">证书生成</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

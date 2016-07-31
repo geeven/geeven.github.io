@@ -1,0 +1,578 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="在工作中会遇到这种情况，需要在某个地区单独进行一个版本发布用于适应区域设备，该怎么简单的实现，并方便后期的维护呢？
+把当前工程拷贝后再修改就不用说了，此方法维护成本太高，不做考虑。可以在同一个Project里面创建两个Target,然后通过判断Target来修改代码，这样都是基于同一套代码修改，只是不同的地方通过Target判断来区分不同的代码，维护成本低。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS开发在同一工程中创建不同版本的应用">
+<meta property="og:url" content="http://yoursite.com/2016/06/07/oneProjectMorTargets/index.html">
+<meta property="og:site_name" content="Geeven'blog">
+<meta property="og:description" content="在工作中会遇到这种情况，需要在某个地区单独进行一个版本发布用于适应区域设备，该怎么简单的实现，并方便后期的维护呢？
+把当前工程拷贝后再修改就不用说了，此方法维护成本太高，不做考虑。可以在同一个Project里面创建两个Target,然后通过判断Target来修改代码，这样都是基于同一套代码修改，只是不同的地方通过Target判断来区分不同的代码，维护成本低。">
+<meta property="og:image" content="http://i4.piimg.com/4851/f37d0852bedb09b3.png">
+<meta property="og:image" content="http://i4.piimg.com/4851/de52f1055f670a2d.png">
+<meta property="og:image" content="http://i4.piimg.com/4851/cee7afdc9461c509.png">
+<meta property="og:image" content="http://i4.piimg.com/4851/968367c744d18ac2.png">
+<meta property="og:image" content="http://i4.piimg.com/4851/5f2f242d0cd347bc.png">
+<meta property="og:image" content="http://i4.piimg.com/4851/1efdd2db211824fb.png">
+<meta property="og:image" content="http://i4.piimg.com/4851/693acee3c322291d.png">
+<meta property="og:image" content="http://i4.piimg.com/4851/043b4c5f83d898b6.png">
+<meta property="og:updated_time" content="2016-07-30T17:03:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS开发在同一工程中创建不同版本的应用">
+<meta name="twitter:description" content="在工作中会遇到这种情况，需要在某个地区单独进行一个版本发布用于适应区域设备，该怎么简单的实现，并方便后期的维护呢？
+把当前工程拷贝后再修改就不用说了，此方法维护成本太高，不做考虑。可以在同一个Project里面创建两个Target,然后通过判断Target来修改代码，这样都是基于同一套代码修改，只是不同的地方通过Target判断来区分不同的代码，维护成本低。">
+<meta name="twitter:image" content="http://i4.piimg.com/4851/f37d0852bedb09b3.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/06/07/oneProjectMorTargets/"/>
+
+  <title> iOS开发在同一工程中创建不同版本的应用 | Geeven'blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Geeven'blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS开发在同一工程中创建不同版本的应用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-07T00:00:00+08:00" content="2016-06-07">
+              2016-06-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在工作中会遇到这种情况，需要在某个地区单独进行一个版本发布用于适应区域设备，该怎么简单的实现，并方便后期的维护呢？</p>
+<p>把当前工程拷贝后再修改就不用说了，此方法维护成本太高，不做考虑。可以在同一个Project里面创建两个Target,然后通过判断Target来修改代码，这样都是基于同一套代码修改，只是不同的地方通过Target判断来区分不同的代码，维护成本低。<br><a id="more"></a></p>
+<h2 id="一、新增Target"><a href="#一、新增Target" class="headerlink" title="一、新增Target"></a>一、新增Target</h2><h4 id="1-选中原有的Target，右键-Duplicate"><a href="#1-选中原有的Target，右键-Duplicate" class="headerlink" title="1.选中原有的Target，右键 Duplicate"></a>1.选中原有的Target，右键 <code>Duplicate</code></h4><p><img src="http://i4.piimg.com/4851/f37d0852bedb09b3.png" alt="Mou icon"></p>
+<h4 id="2-在弹框中选择-Duplicate-Only"><a href="#2-在弹框中选择-Duplicate-Only" class="headerlink" title="2.在弹框中选择 Duplicate Only"></a>2.在弹框中选择 <code>Duplicate Only</code></h4><p><img src="http://i4.piimg.com/4851/de52f1055f670a2d.png" alt="Mou icon"></p>
+<h4 id="3-创建好后如下，再修改Target-Scheme-info-plist-如图"><a href="#3-创建好后如下，再修改Target-Scheme-info-plist-如图" class="headerlink" title="3.创建好后如下，再修改Target,Scheme,info-plist,如图"></a>3.创建好后如下，再修改Target,Scheme,info-plist,如图</h4><p><img src="http://i4.piimg.com/4851/cee7afdc9461c509.png" alt="0"><br><img src="http://i4.piimg.com/4851/968367c744d18ac2.png" alt="1"><br><img src="http://i4.piimg.com/4851/5f2f242d0cd347bc.png" alt="2"></p>
+<h4 id="4-全部修改完成后，在新的Target中添加对应的plist文件，同时修改CFBundleDisplayName用于修改新Target应用的名字"><a href="#4-全部修改完成后，在新的Target中添加对应的plist文件，同时修改CFBundleDisplayName用于修改新Target应用的名字" class="headerlink" title="4.全部修改完成后，在新的Target中添加对应的plist文件，同时修改CFBundleDisplayName用于修改新Target应用的名字"></a>4.全部修改完成后，在新的Target中添加对应的plist文件，同时修改<code>CFBundleDisplayName</code>用于修改新Target应用的名字</h4><h2 id="二、分别为不同的应用添加不同的AppIcon-LaunchImage"><a href="#二、分别为不同的应用添加不同的AppIcon-LaunchImage" class="headerlink" title="二、分别为不同的应用添加不同的AppIcon,LaunchImage"></a>二、分别为不同的应用添加不同的AppIcon,LaunchImage</h2><h4 id="在General中的App-Icons-and-Launch-Images中设置不同的资源图片，如图"><a href="#在General中的App-Icons-and-Launch-Images中设置不同的资源图片，如图" class="headerlink" title="在General中的App Icons and Launch Images中设置不同的资源图片，如图"></a>在<code>General</code>中的<code>App Icons and Launch Images</code>中设置不同的资源图片，如图</h4><p><img src="http://i4.piimg.com/4851/1efdd2db211824fb.png" alt="10"><br><img src="http://i4.piimg.com/4851/693acee3c322291d.png" alt="8"><br><img src="http://i4.piimg.com/4851/043b4c5f83d898b6.png" alt="9"></p>
+<h2 id="三、设置以区分代码中不同的Target"><a href="#三、设置以区分代码中不同的Target" class="headerlink" title="三、设置以区分代码中不同的Target"></a>三、设置以区分代码中不同的Target</h2><h4 id="1-在新的Target选中Build-Settings，搜索Macros-双击新增一项Target-New"><a href="#1-在新的Target选中Build-Settings，搜索Macros-双击新增一项Target-New" class="headerlink" title="1.在新的Target选中Build Settings，搜索Macros,双击新增一项Target_New"></a>1.在新的Target选中<code>Build Settings</code>，搜索<code>Macros</code>,双击新增一项<code>Target_New</code></h4><h4 id="2-在不同的代码中利用-ifdf-Target-New"><a href="#2-在不同的代码中利用-ifdf-Target-New" class="headerlink" title="2.在不同的代码中利用#ifdf Target_New"></a>2.在不同的代码中利用<code>#ifdf Target_New</code></h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="meta">#ifdef Target_New</span></div><div class="line">	    [Bugly startWithAppId:<span class="string">@"90003XXXX"</span>];</div><div class="line">	<span class="meta">#else</span></div><div class="line">	    [Bugly startWithAppId:<span class="string">@"90003XXX0"</span>];</div><div class="line">	<span class="meta">#endif</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Demo请查看我的github: <a href="">Geeven’github</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/07/cocopods/" rel="next" title="Cocoapods">
+                <i class="fa fa-chevron-left"></i> Cocoapods
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/07/encryRSA/" rel="prev" title="加密之RSA">
+                加密之RSA <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Geeven" />
+          <p class="site-author-name" itemprop="name">Geeven</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、新增Target"><span class="nav-number">1.</span> <span class="nav-text">一、新增Target</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-选中原有的Target，右键-Duplicate"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.选中原有的Target，右键 Duplicate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-在弹框中选择-Duplicate-Only"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.在弹框中选择 Duplicate Only</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-创建好后如下，再修改Target-Scheme-info-plist-如图"><span class="nav-number">1.0.3.</span> <span class="nav-text">3.创建好后如下，再修改Target,Scheme,info-plist,如图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-全部修改完成后，在新的Target中添加对应的plist文件，同时修改CFBundleDisplayName用于修改新Target应用的名字"><span class="nav-number">1.0.4.</span> <span class="nav-text">4.全部修改完成后，在新的Target中添加对应的plist文件，同时修改CFBundleDisplayName用于修改新Target应用的名字</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、分别为不同的应用添加不同的AppIcon-LaunchImage"><span class="nav-number">2.</span> <span class="nav-text">二、分别为不同的应用添加不同的AppIcon,LaunchImage</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在General中的App-Icons-and-Launch-Images中设置不同的资源图片，如图"><span class="nav-number">2.0.1.</span> <span class="nav-text">在General中的App Icons and Launch Images中设置不同的资源图片，如图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、设置以区分代码中不同的Target"><span class="nav-number">3.</span> <span class="nav-text">三、设置以区分代码中不同的Target</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在新的Target选中Build-Settings，搜索Macros-双击新增一项Target-New"><span class="nav-number">3.0.1.</span> <span class="nav-text">1.在新的Target选中Build Settings，搜索Macros,双击新增一项Target_New</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-在不同的代码中利用-ifdf-Target-New"><span class="nav-number">3.0.2.</span> <span class="nav-text">2.在不同的代码中利用#ifdf Target_New</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Geeven</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
