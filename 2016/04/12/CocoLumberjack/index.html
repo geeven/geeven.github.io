@@ -1,0 +1,618 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Xcode的日志打印没有太多的区分,利用CoclLumberjack和XcodeClolrs可以实现这种效果。
+1. CocoLumberjack
+CocoaLumberjack是一个开源项目，为Xcode提供分级打印的策略，源码地址就是CocoaLumberjack
+CocoaLumberjack基本介绍CocoaLumberjack包含几个对象分别可以把Log输出到不同的地方：
+
+DDASLL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用CocoLumberjack实现调试分级Log">
+<meta property="og:url" content="http://yoursite.com/2016/04/12/CocoLumberjack/index.html">
+<meta property="og:site_name" content="Geeven'blog">
+<meta property="og:description" content="Xcode的日志打印没有太多的区分,利用CoclLumberjack和XcodeClolrs可以实现这种效果。
+1. CocoLumberjack
+CocoaLumberjack是一个开源项目，为Xcode提供分级打印的策略，源码地址就是CocoaLumberjack
+CocoaLumberjack基本介绍CocoaLumberjack包含几个对象分别可以把Log输出到不同的地方：
+
+DDASLL">
+<meta property="og:image" content="http://i1.piimg.com/4851/ab41cecf05397de4.png">
+<meta property="og:image" content="http://i2.piimg.com/4851/09864e411d7ffbcc.png">
+<meta property="og:updated_time" content="2016-07-31T04:31:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用CocoLumberjack实现调试分级Log">
+<meta name="twitter:description" content="Xcode的日志打印没有太多的区分,利用CoclLumberjack和XcodeClolrs可以实现这种效果。
+1. CocoLumberjack
+CocoaLumberjack是一个开源项目，为Xcode提供分级打印的策略，源码地址就是CocoaLumberjack
+CocoaLumberjack基本介绍CocoaLumberjack包含几个对象分别可以把Log输出到不同的地方：
+
+DDASLL">
+<meta name="twitter:image" content="http://i1.piimg.com/4851/ab41cecf05397de4.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/04/12/CocoLumberjack/"/>
+
+  <title> 利用CocoLumberjack实现调试分级Log | Geeven'blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Geeven'blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                利用CocoLumberjack实现调试分级Log
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-04-12T00:00:00+08:00" content="2016-04-12">
+              2016-04-12
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Xcode的日志打印没有太多的区分,利用CoclLumberjack和XcodeClolrs可以实现这种效果。</p>
+<h2 id="1-CocoLumberjack"><a href="#1-CocoLumberjack" class="headerlink" title="1. CocoLumberjack"></a>1. CocoLumberjack</h2><hr>
+<p>CocoaLumberjack是一个开源项目，为Xcode提供分级打印的策略，源码地址就是<a href="https://github.com/CocoaLumberjack/CocoaLumberjack" target="_blank" rel="external">CocoaLumberjack</a></p>
+<h3 id="CocoaLumberjack基本介绍"><a href="#CocoaLumberjack基本介绍" class="headerlink" title="CocoaLumberjack基本介绍"></a>CocoaLumberjack基本介绍</h3><p>CocoaLumberjack包含几个对象分别可以把Log输出到不同的地方：</p>
+<ul>
+<li>DDASLLogger 输出到Console.app</li>
+<li>DDTTYLogger 输出到Xcode控制台</li>
+<li>DDLogFileManager 输出到文件</li>
+<li><p>DDAbstractDatabaseLogger 输出到DB</p>
+<a id="more"></a>
+<p>通过ddLogLevel的int型变量或常量来定义打印等级</p>
+</li>
+<li><p>DDLogLevelOff 关闭Log</p>
+</li>
+<li>DDLogLevelError 只打印Error级别的Log</li>
+<li>DDLogLevelWarning 打印Error和Warning级别的Log</li>
+<li>DDLogLevelInfo 打印Error、Warn、Info级别的Log</li>
+<li>DDLogLevelDebug 打印Error、Warn、Info、Debug级别的Log</li>
+<li>DDLogLevelVerbose 打印Error、Warn、Info、Debug、Verbose级别的Log</li>
+</ul>
+<p>使用不同的宏打印不同级别的Log</p>
+<ul>
+<li>DDLogError(frmt, …) 打印Error级别的Log</li>
+<li>DDLogWarn(frmt, …) 打印Warn级别的Log</li>
+<li>DDLogInfo(frmt, …) 打印Info级别的Log</li>
+<li>DDLogDebug(frmt, …) 打印Debug级别的Log</li>
+<li>DDLogVerbose(frmt, …) 打印Verbose级别的Log</li>
+</ul>
+<h3 id="我们可以定制自己的Log-创建一个类GDLogFormatter遵守协议-lt-DDLogFormatter-gt-同时实现-NSString-formatLogMessage-DDLogMessage-logMessage这个方法，代码如下"><a href="#我们可以定制自己的Log-创建一个类GDLogFormatter遵守协议-lt-DDLogFormatter-gt-同时实现-NSString-formatLogMessage-DDLogMessage-logMessage这个方法，代码如下" class="headerlink" title="我们可以定制自己的Log:创建一个类GDLogFormatter遵守协议&lt;DDLogFormatter&gt;同时实现- (NSString *)formatLogMessage:(DDLogMessage *)logMessage这个方法，代码如下:"></a>我们可以定制自己的Log:创建一个类<code>GDLogFormatter</code>遵守协议<code>&lt;DDLogFormatter&gt;</code>同时实现<code>- (NSString *)formatLogMessage:(DDLogMessage *)logMessage</code>这个方法，代码如下:</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">NSString</span> *)formatLogMessage:(DDLogMessage *)logMessage &#123;</div><div class="line">    </div><div class="line">    <span class="built_in">NSString</span> *logLevel = <span class="literal">nil</span>;</div><div class="line">    <span class="keyword">switch</span> (logMessage.flag)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">case</span> DDLogFlagError:</div><div class="line">            logLevel = <span class="string">@"[ERROR] &gt;"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> DDLogFlagWarning:</div><div class="line">            logLevel = <span class="string">@"[WARN]  &gt;"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> DDLogFlagInfo:</div><div class="line">            logLevel = <span class="string">@"[INFO]  &gt;"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> DDLogFlagDebug:</div><div class="line">            logLevel = <span class="string">@"[DEBUG] &gt;"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            logLevel = <span class="string">@"[VBOSE] &gt;"</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="built_in">NSString</span> *formatStr = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@|%@[line:%zd]--&gt;%@: %@\n-----------------------------------------------\n"</span>,</div><div class="line">                           logLevel,</div><div class="line">                           logMessage.function,</div><div class="line">                           logMessage.line,</div><div class="line">                           logMessage.queueLabel,</div><div class="line">                           logMessage.message];</div><div class="line">    <span class="keyword">return</span> formatStr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上代码可以输出当前LogLevel和方法名，所在行，队列线程以及信息。</p>
+<h3 id="DDLog初始化"><a href="#DDLog初始化" class="headerlink" title="DDLog初始化"></a>DDLog初始化</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// 设置 DDLog</span></div><div class="line">- (<span class="keyword">void</span>)setupDDLog &#123;</div><div class="line">    </div><div class="line">    setenv(<span class="string">"XcodeColors"</span>, <span class="string">"YES"</span>, <span class="number">0</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">char</span> *xcode_colors = getenv(<span class="string">"XcodeColors"</span>);</div><div class="line">    <span class="keyword">if</span> (xcode_colors &amp;&amp; (strcmp(xcode_colors, <span class="string">"YES"</span>) == <span class="number">0</span>)) &#123;</div><div class="line">        <span class="comment">//NSLog(@"XcodeColors is installed and enabled");</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    GDLogFormatter * myLogFormatter = [[GDLogFormatter alloc]init];</div><div class="line">    </div><div class="line">    [[DDTTYLogger sharedInstance] setLogFormatter:myLogFormatter];</div><div class="line">    [DDLog addLogger:[DDTTYLogger sharedInstance]]; <span class="comment">// TTY = Xcode console</span></div><div class="line">    </div><div class="line">    [[DDASLLogger sharedInstance] setLogFormatter:myLogFormatter];</div><div class="line">    [DDLog addLogger:[DDASLLogger sharedInstance]]; <span class="comment">// ASL = Apple System Logs</span></div><div class="line">    </div><div class="line">    [[DDTTYLogger sharedInstance] setColorsEnabled:<span class="literal">YES</span>];</div><div class="line">    [[DDTTYLogger sharedInstance] setForegroundColor:[<span class="built_in">UIColor</span> blueColor] backgroundColor:<span class="literal">nil</span> forFlag:DDLogFlagInfo];</div><div class="line">    [[DDTTYLogger sharedInstance] setForegroundColor:[<span class="built_in">UIColor</span> darkGrayColor] backgroundColor:<span class="literal">nil</span> forFlag:DDLogFlagVerbose];</div><div class="line">    [[DDTTYLogger sharedInstance] setForegroundColor:[<span class="built_in">UIColor</span> magentaColor] backgroundColor:<span class="literal">nil</span> forFlag:DDLogFlagDebug];</div><div class="line">    [[DDTTYLogger sharedInstance] setForegroundColor:[<span class="built_in">UIColor</span> cyanColor] backgroundColor:<span class="literal">nil</span> forFlag:DDLogFlagWarning];</div><div class="line">    [[DDTTYLogger sharedInstance] setForegroundColor:[<span class="built_in">UIColor</span> redColor] backgroundColor:<span class="literal">nil</span> forFlag:DDLogFlagError];</div><div class="line">    </div><div class="line">    DDFileLogger *fileLogger = [[DDFileLogger alloc] init];</div><div class="line">    fileLogger.rollingFrequency = <span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span>; <span class="comment">// </span></div><div class="line">    fileLogger.logFileManager.maximumNumberOfLogFiles = <span class="number">7</span>;</div><div class="line">    [DDLog addLogger:fileLogger];</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-XcodeColors"><a href="#2-XcodeColors" class="headerlink" title="2. XcodeColors"></a>2. XcodeColors</h2><hr>
+<p>XcodeClolrs是一个开源Xcode插件</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="源码地址：XcodeColors-代码下下来后打开工程run一次，插件就自动安装到了-Users-geeven-Library-Application-Support-Developer-Shared-Xcode-Plug-ins-路径下-安装完成重启Xcode即可"><a href="#源码地址：XcodeColors-代码下下来后打开工程run一次，插件就自动安装到了-Users-geeven-Library-Application-Support-Developer-Shared-Xcode-Plug-ins-路径下-安装完成重启Xcode即可" class="headerlink" title="源码地址：XcodeColors; 代码下下来后打开工程run一次，插件就自动安装到了/Users/geeven/Library/Application Support/Developer/Shared/Xcode/Plug-ins/路径下,安装完成重启Xcode即可;"></a>源码地址：<a href="https://github.com/robbiehanson/XcodeColors" target="_blank" rel="external">XcodeColors</a>; 代码下下来后打开工程run一次，插件就自动安装到了<code>/Users/geeven/Library/Application Support/Developer/Shared/Xcode/Plug-ins/</code>路径下,安装完成重启Xcode即可;</h4><h4 id="可以采用插件管理Alcatraz来进行管理下载，Alcatraz的安装方式同上-Alcatraz是一个开源的Xcode包管理器，可以让你更便捷地发现、安装以及管理插件、模板和配色方案。只需要简单地点击或者勾选，不需要手工复制和粘贴。Alcatraz源码地址：Alcatraz"><a href="#可以采用插件管理Alcatraz来进行管理下载，Alcatraz的安装方式同上-Alcatraz是一个开源的Xcode包管理器，可以让你更便捷地发现、安装以及管理插件、模板和配色方案。只需要简单地点击或者勾选，不需要手工复制和粘贴。Alcatraz源码地址：Alcatraz" class="headerlink" title="可以采用插件管理Alcatraz来进行管理下载，Alcatraz的安装方式同上.Alcatraz是一个开源的Xcode包管理器，可以让你更便捷地发现、安装以及管理插件、模板和配色方案。只需要简单地点击或者勾选，不需要手工复制和粘贴。Alcatraz源码地址：Alcatraz"></a>可以采用插件管理<code>Alcatraz</code>来进行管理下载，<code>Alcatraz</code>的安装方式同上.<code>Alcatraz</code>是一个开源的Xcode包管理器，可以让你更便捷地发现、安装以及管理插件、模板和配色方案。只需要简单地点击或者勾选，不需要手工复制和粘贴。<code>Alcatraz</code>源码地址：<a href="https://github.com/mneorr/Alcatraz" target="_blank" rel="external">Alcatraz</a></h4><p><img src="http://i1.piimg.com/4851/ab41cecf05397de4.png" alt="XcodeColors"></p>
+<h3 id="让Log时显示色-有两种方式"><a href="#让Log时显示色-有两种方式" class="headerlink" title="让Log时显示色,有两种方式"></a>让Log时显示色,有两种方式</h3><ul>
+<li>在Scheme中配置Environment Variables, 添加参数XcodeColors为YES.</li>
+</ul>
+<p><img src="http://i2.piimg.com/4851/09864e411d7ffbcc.png" alt="Scheme"></p>
+<ul>
+<li>直接用代码开启环境 </li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">setenv(<span class="string">"XcodeColors"</span>, <span class="string">"YES"</span>, <span class="number">0</span>);</div><div class="line"><span class="comment">//用于检测是否开启XcodeClolrs</span></div><div class="line"><span class="keyword">char</span> *xcode_colors = getenv(<span class="string">"XcodeColors"</span>);</div><div class="line"><span class="keyword">if</span> (xcode_colors &amp;&amp; (strcmp(xcode_colors, <span class="string">"YES"</span>) == <span class="number">0</span>)) &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"XcodeColors is installed and enabled"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/07/cocopods/" rel="next" title="Cocoapods">
+                <i class="fa fa-chevron-left"></i> Cocoapods
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/07/mac-LocalServer/" rel="prev" title="mac本地服务器配置">
+                mac本地服务器配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Geeven" />
+          <p class="site-author-name" itemprop="name">Geeven</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-CocoLumberjack"><span class="nav-number">1.</span> <span class="nav-text">1. CocoLumberjack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CocoaLumberjack基本介绍"><span class="nav-number">1.1.</span> <span class="nav-text">CocoaLumberjack基本介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我们可以定制自己的Log-创建一个类GDLogFormatter遵守协议-lt-DDLogFormatter-gt-同时实现-NSString-formatLogMessage-DDLogMessage-logMessage这个方法，代码如下"><span class="nav-number">1.2.</span> <span class="nav-text">我们可以定制自己的Log:创建一个类GDLogFormatter遵守协议<DDLogFormatter>同时实现- (NSString *)formatLogMessage:(DDLogMessage *)logMessage这个方法，代码如下:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DDLog初始化"><span class="nav-number">1.3.</span> <span class="nav-text">DDLog初始化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-XcodeColors"><span class="nav-number">2.</span> <span class="nav-text">2. XcodeColors</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">2.1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#源码地址：XcodeColors-代码下下来后打开工程run一次，插件就自动安装到了-Users-geeven-Library-Application-Support-Developer-Shared-Xcode-Plug-ins-路径下-安装完成重启Xcode即可"><span class="nav-number">2.1.1.</span> <span class="nav-text">源码地址：XcodeColors; 代码下下来后打开工程run一次，插件就自动安装到了/Users/geeven/Library/Application Support/Developer/Shared/Xcode/Plug-ins/路径下,安装完成重启Xcode即可;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可以采用插件管理Alcatraz来进行管理下载，Alcatraz的安装方式同上-Alcatraz是一个开源的Xcode包管理器，可以让你更便捷地发现、安装以及管理插件、模板和配色方案。只需要简单地点击或者勾选，不需要手工复制和粘贴。Alcatraz源码地址：Alcatraz"><span class="nav-number">2.1.2.</span> <span class="nav-text">可以采用插件管理Alcatraz来进行管理下载，Alcatraz的安装方式同上.Alcatraz是一个开源的Xcode包管理器，可以让你更便捷地发现、安装以及管理插件、模板和配色方案。只需要简单地点击或者勾选，不需要手工复制和粘贴。Alcatraz源码地址：Alcatraz</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#让Log时显示色-有两种方式"><span class="nav-number">2.2.</span> <span class="nav-text">让Log时显示色,有两种方式</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Geeven</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

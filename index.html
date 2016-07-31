@@ -434,6 +434,230 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/07/mac-LocalServer/" itemprop="url">
+                  mac本地服务器配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-07T00:00:00+08:00" content="2016-06-07">
+              2016-06-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在开发过程中，为了测试方便而又无服务器的情况下，可以利用mac本地配置服务器临时测试。</p>
+<h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><pre><code>cd /etc/apache2/              进入 apache2 所在的文件目录;
+ls                          查看当前文件夹下的文件目录.
+sudo vim httpd.conf         sudo 以管理员的权限打开. vim
+/DocumentRoot               查找DocumentRoot (Web服务器的)根路径
+shift + v                     选中这一行
+y                              复制这一行
+p                              在当前行下面粘贴复制那一行
+此处需要复制两句，并将当前文本路径更变
+/Options Follow             查找这一行
+在 Options Follow 中间插入 Indexes  让服务器以列表的形式呈现内容.
+</code></pre><p>   配置完毕之后的样子 <code>Options Indexes FollowSymLinks Multiviews</code></p>
+<pre><code>/php  查找php 所在的那一行.
+删除行首的 # 号.
+esc  退出编辑模式.
+:wq  保存并退出 vim 编辑器.
+</code></pre><h4 id="开启及关闭服务器"><a href="#开启及关闭服务器" class="headerlink" title="开启及关闭服务器"></a>开启及关闭服务器</h4><hr>
+<ul>
+<li><p>启动服务器<br><code>sudo apachectl -k restart</code>    or    <code>sudo apachectl restart</code>  </p>
+</li>
+<li><p>关闭服务器<br><code>sudo apachectl -k stop</code>        or    <code>sudo apachectl stop</code></p>
+</li>
+</ul>
+<p>注：如果配置服务器过程中出现以下提示,说明服务器配置成功:</p>
+<pre><code>AH00558: httpd: Could not reliably determine the server&apos;s fully qualified domain name, using teacherdeiMac.local. Set the &apos;ServerName&apos; directive globally to suppress this message
+
+httpd not running, trying to start  
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/12/CocoLumberjack/" itemprop="url">
+                  利用CocoLumberjack实现调试分级Log
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-04-12T00:00:00+08:00" content="2016-04-12">
+              2016-04-12
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Xcode的日志打印没有太多的区分,利用CoclLumberjack和XcodeClolrs可以实现这种效果。</p>
+<h2 id="1-CocoLumberjack"><a href="#1-CocoLumberjack" class="headerlink" title="1. CocoLumberjack"></a>1. CocoLumberjack</h2><hr>
+<p>CocoaLumberjack是一个开源项目，为Xcode提供分级打印的策略，源码地址就是<a href="https://github.com/CocoaLumberjack/CocoaLumberjack">CocoaLumberjack</a></p>
+<h3 id="CocoaLumberjack基本介绍"><a href="#CocoaLumberjack基本介绍" class="headerlink" title="CocoaLumberjack基本介绍"></a>CocoaLumberjack基本介绍</h3><p>CocoaLumberjack包含几个对象分别可以把Log输出到不同的地方：</p>
+<ul>
+<li>DDASLLogger 输出到Console.app</li>
+<li>DDTTYLogger 输出到Xcode控制台</li>
+<li>DDLogFileManager 输出到文件</li>
+<li><p>DDAbstractDatabaseLogger 输出到DB</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/12/CocoLumberjack/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/07/cocopods/" itemprop="url">
                   Cocoapods
                 </a>
@@ -578,6 +802,124 @@
 <p>但是有的时候你并没有使用，照样说使用了，这是因为好多数据分析sdk，比如talkingdata，友盟等都会使用这个有获取 IDFA，用于标识用户，帮助更准确的追踪数据。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/06/09/aboutIDFA/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/06/07/gitSome/" itemprop="url">
+                  常用Git命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2015-06-07T00:00:00+08:00" content="2015-06-07">
+              2015-06-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>一般来说，日常使用只要记住6到7个命令，就可以了。但是熟练使用，恐怕要记住很多个命令。</p>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><ul>
+<li><code>git clone path</code>:将远程服务器代码clone到本地path路径上</li>
+<li><code>git status</code> :查文件的状态<ul>
+<li>查看某个文件的状态:<code>git status 文件名</code></li>
+<li>查看当前路径所有文件的状态:<code>git status</code></li>
+</ul>
+</li>
+<li><p><code>git init</code>:初始化一个空的本地仓库，生成一个.git目录，用于维护版本信息</p>
+<ul>
+<li>在当前路径初始化仓库:<code>git init</code></li>
+<li>在其他路径初始化仓库:<code>git init 仓库路径</code></li>
+</ul>
+</li>
+<li><p><code>git add</code> : 将工作区的文件保存到暂缓区<br>  保存某个文件到暂缓区: <code>git add 文件名</code><br>  保存当前路径的所有文件到暂缓区: <code>git add .</code></p>
+</li>
+<li><p><code>git commit</code> :将暂缓区的文件提交到当前分支<br>  提交某个文件到分支:<code>git commit -m ”注释” 文件名</code><br>  保存当前路径的所有文件到分支:<code>git commit -m ”注释”</code></p>
+</li>
+<li><p><code>git pull</code>:相当于是从远程获取最新版本并merge到本地</p>
+</li>
+<li><code>git fetch path</code>:相当于是从远程获取最新版本到本地，不会自动merge</li>
+<li><code>git push</code>:将本地分支推送到远程服务器，保持远程与本地一致</li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/06/07/gitSome/#more" rel="contents">
               Weiterlesen &raquo;
             </a>
           </div>
@@ -844,7 +1186,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
