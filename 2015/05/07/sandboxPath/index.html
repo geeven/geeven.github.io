@@ -84,7 +84,7 @@
 
 
 
-<meta name="description" content="目录介绍Documents:存放用户重要文档，会被备份到 iCloud
+<meta name="description" content="目录介绍Documents:保存应用运行时生成的需要持久化的数据，iTunes同步设备时会备份该目录，会被备份到 iCloud
 
 如果保存下载文件，无法上架！
 由应用程序本身生成的文件，例如：用户登录之后的个人信息、游戏进度记录">
@@ -92,14 +92,14 @@
 <meta property="og:title" content="沙盒路径">
 <meta property="og:url" content="http://yoursite.com/2015/05/07/sandboxPath/index.html">
 <meta property="og:site_name" content="Geeven'blog">
-<meta property="og:description" content="目录介绍Documents:存放用户重要文档，会被备份到 iCloud
+<meta property="og:description" content="目录介绍Documents:保存应用运行时生成的需要持久化的数据，iTunes同步设备时会备份该目录，会被备份到 iCloud
 
 如果保存下载文件，无法上架！
 由应用程序本身生成的文件，例如：用户登录之后的个人信息、游戏进度记录">
-<meta property="og:updated_time" content="2016-07-30T13:20:28.000Z">
+<meta property="og:updated_time" content="2016-08-02T17:58:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="沙盒路径">
-<meta name="twitter:description" content="目录介绍Documents:存放用户重要文档，会被备份到 iCloud
+<meta name="twitter:description" content="目录介绍Documents:保存应用运行时生成的需要持久化的数据，iTunes同步设备时会备份该目录，会被备份到 iCloud
 
 如果保存下载文件，无法上架！
 由应用程序本身生成的文件，例如：用户登录之后的个人信息、游戏进度记录">
@@ -285,24 +285,24 @@
       
 
       
-        <h3 id="目录介绍"><a href="#目录介绍" class="headerlink" title="目录介绍"></a>目录介绍</h3><p><code>Documents</code>:存放用户重要文档，会被备份到 iCloud</p>
+        <h3 id="目录介绍"><a href="#目录介绍" class="headerlink" title="目录介绍"></a>目录介绍</h3><p><code>Documents</code>:保存应用运行时生成的需要持久化的数据，iTunes同步设备时会备份该目录，会被备份到 iCloud</p>
 <ul>
 <li>如果保存<code>下载</code>文件，无法上架！</li>
 <li><p>由应用程序本身生成的文件，例如：用户登录之后的个人信息、游戏进度记录</p>
 <a id="more"></a>  
-<p><code>tmp</code>:存放临时文件，磁盘空间不够／重新启动会自动清空，程序员不需要关心内部文件，可以有，没有也没问题</p>
+<p><code>tmp</code>:保存应用运行时所需的临时数据，使用完毕后再将相应的文件从该目录删除。应用没有运行时，系统也可能会清除该目录下的文件。iTunes同步设备时不会备份该目录。保存不重要的并且大的数据。</p>
 </li>
 <li><p>不需要长久使用缓存</p>
 </li>
 <li>NSURLSession downloadTask 下载文件保存在 tmp 目录中，一旦完成，如果用户不做任何处理，会自动删除</li>
 </ul>
-<p><code>Caches</code>:保存缓存文件，需要再次使用，不会备份到 iCloud</p>
+<p><code>Caches</code>:保存应用运行时生成的需要持久化的数据，iTunes同步设备时不会备份该目录。一般存储体积大、不需要备份的非重要数据,不会备份到iCloud</p>
 <ul>
 <li>SDWebImage/YYWebImage 把网络图片缓存在此目录</li>
 <li>该目录下文件不会自动删除</li>
 <li><code>程序必须提供解决方案</code>，定期删除缓存空间:SDWebImage 1 周</li>
 </ul>
-<p><code>Preferences</code> 用户偏好，会定期备份到iCloud</p>
+<p><code>Preferences</code> 保存应用的所有偏好设置，iOS的Settings(设置)应用会在该目录中查找应用的设置信息。iTunes同步设备时会备份该目录,会定期备份到iCloud。该目录由系统管理, 无需我们来管理。通常用来存储一些基本的软件配置信息, 比如记住密码、自动登录等。</p>
 <ul>
 <li>直接通过 NSUserDefaults 操作</li>
 <li>会备份到 iCloud</li>
@@ -413,7 +413,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
