@@ -92,7 +92,7 @@ CocoaLumberjack基本介绍CocoaLumberjack包含几个对象分别可以把Log�
 DDASLL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用CocoLumberjack实现调试分级Log">
-<meta property="og:url" content="http://yoursite.com/2016/04/12/CocoLumberjack/index.html">
+<meta property="og:url" content="http://yoursite.com/2015/11/12/CocoLumberjack/index.html">
 <meta property="og:site_name" content="Geeven'blog">
 <meta property="og:description" content="Xcode的日志打印没有太多的区分,利用CoclLumberjack和XcodeClolrs可以实现这种效果。
 1. CocoLumberjack
@@ -103,7 +103,7 @@ DDASLL">
 <meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/CocoLumberjack01.png">
 <meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/CocoLumberjack03.png">
 <meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/CocoLumberjack02.png">
-<meta property="og:updated_time" content="2016-08-03T15:42:38.000Z">
+<meta property="og:updated_time" content="2016-09-18T16:38:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用CocoLumberjack实现调试分级Log">
 <meta name="twitter:description" content="Xcode的日志打印没有太多的区分,利用CoclLumberjack和XcodeClolrs可以实现这种效果。
@@ -133,7 +133,7 @@ DDASLL">
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/04/12/CocoLumberjack/"/>
+  <link rel="canonical" href="http://yoursite.com/2015/11/12/CocoLumberjack/"/>
 
   <title> 利用CocoLumberjack实现调试分级Log | Geeven'blog </title>
 </head>
@@ -193,7 +193,7 @@ DDASLL">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -203,7 +203,7 @@ DDASLL">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -266,9 +266,9 @@ DDASLL">
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-04-12T00:00:00+08:00" content="2016-04-12">
-              2016-04-12
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-11-12T00:00:00+08:00" content="2015-11-12">
+              2015-11-12
             </time>
           </span>
 
@@ -337,6 +337,7 @@ DDASLL">
 <li>直接用代码开启环境 </li>
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">setenv(<span class="string">"XcodeColors"</span>, <span class="string">"YES"</span>, <span class="number">0</span>);</div><div class="line"><span class="comment">//用于检测是否开启XcodeClolrs</span></div><div class="line"><span class="keyword">char</span> *xcode_colors = getenv(<span class="string">"XcodeColors"</span>);</div><div class="line"><span class="keyword">if</span> (xcode_colors &amp;&amp; (strcmp(xcode_colors, <span class="string">"YES"</span>) == <span class="number">0</span>)) &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"XcodeColors is installed and enabled"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>补充说明:由于打印是异步的且数据不安全:经常会出现此打印结果被另一结果截断现像，在Xcode7.3中并不好用，并且色彩可能一样有截断现像。在Xcode 8中的控制台color更是不能区分，因此弃用，还是自定义打印变量。</p>
 
       
     </div>
@@ -368,16 +369,16 @@ DDASLL">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/07/cocopods/" rel="next" title="Cocoapods">
-                <i class="fa fa-chevron-left"></i> Cocoapods
+              <a href="/2015/07/31/encryKey-SSKeyChain/" rel="next" title="encryKey_SSKeyChain">
+                <i class="fa fa-chevron-left"></i> encryKey_SSKeyChain
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/06/07/encryRSA/" rel="prev" title="加密之RSA">
-                加密之RSA <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/07/cocopods/" rel="prev" title="Cocoapods">
+                Cocoapods <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -427,10 +428,10 @@ DDASLL">
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -447,7 +448,7 @@ DDASLL">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">12</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -457,7 +458,7 @@ DDASLL">
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -512,7 +513,7 @@ DDASLL">
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
