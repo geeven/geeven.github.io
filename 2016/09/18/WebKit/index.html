@@ -84,19 +84,19 @@
 
 
 
-<meta name="description" content="在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。
-利用taobao镜像来安装1234567891011121314&amp;#123;//  删除源  	$ sudo gem sources --remove https://rubygems.org///  添加源    $ sudo gem sources -a https://ruby.taobao.o">
+<meta name="description" content="在iOS开发中，常常在APP内部需加载网页,iOS8之前使用UIWebView加载,但由于UIWebView在运行过程中存在内存泄漏、占用非常大的内存、加载速度慢,很难优化等缺点，最终被苹果舍弃。在iOS8苹果推出了新的框架WebKit，由WKWebView替换之前的UIWebView,解决了UIWebView中的问题。这些大家都知道，然而与本篇关系不大！
+本篇专讲关于webView加载html5">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cocoapods">
-<meta property="og:url" content="http://yoursite.com/2016/04/07/cocopods/index.html">
+<meta property="og:title" content="WebKit--allowsInlineMediaPlayback">
+<meta property="og:url" content="http://yoursite.com/2016/09/18/WebKit/index.html">
 <meta property="og:site_name" content="Geeven'blog">
-<meta property="og:description" content="在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。
-利用taobao镜像来安装1234567891011121314&amp;#123;//  删除源  	$ sudo gem sources --remove https://rubygems.org///  添加源    $ sudo gem sources -a https://ruby.taobao.o">
-<meta property="og:updated_time" content="2016-07-31T04:34:34.000Z">
+<meta property="og:description" content="在iOS开发中，常常在APP内部需加载网页,iOS8之前使用UIWebView加载,但由于UIWebView在运行过程中存在内存泄漏、占用非常大的内存、加载速度慢,很难优化等缺点，最终被苹果舍弃。在iOS8苹果推出了新的框架WebKit，由WKWebView替换之前的UIWebView,解决了UIWebView中的问题。这些大家都知道，然而与本篇关系不大！
+本篇专讲关于webView加载html5">
+<meta property="og:updated_time" content="2016-09-18T16:06:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cocoapods">
-<meta name="twitter:description" content="在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。
-利用taobao镜像来安装1234567891011121314&amp;#123;//  删除源  	$ sudo gem sources --remove https://rubygems.org///  添加源    $ sudo gem sources -a https://ruby.taobao.o">
+<meta name="twitter:title" content="WebKit--allowsInlineMediaPlayback">
+<meta name="twitter:description" content="在iOS开发中，常常在APP内部需加载网页,iOS8之前使用UIWebView加载,但由于UIWebView在运行过程中存在内存泄漏、占用非常大的内存、加载速度慢,很难优化等缺点，最终被苹果舍弃。在iOS8苹果推出了新的框架WebKit，由WKWebView替换之前的UIWebView,解决了UIWebView中的问题。这些大家都知道，然而与本篇关系不大！
+本篇专讲关于webView加载html5">
 
 
 
@@ -117,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/04/07/cocopods/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/09/18/WebKit/"/>
 
-  <title> Cocoapods | Geeven'blog </title>
+  <title> WebKit--allowsInlineMediaPlayback | Geeven'blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -239,7 +239,7 @@
             
             
               
-                Cocoapods
+                WebKit--allowsInlineMediaPlayback
               
             
           </h1>
@@ -251,8 +251,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-04-07T00:00:00+08:00" content="2016-04-07">
-              2016-04-07
+            <time itemprop="dateCreated" datetime="2016-09-18T00:00:00+08:00" content="2016-09-18">
+              2016-09-18
             </time>
           </span>
 
@@ -279,18 +279,23 @@
       
 
       
-        <p>在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。</p>
-<h4 id="利用taobao镜像来安装"><a href="#利用taobao镜像来安装" class="headerlink" title="利用taobao镜像来安装"></a>利用taobao镜像来安装</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"><span class="comment">//  删除源</span></div><div class="line">  	$ sudo gem sources --remove https:<span class="comment">//rubygems.org/</span></div><div class="line"><span class="comment">//  添加源</span></div><div class="line">    $ sudo gem sources -a https:<span class="comment">//ruby.taobao.org/</span></div><div class="line"><span class="comment">//  查看gem源    </span></div><div class="line">    $ gem sources -l</div><div class="line">	*** CURRENT SOURCES ***</div><div class="line">	https:<span class="comment">//ruby.taobao.org/</span></div><div class="line"><span class="comment">//  安装</span></div><div class="line">    $ sudo gem install cocoapods</div><div class="line">	<span class="comment">//  设置</span></div><div class="line">    $ pod setup</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"><span class="comment">//  查看版本</span></div><div class="line">    $ gem --version</div><div class="line"><span class="comment">//  创建默认的 Podfile</span></div><div class="line">    $ pod init</div><div class="line"><span class="comment">//  第一次使用安装框架</span></div><div class="line">    $ pod install</div><div class="line"><span class="comment">//  安装框架，不更新本地索引，速度快</span></div><div class="line">    $ pod install --no-repo-update</div><div class="line"><span class="comment">//  今后升级、添加、删除框架，或者框架不好用都使用这个命令</span></div><div class="line">    $ pod update</div><div class="line"><span class="comment">//  更新框架，不更新本地索引，速度快</span></div><div class="line">    $ pod update --no-repo-update</div><div class="line"><span class="comment">//  搜索框架</span></div><div class="line">    $ pod search XXX    </div><div class="line"><span class="comment">//  帮助</span></div><div class="line">    $ pod --help</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>当执行<code>$ pod search XXX</code>时发现显示的tag版本低于最新版时，需要升级Cocoapods，升级过程和重新安装基本一样</p>
-<h4 id="安装出错解决"><a href="#安装出错解决" class="headerlink" title="安装出错解决"></a>安装出错解决</h4><p>当执行如下如错时</p>
-<p><code>$ sudo gem install cocoapods
-ERROR:  While executing gem ... (Errno::EPERM)
-Operation not permitted - /usr/bin/xcodeproj</code></p>
-<p>用如下命令即可解决</p>
-<p><code>$ sudo gem install -n /usr/local/bin/ cocoapods --pre</code></p>
-<h4 id="gem服务器在国外，原本安装方式但需要翻墙-不建议使用-太耗时"><a href="#gem服务器在国外，原本安装方式但需要翻墙-不建议使用-太耗时" class="headerlink" title="gem服务器在国外，原本安装方式但需要翻墙(不建议使用,太耗时)"></a>gem服务器在国外，原本安装方式但需要翻墙(不建议使用,太耗时)</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"><span class="comment">//  查看gem源</span></div><div class="line">    $ gem sources –l</div><div class="line"><span class="comment">//  gem自身升级</span></div><div class="line">    $ sudo gem update --system</div><div class="line"><span class="comment">//  查看版本</span></div><div class="line">    $ gem --version</div><div class="line"><span class="comment">//  清除过期的gem</span></div><div class="line">    $ sudo gem cleanup</div><div class="line"><span class="comment">//  安装包</span></div><div class="line">    $ sudo gem install cocoapods</div><div class="line"><span class="comment">//  删除包</span></div><div class="line">    $ gem uninstall cocoapods</div><div class="line"><span class="comment">//  更新包</span></div><div class="line">    $ sudo gem update</div><div class="line"><span class="comment">//  列出本地安装的包</span></div><div class="line">    $ gem list</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <p>在iOS开发中，常常在APP内部需加载网页,iOS8之前使用<code>UIWebView</code>加载,但由于<code>UIWebView</code>在运行过程中存在内存泄漏、占用非常大的内存、加载速度慢,很难优化等缺点，最终被苹果舍弃。在iOS8苹果推出了新的框架<code>WebKit</code>，由<code>WKWebView</code>替换之前的UIWebView,解决了UIWebView中的问题。这些大家都知道，然而与本篇关系不大！</p>
+<p>本篇专讲关于webView加载html5中的视频时不需要全屏播放解决方案。在iOS8之前、iOS8至iOS10之前，iOS10及以后不同环境下解决方式不同。重点是iOS10之后的解决办法，毕竟之前的那么多年了，大家都知道的哈!<br><a id="more"></a></p>
+<p>前提在页面中需要设置<code>webkit-playsinline</code>:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">class</span>=<span class="string">"motv_video"</span> <span class="attr">preload</span>=<span class="string">"auto"</span> <span class="attr">src</span>=<span class="string">"http://cdn.optaim.com/material/2016-09/147341718716514_1280x720_24282160.mp4"</span> <span class="attr">webkit-playsinline</span>&gt;</span>您的浏览器不支持 Video标签！<span class="tag">&lt;/<span class="name">video</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>在iOS8之前需要在webView中设置如下代码才能让视频一开始不用全屏播放:<br> <code>self.webView.allowsInlineMediaPlayback = YES;</code></p>
+</li>
+<li><p>在iOS8及以后<code>WKWebView</code>中就不能再使用之前的代码表示，因为它的<code>allowsInlineMediaPlayback</code>在WKWebView中的一个属性<code>configuration</code>中,然而当我一如iOS8之前那样表示<br><code>self.webView.configuration.allowsInlineMediaPlayback = YES;</code><br>这样发现视频仍旧全屏播放。查看苹提供了一个初始化时的API可以进行设置，就是这里了。</p>
+</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">instancetype</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame configuration:(<span class="built_in">WKWebViewConfiguration</span> *)configuration <span class="built_in">NS_DESIGNATED_INITIALIZER</span>;</div></pre></td></tr></table></figure>
+<p>解决问题代码如下:</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">WKWebView</span> *)webView &#123;</div><div class="line">    <span class="keyword">if</span> (_webView == <span class="literal">nil</span>) &#123;</div><div class="line">        <span class="built_in">WKWebViewConfiguration</span> * config = [[<span class="built_in">WKWebViewConfiguration</span> alloc] init];</div><div class="line">        config.allowsInlineMediaPlayback = <span class="literal">YES</span>;</div><div class="line">        _webView = [[<span class="built_in">WKWebView</span> alloc]initWithFrame:[<span class="built_in">UIScreen</span> mainScreen].bounds configuration:config];</div><div class="line">        _webView.UIDelegate = <span class="keyword">self</span>;</div><div class="line">        _webView.navigationDelegate = <span class="keyword">self</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _webView;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>iOS 10已于9月14日(中秋前一天，呵呵苹果真会挑日子)进行推送，我当然是升级了，然而我无意中再次打开我APP上的这个页面，发现视频竟然又全屏播放了，蒙逼了，没听说有这个api改动啊！goole了一下发现，<code>allowsInlineMediaPlayback</code>这个已经在iOS 10被弃用了，然而苹果公司在官方API中竟然没有注解(不是一次两次了)。解决办法是在html5中使用<code>&lt;canvas&gt;</code>标签.详情请看以下链接地址.</li>
+</ul>
+<p><a href="https://forums.developer.apple.com/thread/60253" target="_blank" rel="external">Google的结果:苹果给的先驱者签复</a></p>
+<p><a href="https://webkit.org/blog/6784/new-video-policies-for-ios/" target="_blank" rel="external">WebKit官方解决办法</a></p>
 
       
     </div>
@@ -322,17 +327,13 @@ Operation not permitted - /usr/bin/xcodeproj</code></p>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/07/31/encryKey-SSKeyChain/" rel="next" title="encryKey_SSKeyChain">
-                <i class="fa fa-chevron-left"></i> encryKey_SSKeyChain
+              <a href="/2016/09/08/Cocoapods-StaticLibrary/" rel="next" title="利用CocoaPods打包静态库">
+                <i class="fa fa-chevron-left"></i> 利用CocoaPods打包静态库
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/12/CocoLumberjack/" rel="prev" title="利用CocoLumberjack实现调试分级Log">
-                利用CocoLumberjack实现调试分级Log <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -439,7 +440,7 @@ Operation not permitted - /usr/bin/xcodeproj</code></p>
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#利用taobao镜像来安装"><span class="nav-number">1.</span> <span class="nav-text">利用taobao镜像来安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用命令"><span class="nav-number">2.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装出错解决"><span class="nav-number">3.</span> <span class="nav-text">安装出错解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gem服务器在国外，原本安装方式但需要翻墙-不建议使用-太耗时"><span class="nav-number">4.</span> <span class="nav-text">gem服务器在国外，原本安装方式但需要翻墙(不建议使用,太耗时)</span></a></li></ol></div>
+              <p class="post-toc-empty">Dieser Artikel hat kein Inhaltsverzeichnis</p>
             
           </div>
         </section>
