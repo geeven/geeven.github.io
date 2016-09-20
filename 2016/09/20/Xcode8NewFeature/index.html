@@ -84,28 +84,18 @@
 
 
 
-<meta name="description" content="在开发过程中，为了测试方便而又无服务器的情况下，可以利用mac本地配置服务器临时测试。
-修改配置文件cd /etc/apache2/              进入 apache2 所在的文件目录;
-ls                          查看当前文件夹下的文件目录.
-sudo vim httpd.conf         sudo 以管理员的权限打开. vim
-/Document">
+<meta name="description" content="苹果在9月14日正式推送了iOS 10,同时也推送了Xcode8正式版，正式版与beat版还是有很大的改变。关于Xcode8及iOS 10的新特性进行一个简单的概述。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mac本地服务器配置">
-<meta property="og:url" content="http://yoursite.com/2016/06/07/mac-LocalServer/index.html">
+<meta property="og:title" content="Xcode8NewFeature">
+<meta property="og:url" content="http://yoursite.com/2016/09/20/Xcode8NewFeature/index.html">
 <meta property="og:site_name" content="Geeven'blog">
-<meta property="og:description" content="在开发过程中，为了测试方便而又无服务器的情况下，可以利用mac本地配置服务器临时测试。
-修改配置文件cd /etc/apache2/              进入 apache2 所在的文件目录;
-ls                          查看当前文件夹下的文件目录.
-sudo vim httpd.conf         sudo 以管理员的权限打开. vim
-/Document">
-<meta property="og:updated_time" content="2016-07-31T04:32:20.000Z">
+<meta property="og:description" content="苹果在9月14日正式推送了iOS 10,同时也推送了Xcode8正式版，正式版与beat版还是有很大的改变。关于Xcode8及iOS 10的新特性进行一个简单的概述。">
+<meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/Xcode8LogClosed.png">
+<meta property="og:updated_time" content="2016-09-20T16:27:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mac本地服务器配置">
-<meta name="twitter:description" content="在开发过程中，为了测试方便而又无服务器的情况下，可以利用mac本地配置服务器临时测试。
-修改配置文件cd /etc/apache2/              进入 apache2 所在的文件目录;
-ls                          查看当前文件夹下的文件目录.
-sudo vim httpd.conf         sudo 以管理员的权限打开. vim
-/Document">
+<meta name="twitter:title" content="Xcode8NewFeature">
+<meta name="twitter:description" content="苹果在9月14日正式推送了iOS 10,同时也推送了Xcode8正式版，正式版与beat版还是有很大的改变。关于Xcode8及iOS 10的新特性进行一个简单的概述。">
+<meta name="twitter:image" content="http://oatg8ax1c.bkt.clouddn.com/Xcode8LogClosed.png">
 
 
 
@@ -126,9 +116,9 @@ sudo vim httpd.conf         sudo 以管理员的权限打开. vim
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/06/07/mac-LocalServer/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/09/20/Xcode8NewFeature/"/>
 
-  <title> mac本地服务器配置 | Geeven'blog </title>
+  <title> Xcode8NewFeature | Geeven'blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -248,7 +238,7 @@ sudo vim httpd.conf         sudo 以管理员的权限打开. vim
             
             
               
-                mac本地服务器配置
+                Xcode8NewFeature
               
             
           </h1>
@@ -260,8 +250,8 @@ sudo vim httpd.conf         sudo 以管理员的权限打开. vim
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-06-07T00:00:00+08:00" content="2016-06-07">
-              2016-06-07
+            <time itemprop="dateCreated" datetime="2016-09-20T00:00:00+08:00" content="2016-09-20">
+              2016-09-20
             </time>
           </span>
 
@@ -288,34 +278,18 @@ sudo vim httpd.conf         sudo 以管理员的权限打开. vim
       
 
       
-        <p>在开发过程中，为了测试方便而又无服务器的情况下，可以利用mac本地配置服务器临时测试。</p>
-<h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><pre><code>cd /etc/apache2/              进入 apache2 所在的文件目录;
-ls                          查看当前文件夹下的文件目录.
-sudo vim httpd.conf         sudo 以管理员的权限打开. vim
-/DocumentRoot               查找DocumentRoot (Web服务器的)根路径
-shift + v                     选中这一行
-y                              复制这一行
-p                              在当前行下面粘贴复制那一行
-此处需要复制两句，并将当前文本路径更变
-/Options Follow             查找这一行
-在 Options Follow 中间插入 Indexes  让服务器以列表的形式呈现内容.
-</code></pre><p>   配置完毕之后的样子 <code>Options Indexes FollowSymLinks Multiviews</code></p>
-<pre><code>/php  查找php 所在的那一行.
-删除行首的 # 号.
-esc  退出编辑模式.
-:wq  保存并退出 vim 编辑器.
-</code></pre><h4 id="开启及关闭服务器"><a href="#开启及关闭服务器" class="headerlink" title="开启及关闭服务器"></a>开启及关闭服务器</h4><hr>
-<ul>
-<li><p>启动服务器<br><code>sudo apachectl -k restart</code>    or    <code>sudo apachectl restart</code>  </p>
-</li>
-<li><p>关闭服务器<br><code>sudo apachectl -k stop</code>        or    <code>sudo apachectl stop</code></p>
-</li>
+        <p>苹果在9月14日正式推送了iOS 10,同时也推送了Xcode8正式版，正式版与beat版还是有很大的改变。关于Xcode8及iOS 10的新特性进行一个简单的概述。</p>
+<a id="more"></a>
+<h2 id="Xcode8"><a href="#Xcode8" class="headerlink" title="Xcode8"></a>Xcode8</h2><h3 id="部分优秀插件已集成入Xcode8"><a href="#部分优秀插件已集成入Xcode8" class="headerlink" title="部分优秀插件已集成入Xcode8"></a>部分优秀插件已集成入Xcode8</h3><ul>
+<li><a href="https://github.com/ksuther?tab=overview&amp;from=2016-08-01&amp;to=2016-08-31&amp;utf8=✓" target="_blank" rel="external">Kent Sutherland</a>开发的插件<a href="https://github.com/ksuther/KSImageNamed-Xcode" target="_blank" rel="external">KSImageNamed</a>能够在Xcode中帮助图片代码自动完成,已集成Xcode</li>
+<li><a href="https://onevcat.com" target="_blank" rel="external">王巍 (@onevcat)</a>开发的快速生成文档<a href="https://github.com/onevcat/VVDocumenter-Xcode" target="_blank" rel="external"></a>已集成，快捷键为<code>Command+Optional+/</code></li>
 </ul>
-<p>注：如果配置服务器过程中出现以下提示,说明服务器配置成功:</p>
-<pre><code>AH00558: httpd: Could not reliably determine the server&apos;s fully qualified domain name, using teacherdeiMac.local. Set the &apos;ServerName&apos; directive globally to suppress this message
-
-httpd not running, trying to start  
-</code></pre>
+<h3 id="文档查看更加方便及快捷"><a href="#文档查看更加方便及快捷" class="headerlink" title="文档查看更加方便及快捷"></a>文档查看更加方便及快捷</h3><p>Xcode 8 的新的文档格式看起来漂亮极了，且文档浏览会变得简单和快捷。苹果也针对内存问题做了相关优化，新版的内存占用会少很多。具体自己打开Xcode 瞅瞅吧。就不上图了！</p>
+<h3 id="新的迷人字体，新的Log"><a href="#新的迷人字体，新的Log" class="headerlink" title="新的迷人字体，新的Log"></a>新的迷人字体，新的Log</h3><p>Xcode 8 会打印很多Log,有时很不利于调试，如需关掉，按如下步步骤:</p>
+<p>打开<code>Edit Scheme</code>界面，选中<code>Arguments</code>选项，在<code>Environment Variables</code>中配置一个参数<code>OS_ACTIVITY_MODE</code>设置成<code>disable</code>，默认打勾，如果没有你就打上吧。<br><img src="http://oatg8ax1c.bkt.clouddn.com/Xcode8LogClosed.png" alt=""></p>
+<p>//未完，后续增加</p>
+<h2 id="iOS-10"><a href="#iOS-10" class="headerlink" title="iOS 10"></a>iOS 10</h2><h3 id="众多的Extension"><a href="#众多的Extension" class="headerlink" title="众多的Extension"></a>众多的Extension</h3><h3 id="User-Notifications"><a href="#User-Notifications" class="headerlink" title="User Notifications"></a>User Notifications</h3><p>待测试使用，<a href="https://onevcat.com/2016/08/notification/" target="_blank" rel="external">优秀blog链接</a></p>
+<h3 id="SiriKit"><a href="#SiriKit" class="headerlink" title="SiriKit"></a>SiriKit</h3><h3 id="iMessage-Apps"><a href="#iMessage-Apps" class="headerlink" title="iMessage Apps"></a>iMessage Apps</h3>
       
     </div>
 
@@ -346,17 +320,13 @@ httpd not running, trying to start
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/07/oneProjectMorTargets/" rel="next" title="iOS开发在同一工程中创建不同版本的应用">
-                <i class="fa fa-chevron-left"></i> iOS开发在同一工程中创建不同版本的应用
+              <a href="/2016/09/18/WebKit/" rel="next" title="WebKit--allowsInlineMediaPlayback">
+                <i class="fa fa-chevron-left"></i> WebKit--allowsInlineMediaPlayback
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/07/encryRSA/" rel="prev" title="加密之RSA">
-                加密之RSA <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -463,7 +433,7 @@ httpd not running, trying to start
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改配置文件"><span class="nav-number">1.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开启及关闭服务器"><span class="nav-number">2.</span> <span class="nav-text">开启及关闭服务器</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Xcode8"><span class="nav-number">1.</span> <span class="nav-text">Xcode8</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#部分优秀插件已集成入Xcode8"><span class="nav-number">1.1.</span> <span class="nav-text">部分优秀插件已集成入Xcode8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文档查看更加方便及快捷"><span class="nav-number">1.2.</span> <span class="nav-text">文档查看更加方便及快捷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新的迷人字体，新的Log"><span class="nav-number">1.3.</span> <span class="nav-text">新的迷人字体，新的Log</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-10"><span class="nav-number">2.</span> <span class="nav-text">iOS 10</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#众多的Extension"><span class="nav-number">2.1.</span> <span class="nav-text">众多的Extension</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#User-Notifications"><span class="nav-number">2.2.</span> <span class="nav-text">User Notifications</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SiriKit"><span class="nav-number">2.3.</span> <span class="nav-text">SiriKit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iMessage-Apps"><span class="nav-number">2.4.</span> <span class="nav-text">iMessage Apps</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
