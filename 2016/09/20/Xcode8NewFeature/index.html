@@ -109,7 +109,7 @@
 <meta property="og:site_name" content="Geeven'blog">
 <meta property="og:description" content="苹果在9月14日正式推送了iOS 10,同时也推送了Xcode8正式版，正式版与beat版还是有很大的改变。关于Xcode8及iOS 10的新特性进行一个简单的概述。">
 <meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/Xcode8LogClosed.png">
-<meta property="og:updated_time" content="2016-09-21T16:29:13.000Z">
+<meta property="og:updated_time" content="2016-10-12T17:03:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Xcode8NewFeature">
 <meta name="twitter:description" content="苹果在9月14日正式推送了iOS 10,同时也推送了Xcode8正式版，正式版与beat版还是有很大的改变。关于Xcode8及iOS 10的新特性进行一个简单的概述。">
@@ -305,9 +305,16 @@
 <h3 id="文档查看更加方便及快捷"><a href="#文档查看更加方便及快捷" class="headerlink" title="文档查看更加方便及快捷"></a>文档查看更加方便及快捷</h3><p>Xcode 8 的新的文档格式看起来漂亮极了，且文档浏览会变得简单和快捷。苹果也针对内存问题做了相关优化，新版的内存占用会少很多。具体自己打开Xcode 瞅瞅吧。就不上图了！</p>
 <h3 id="新的迷人字体，新的Log"><a href="#新的迷人字体，新的Log" class="headerlink" title="新的迷人字体，新的Log"></a>新的迷人字体，新的Log</h3><p>Xcode 8 会打印很多Log,有时很不利于调试，如需关掉，按如下步步骤:</p>
 <p>打开<code>Edit Scheme</code>界面，选中<code>Arguments</code>选项，在<code>Environment Variables</code>中配置一个参数<code>OS_ACTIVITY_MODE</code>设置成<code>disable</code>，默认打勾，如果没有你就打上吧。<br><img src="http://oatg8ax1c.bkt.clouddn.com/Xcode8LogClosed.png" alt=""></p>
+<h3 id="Xcode-8兼容iOS7以及低版本Xcode调试高版本iOS系统"><a href="#Xcode-8兼容iOS7以及低版本Xcode调试高版本iOS系统" class="headerlink" title="Xcode 8兼容iOS7以及低版本Xcode调试高版本iOS系统"></a>Xcode 8兼容iOS7以及低版本Xcode调试高版本iOS系统</h3><p>Xcode 8 默认支持的最低系统是iOS8，我们可以手动更改版本到7.0</p>
+<ul>
+<li>打开Xcode7，可以先将调试需要的配置文件拷贝出来:打开Xcode 7 包文件路径下<code>/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport</code>进入，将里面7.0,7.1低版文件拷贝出来</li>
+<li>打开Xcode8，将之前拷贝出来的文件放入之前的同样路径Xcode8下的文件夹中，<code>/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk</code> ，在文件列表中<code>SDKSettings.plist</code>这个文件，先将其拷到桌面，更改桌面上的<code>SDKSettings.plist</code>(不能直接修改原文件):在配置中的数组增加7.0,7.1配置.之后将桌面上的文件替换原文件，在弹框中选择鉴定.重启Xcode8，之后在工程的Deployment Target里面就可以选择7.0了。</li>
+</ul>
 <p>//未完，后续增加</p>
 <h2 id="iOS-10"><a href="#iOS-10" class="headerlink" title="iOS 10"></a>iOS 10</h2><h3 id="众多的Extension"><a href="#众多的Extension" class="headerlink" title="众多的Extension"></a>众多的Extension</h3><h3 id="User-Notifications"><a href="#User-Notifications" class="headerlink" title="User Notifications"></a>User Notifications</h3><p>待测试使用，<a href="https://onevcat.com/2016/08/notification/" target="_blank" rel="external">优秀blog链接</a></p>
-<h3 id="SiriKit"><a href="#SiriKit" class="headerlink" title="SiriKit"></a>SiriKit</h3><h3 id="iMessage-Apps"><a href="#iMessage-Apps" class="headerlink" title="iMessage Apps"></a>iMessage Apps</h3>
+<h3 id="SiriKit"><a href="#SiriKit" class="headerlink" title="SiriKit"></a>SiriKit</h3><h3 id="iMessage-Apps"><a href="#iMessage-Apps" class="headerlink" title="iMessage Apps"></a>iMessage Apps</h3><h2 id="macOS提带一点"><a href="#macOS提带一点" class="headerlink" title="macOS提带一点"></a>macOS提带一点</h2><p>不少人在升级之后，发现「系统偏好设置 - 安全与隐私 - 通用」中「允许任何来源应用运行」的选项消失了，这是因为 macOS Sierra 加强了系统安全性，降低不良应用威胁电脑安全的几率，但是这也导致某些未经过开发者签名的应用无法在电脑上正常运行。</p>
+<p>要想找回这个选项，可以在终端中输入指令:<br><code>sudo spctl --master-disable</code><br>验证密码之后即可重新开启这个选项。</p>
+
       
     </div>
 
@@ -491,7 +498,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Xcode8"><span class="nav-number">1.</span> <span class="nav-text">Xcode8</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#部分优秀插件已集成入Xcode8"><span class="nav-number">1.1.</span> <span class="nav-text">部分优秀插件已集成入Xcode8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文档查看更加方便及快捷"><span class="nav-number">1.2.</span> <span class="nav-text">文档查看更加方便及快捷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新的迷人字体，新的Log"><span class="nav-number">1.3.</span> <span class="nav-text">新的迷人字体，新的Log</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-10"><span class="nav-number">2.</span> <span class="nav-text">iOS 10</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#众多的Extension"><span class="nav-number">2.1.</span> <span class="nav-text">众多的Extension</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#User-Notifications"><span class="nav-number">2.2.</span> <span class="nav-text">User Notifications</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SiriKit"><span class="nav-number">2.3.</span> <span class="nav-text">SiriKit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iMessage-Apps"><span class="nav-number">2.4.</span> <span class="nav-text">iMessage Apps</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Xcode8"><span class="nav-number">1.</span> <span class="nav-text">Xcode8</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#部分优秀插件已集成入Xcode8"><span class="nav-number">1.1.</span> <span class="nav-text">部分优秀插件已集成入Xcode8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文档查看更加方便及快捷"><span class="nav-number">1.2.</span> <span class="nav-text">文档查看更加方便及快捷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新的迷人字体，新的Log"><span class="nav-number">1.3.</span> <span class="nav-text">新的迷人字体，新的Log</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xcode-8兼容iOS7以及低版本Xcode调试高版本iOS系统"><span class="nav-number">1.4.</span> <span class="nav-text">Xcode 8兼容iOS7以及低版本Xcode调试高版本iOS系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS-10"><span class="nav-number">2.</span> <span class="nav-text">iOS 10</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#众多的Extension"><span class="nav-number">2.1.</span> <span class="nav-text">众多的Extension</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#User-Notifications"><span class="nav-number">2.2.</span> <span class="nav-text">User Notifications</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SiriKit"><span class="nav-number">2.3.</span> <span class="nav-text">SiriKit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iMessage-Apps"><span class="nav-number">2.4.</span> <span class="nav-text">iMessage Apps</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#macOS提带一点"><span class="nav-number">3.</span> <span class="nav-text">macOS提带一点</span></a></li></ol></div>
             
           </div>
         </section>
