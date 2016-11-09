@@ -121,7 +121,7 @@ cocoapods官方文档">
 <meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/CocoaPods08.png">
 <meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/CocoaPods09.png">
 <meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/CocoaPods06.png">
-<meta property="og:updated_time" content="2016-11-09T14:40:33.000Z">
+<meta property="og:updated_time" content="2016-11-09T15:00:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用CocoaPods打包静态库">
 <meta name="twitter:description" content="CocoaPods作为OS X和iOS开发平台的类为管理工具，目前非常完善。通常我们用pod来管理第三方开源类库，同时在公司内部也会利用pod管理依赖关系的静态库给其它人使用，以及开发相关SDK(不愿意公开源代码),那么就需要打包成.a文件。这次的GDLib Demo是以一个依赖于AFNetworking的静态类库。
@@ -354,9 +354,9 @@ cocoapods官方文档">
 #
 
 Pod::Spec.new do |s|
-  s.name             = &apos;GDLib&apos;
-  s.version          = &apos;0.1.0&apos;
-  s.summary          = &apos;A short description of GDLib.&apos;
+  s.name             = &apos;GDLib&apos;    #名称
+  s.version          = &apos;0.1.0&apos;    #版本号
+  s.summary          = &apos;A short description of GDLib.&apos;    #简短介绍
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -368,25 +368,25 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = &apos;https://github.com/&lt;GITHUB_USERNAME&gt;/GDLib&apos;
-  # s.screenshots     = &apos;www.example.com/screenshots_1&apos;, &apos;www.example.com/screenshots_2&apos;
-  s.license          = { :type =&gt; &apos;MIT&apos;, :file =&gt; &apos;LICENSE&apos; }
-  s.author           = { &apos;geeven&apos; =&gt; &apos;598800360@qq.com&apos; }
-  s.source           = { :git =&gt; &apos;https://github.com/&lt;GITHUB_USERNAME&gt;/GDLib.git&apos;, :tag =&gt; s.version.to_s }
-  # s.social_media_url = &apos;https://twitter.com/&lt;TWITTER_USERNAME&gt;&apos;
+  s.homepage         = &apos;https://github.com/&lt;GITHUB_USERNAME&gt;/GDLib&apos;                            #主页地址
+  # s.screenshots     = &apos;www.example.com/screenshots_1&apos;, &apos;www.example.com/screenshots_2&apos;    #截图
+  s.license          = { :type =&gt; &apos;MIT&apos;, :file =&gt; &apos;LICENSE&apos; }    #开源协议
+  s.author           = { &apos;geeven&apos; =&gt; &apos;598800360@qq.com&apos; }        #作者信息
+  s.source           = { :git =&gt; &apos;https://github.com/&lt;GITHUB_USERNAME&gt;/GDLib.git&apos;, :tag =&gt; s.version.to_s }        #项目地址
+  # s.social_media_url = &apos;https://twitter.com/&lt;TWITTER_USERNAME&gt;&apos;                            #多媒体链接及介绍
 
-  s.ios.deployment_target = &apos;8.0&apos;
+  s.ios.deployment_target = &apos;8.0&apos;        #支持平台版本号
 
-  s.source_files = &apos;GDLib/Classes/**/*&apos;
+  s.source_files = &apos;GDLib/Classes/**/*&apos; #源码文件
 
   # s.resource_bundles = {
   #   &apos;GDLib&apos; =&gt; [&apos;GDLib/Assets/*.png&apos;]
-  # }
+  # }                                                #资源文件
 
-  # s.public_header_files = &apos;Pod/Classes/**/*.h&apos;
-  # s.frameworks = &apos;UIKit&apos;, &apos;MapKit&apos;
-  # s.dependency &apos;AFNetworking&apos;, &apos;~&gt; 2.3&apos;
-end
+  # s.public_header_files = &apos;Pod/Classes/**/*.h&apos;    #公共头文件
+  # s.frameworks = &apos;UIKit&apos;, &apos;MapKit&apos;                #所需要的frameworks
+  # s.dependency &apos;AFNetworking&apos;, &apos;~&gt; 2.3&apos;            #所依赖的库
+end        
 </code></pre><p><a href="http://guides.cocoapods.org/syntax/podspec.html#specification" target="_blank" rel="external">官方podspec文件语法详细说明:Podspec Syntax Reference</a></p>
 <h3 id="3-进入Example文件夹，执行pod-install，让demo项目安装依赖项并更新配置。"><a href="#3-进入Example文件夹，执行pod-install，让demo项目安装依赖项并更新配置。" class="headerlink" title="3.进入Example文件夹，执行pod install，让demo项目安装依赖项并更新配置。"></a>3.进入Example文件夹，执行pod install，让demo项目安装依赖项并更新配置。</h3><pre><code>Geeven-MBP:GDLib geeven$ cd /Users/geeven/Desktop/GDLib/Example 
 Geeven-MBP:Example geeven$ pod install
