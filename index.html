@@ -692,8 +692,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/07/encryRSA/" itemprop="url">
-                  加密之RSA
+                <a class="post-title-link" href="/2016/06/07/oneProjectMorTargets/" itemprop="url">
+                  iOS开发在同一工程中创建不同版本的应用
                 </a>
               
             
@@ -717,8 +717,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/07/encryRSA/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/07/encryRSA/" itemprop="commentsCount"></span>
+                <a href="/2016/06/07/oneProjectMorTargets/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/07/oneProjectMorTargets/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -742,15 +742,10 @@
 
       
         
-          <p>前段时间在app中加入了<a href="">JSPatch</a>以方便快速修复线上bug，在设计中考虑安全性，就使用了相关加密算法，其中包括RSA。本文就针对RSA进行了部分总结。</p>
-<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><ul>
-<li>什么是RSA？<br>  RSA算法是第一个能同时用于加密和数字签名的算法,它是一种非对称加密算法。</li>
-<li>加密和加签有什么区别？<ul>
-<li>加密：公钥放在客户端，并使用公钥对数据进行加密，服务端拿到数据后用私钥进行解密；</li>
-<li>私钥放在客户端，并使用私钥对数据进行加签，服务端拿到数据后用公钥进行验签。</li>
-<li>前者完全为了加密；后者主要是为了防恶意攻击，防止别人模拟我们的客户端对我们的服务器进行攻击，导致服务器瘫痪。
+          <p>在工作中会遇到这种情况，需要在某个地区单独进行一个版本发布用于适应区域设备，该怎么简单的实现，并方便后期的维护呢？</p>
+<p>把当前工程拷贝后再修改就不用说了，此方法维护成本太高，不做考虑。可以在同一个Project里面创建两个Target,然后通过判断Target来修改代码，这样都是基于同一套代码修改，只是不同的地方通过Target判断来区分不同的代码，维护成本低。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/06/07/encryRSA/#more" rel="contents">
+            <a class="btn" href="/2016/06/07/oneProjectMorTargets/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -928,8 +923,8 @@ httpd not running, trying to start
             
               
                 
-                <a class="post-title-link" href="/2016/06/07/oneProjectMorTargets/" itemprop="url">
-                  iOS开发在同一工程中创建不同版本的应用
+                <a class="post-title-link" href="/2016/06/07/encryRSA/" itemprop="url">
+                  加密之RSA
                 </a>
               
             
@@ -953,8 +948,8 @@ httpd not running, trying to start
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/07/oneProjectMorTargets/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/07/oneProjectMorTargets/" itemprop="commentsCount"></span>
+                <a href="/2016/06/07/encryRSA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/07/encryRSA/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -978,10 +973,15 @@ httpd not running, trying to start
 
       
         
-          <p>在工作中会遇到这种情况，需要在某个地区单独进行一个版本发布用于适应区域设备，该怎么简单的实现，并方便后期的维护呢？</p>
-<p>把当前工程拷贝后再修改就不用说了，此方法维护成本太高，不做考虑。可以在同一个Project里面创建两个Target,然后通过判断Target来修改代码，这样都是基于同一套代码修改，只是不同的地方通过Target判断来区分不同的代码，维护成本低。<br>
+          <p>前段时间在app中加入了<a href="">JSPatch</a>以方便快速修复线上bug，在设计中考虑安全性，就使用了相关加密算法，其中包括RSA。本文就针对RSA进行了部分总结。</p>
+<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><ul>
+<li>什么是RSA？<br>  RSA算法是第一个能同时用于加密和数字签名的算法,它是一种非对称加密算法。</li>
+<li>加密和加签有什么区别？<ul>
+<li>加密：公钥放在客户端，并使用公钥对数据进行加密，服务端拿到数据后用私钥进行解密；</li>
+<li>私钥放在客户端，并使用私钥对数据进行加签，服务端拿到数据后用公钥进行验签。</li>
+<li>前者完全为了加密；后者主要是为了防恶意攻击，防止别人模拟我们的客户端对我们的服务器进行攻击，导致服务器瘫痪。
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/06/07/oneProjectMorTargets/#more" rel="contents">
+            <a class="btn" href="/2016/06/07/encryRSA/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
