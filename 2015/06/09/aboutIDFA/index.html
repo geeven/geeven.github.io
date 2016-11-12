@@ -5,10 +5,10 @@
   
 
 
-<html class="theme-next pisces use-motion">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -81,7 +81,7 @@
 
 
 
-<link href="/vendorsTmp/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendorsTmp/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
@@ -118,24 +118,35 @@
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Pisces',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 6345777380715398000,
+      userId: '6345777380715398000',
       author: 'geeven'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="http://yoursite.com/2015/06/09/aboutIDFA/"/>
+
+
+
+
 
   <title> app上架(一) IDFA | Geeven'blog </title>
 </head>
@@ -227,7 +238,7 @@
         <li class="menu-item menu-item-life">
           <a href="/life" rel="section">
             
-            生活
+            menu.life
           </a>
         </li>
       
@@ -247,6 +258,8 @@
   
 </nav>
 
+
+
  </div>
     </header>
 
@@ -260,13 +273,26 @@
     
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/06/09/aboutIDFA/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Geeven(文飞)">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Geeven'blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Geeven'blog" src="">
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -289,9 +315,19 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-06-09T22:54:24+08:00" content="2015-06-09">
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-06-09T22:54:24+08:00">
               2015-06-09
             </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2016-09-22T00:26:37+08:00">
+              2016-09-22
+            </time>
+            
           </span>
 
           
@@ -301,7 +337,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2015/06/09/aboutIDFA/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/09/aboutIDFA/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/09/aboutIDFA/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -313,6 +349,9 @@
           
 
           
+          
+          
+
         </div>
       </header>
     
@@ -359,13 +398,14 @@
       
     </div>
 
+
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
           
-            <a href="/tags/Xcode/" rel="tag">#Xcode</a>
+            <a href="/tags/Xcode/" rel="tag"># Xcode</a>
           
         </div>
       
@@ -379,6 +419,8 @@
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -445,7 +487,7 @@
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -562,19 +604,27 @@
           </div>
         
 
+        
+
+
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解决办法"><span class="nav-number">1.</span> <span class="nav-text">解决办法:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-重新下载Xcode"><span class="nav-number">1.1.</span> <span class="nav-text">1.重新下载Xcode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-判断自己的项目是否使用IDFA"><span class="nav-number">1.2.</span> <span class="nav-text">2.判断自己的项目是否使用IDFA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于IDFA项目中的选择"><span class="nav-number">1.2.1.</span> <span class="nav-text">关于IDFA项目中的选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结一下"><span class="nav-number">1.2.2.</span> <span class="nav-text">总结一下:</span></a></li></ol></li></ol></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
       
 
     </div>
@@ -597,16 +647,7 @@
   <span class="author" itemprop="copyrightHolder">Geeven(文飞)</span>
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
 
         
 
@@ -711,6 +752,7 @@
 
   
     
+    
     <script src="/vendorsTmp/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
     <script src="/js/src/hook-duoshuo.js"></script>
   
@@ -720,6 +762,8 @@
 
 
 
+
+
   
   
 
@@ -728,6 +772,9 @@
   
 
   
+
+  
+
 
 </body>
 </html>

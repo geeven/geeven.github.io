@@ -5,10 +5,10 @@
   
 
 
-<html class="theme-next pisces use-motion">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -81,7 +81,7 @@
 
 
 
-<link href="/vendorsTmp/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendorsTmp/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
@@ -141,24 +141,35 @@ git init:初始化一个空的本地仓库，生成一个.git目录，用于维�
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Pisces',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 6345777380715398000,
+      userId: '6345777380715398000',
       author: 'geeven'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="http://yoursite.com/2015/06/07/gitSome/"/>
+
+
+
+
 
   <title> 常用Git命令 | Geeven'blog </title>
 </head>
@@ -250,7 +261,7 @@ git init:初始化一个空的本地仓库，生成一个.git目录，用于维�
         <li class="menu-item menu-item-life">
           <a href="/life" rel="section">
             
-            生活
+            menu.life
           </a>
         </li>
       
@@ -270,6 +281,8 @@ git init:初始化一个空的本地仓库，生成一个.git目录，用于维�
   
 </nav>
 
+
+
  </div>
     </header>
 
@@ -283,13 +296,26 @@ git init:初始化一个空的本地仓库，生成一个.git目录，用于维�
     
 
   
-  
 
   
   
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/06/07/gitSome/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Geeven(文飞)">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Geeven'blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Geeven'blog" src="">
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -312,9 +338,19 @@ git init:初始化一个空的本地仓库，生成一个.git目录，用于维�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-06-07T00:00:00+08:00" content="2015-06-07">
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-06-07T00:00:00+08:00">
               2015-06-07
             </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2016-09-22T00:27:14+08:00">
+              2016-09-22
+            </time>
+            
           </span>
 
           
@@ -324,7 +360,7 @@ git init:初始化一个空的本地仓库，生成一个.git目录，用于维�
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2015/06/07/gitSome/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/07/gitSome/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/07/gitSome/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -336,6 +372,9 @@ git init:初始化一个空的本地仓库，生成一个.git目录，用于维�
           
 
           
+          
+          
+
         </div>
       </header>
     
@@ -419,13 +458,14 @@ git init:初始化一个空的本地仓库，生成一个.git目录，用于维�
       
     </div>
 
+
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
           
-            <a href="/tags/git/" rel="tag">#git</a>
+            <a href="/tags/git/" rel="tag"># git</a>
           
         </div>
       
@@ -439,6 +479,8 @@ git init:初始化一个空的本地仓库，生成一个.git目录，用于维�
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -505,7 +547,7 @@ git init:初始化一个空的本地仓库，生成一个.git目录，用于维�
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -622,19 +664,27 @@ git init:初始化一个空的本地仓库，生成一个.git目录，用于维�
           </div>
         
 
+        
+
+
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#常用命令"><span class="nav-number">1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看文件修改日志-git-log"><span class="nav-number">3.</span> <span class="nav-text">查看文件修改日志 git log</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#版本回退-git-reset-or-git-revert"><span class="nav-number">4.</span> <span class="nav-text">版本回退 git reset or git revert</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分支管理"><span class="nav-number">5.</span> <span class="nav-text">分支管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#查看分支-git-branch"><span class="nav-number">5.1.</span> <span class="nav-text">查看分支 git branch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#合并两个分支git-merge"><span class="nav-number">5.2.</span> <span class="nav-text">合并两个分支git merge</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#合并两个分支之git-rebase"><span class="nav-number">5.3.</span> <span class="nav-text">合并两个分支之git rebase</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Git相关开源许可证"><span class="nav-number">6.</span> <span class="nav-text">Git相关开源许可证</span></a></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
       
 
     </div>
@@ -657,16 +707,7 @@ git init:初始化一个空的本地仓库，生成一个.git目录，用于维�
   <span class="author" itemprop="copyrightHolder">Geeven(文飞)</span>
 </div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
 
         
 
@@ -771,6 +812,7 @@ git init:初始化一个空的本地仓库，生成一个.git目录，用于维�
 
   
     
+    
     <script src="/vendorsTmp/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
     <script src="/js/src/hook-duoshuo.js"></script>
   
@@ -780,6 +822,8 @@ git init:初始化一个空的本地仓库，生成一个.git目录，用于维�
 
 
 
+
+
   
   
 
@@ -788,6 +832,9 @@ git init:初始化一个空的本地仓库，生成一个.git目录，用于维�
   
 
   
+
+  
+
 
 </body>
 </html>
