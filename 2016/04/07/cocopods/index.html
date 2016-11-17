@@ -8,19 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Cocoapods | Geeven&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。
-利用taobao镜像来安装1234567891011121314&amp;#123;//  删除源  	$ sudo gem sources --remove https://rubygems.org///  添加源    $ sudo gem sources -a https://ruby.taobao.o">
+  <meta name="description" content="在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cocoapods">
 <meta property="og:url" content="http://yoursite.com/2016/04/07/cocopods/index.html">
 <meta property="og:site_name" content="Geeven'blog">
-<meta property="og:description" content="在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。
-利用taobao镜像来安装1234567891011121314&amp;#123;//  删除源  	$ sudo gem sources --remove https://rubygems.org///  添加源    $ sudo gem sources -a https://ruby.taobao.o">
-<meta property="og:updated_time" content="2016-09-21T16:27:31.000Z">
+<meta property="og:description" content="在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。">
+<meta property="og:updated_time" content="2016-11-17T15:20:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocoapods">
-<meta name="twitter:description" content="在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。
-利用taobao镜像来安装1234567891011121314&amp;#123;//  删除源  	$ sudo gem sources --remove https://rubygems.org///  添加源    $ sudo gem sources -a https://ruby.taobao.o">
+<meta name="twitter:description" content="在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。">
   
     <link rel="alternative" href="/atom.xml" title="Geeven&#39;blog" type="application/atom+xml">
   
@@ -158,19 +155,72 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。</p>
-<h4 id="利用taobao镜像来安装"><a href="#利用taobao镜像来安装" class="headerlink" title="利用taobao镜像来安装"></a>利用taobao镜像来安装</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"><span class="comment">//  删除源</span></div><div class="line">  	$ sudo gem sources --remove https:<span class="comment">//rubygems.org/</span></div><div class="line"><span class="comment">//  添加源</span></div><div class="line">    $ sudo gem sources -a https:<span class="comment">//ruby.taobao.org/</span></div><div class="line"><span class="comment">//  查看gem源    </span></div><div class="line">    $ gem sources -l</div><div class="line">	*** CURRENT SOURCES ***</div><div class="line">	https:<span class="comment">//ruby.taobao.org/</span></div><div class="line"><span class="comment">//  安装</span></div><div class="line">    $ sudo gem install cocoapods</div><div class="line">	<span class="comment">//  设置</span></div><div class="line">    $ pod setup</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <blockquote>
+<p>在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。</p>
+</blockquote>
 <a id="more"></a>
-<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"><span class="comment">//  查看版本</span></div><div class="line">    $ gem --version</div><div class="line"><span class="comment">//  创建默认的 Podfile</span></div><div class="line">    $ pod init</div><div class="line"><span class="comment">//  第一次使用安装框架</span></div><div class="line">    $ pod install</div><div class="line"><span class="comment">//  安装框架，不更新本地索引，速度快</span></div><div class="line">    $ pod install --no-repo-update</div><div class="line"><span class="comment">//  今后升级、添加、删除框架，或者框架不好用都使用这个命令</span></div><div class="line">    $ pod update</div><div class="line"><span class="comment">//  更新框架，不更新本地索引，速度快</span></div><div class="line">    $ pod update --no-repo-update</div><div class="line"><span class="comment">//  搜索框架</span></div><div class="line">    $ pod search XXX    </div><div class="line"><span class="comment">//  帮助</span></div><div class="line">    $ pod --help</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>当执行<code>$ pod search XXX</code>时发现显示的tag版本低于最新版时，需要升级Cocoapods，升级过程和重新安装基本一样</p>
-<h4 id="安装出错解决"><a href="#安装出错解决" class="headerlink" title="安装出错解决"></a>安装出错解决</h4><p>当执行如下如错时</p>
-<p><code>$ sudo gem install cocoapods
-ERROR:  While executing gem ... (Errno::EPERM)
-Operation not permitted - /usr/bin/xcodeproj</code></p>
-<p>用如下命令即可解决</p>
-<p><code>$ sudo gem install -n /usr/local/bin/ cocoapods --pre</code></p>
-<h4 id="gem服务器在国外，原本安装方式但需要翻墙-不建议使用-太耗时"><a href="#gem服务器在国外，原本安装方式但需要翻墙-不建议使用-太耗时" class="headerlink" title="gem服务器在国外，原本安装方式但需要翻墙(不建议使用,太耗时)"></a>gem服务器在国外，原本安装方式但需要翻墙(不建议使用,太耗时)</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"><span class="comment">//  查看gem源</span></div><div class="line">    $ gem sources –l</div><div class="line"><span class="comment">//  gem自身升级</span></div><div class="line">    $ sudo gem update --system</div><div class="line"><span class="comment">//  查看版本</span></div><div class="line">    $ gem --version</div><div class="line"><span class="comment">//  清除过期的gem</span></div><div class="line">    $ sudo gem cleanup</div><div class="line"><span class="comment">//  安装包</span></div><div class="line">    $ sudo gem install cocoapods</div><div class="line"><span class="comment">//  删除包</span></div><div class="line">    $ gem uninstall cocoapods</div><div class="line"><span class="comment">//  更新包</span></div><div class="line">    $ sudo gem update</div><div class="line"><span class="comment">//  列出本地安装的包</span></div><div class="line">    $ gem list</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+<blockquote>
+<p>因部分源因需要taobao镜像更改为oschina镜像:<a href="https://gems.ruby-china.org" target="_blank" rel="external">RubyGems 镜像- Ruby China</a></p>
+</blockquote>
+<h4 id="利用oschina镜像来安装"><a href="#利用oschina镜像来安装" class="headerlink" title="利用oschina镜像来安装"></a>利用oschina镜像来安装</h4><pre><code>{
+https://ruby.taobao.org/    #已不再维护
+//  删除源
+      $ sudo gem sources --remove https://rubygems.org/
+//  添加源
+    $ sudo gem sources -a     https://gems.ruby-china.org/ 
+//  查看gem源    
+    $ gem sources -l
+    *** CURRENT SOURCES ***
+    https://ruby.taobao.org/ 
+//  安装
+    $ sudo gem install cocoapods
+    //  设置
+    $ pod setup
+}
+</code></pre><h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><pre><code>{
+//  查看版本
+    $ gem --version
+//  创建默认的 Podfile
+    $ pod init
+//  第一次使用安装框架
+    $ pod install
+//  安装框架，不更新本地索引，速度快
+    $ pod install --no-repo-update
+//  今后升级、添加、删除框架，或者框架不好用都使用这个命令
+    $ pod update
+//  更新框架，不更新本地索引，速度快
+    $ pod update --no-repo-update
+//  搜索框架
+    $ pod search XXX    
+//  帮助
+    $ pod --help
+}
+</code></pre><p>当执行<code>$ pod search XXX</code>时发现显示的tag版本低于最新版时，需要升级Cocoapods，升级过程和重新安装基本一样</p>
+<h4 id="安装出错解决"><a href="#安装出错解决" class="headerlink" title="安装出错解决"></a>安装出错解决</h4><p>当执行如下运行时出错时</p>
+<p><a><code>$ sudo gem install cocoapods</code></a></p>
+<pre><code>ERROR:  While executing gem ... (Errno::EPERM)
+Operation not permitted - /usr/bin/xcodeproj
+</code></pre><p>用如下命令即可解决</p>
+<p><a><code>$ sudo gem install -n /usr/local/bin/ cocoapods --pre</code></a></p>
+<h4 id="gem服务器在国外，原本安装方式但需要翻墙-不建议使用-太耗时"><a href="#gem服务器在国外，原本安装方式但需要翻墙-不建议使用-太耗时" class="headerlink" title="gem服务器在国外，原本安装方式但需要翻墙(不建议使用,太耗时)"></a>gem服务器在国外，原本安装方式但需要翻墙(不建议使用,太耗时)</h4><pre><code>{
+//  查看gem源
+    $ gem sources –l
+//  gem自身升级
+    $ sudo gem update --system
+//  查看版本
+    $ gem --version
+//  清除过期的gem
+    $ sudo gem cleanup
+//  安装包
+    $ sudo gem install cocoapods
+//  删除包
+    $ gem uninstall cocoapods
+//  更新包
+    $ sudo gem update
+//  列出本地安装的包
+    $ gem list
+}
+</code></pre>
       
     </div>
     <div class="article-info article-info-index">
@@ -194,11 +244,11 @@ Operation not permitted - /usr/bin/xcodeproj</code></p>
   
 <nav id="article-nav">
   
-    <a href="/2016/06/07/mac-LocalServer/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/06/07/encryRSA/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          mac本地服务器配置
+          加密之RSA
         
       </div>
     </a>
@@ -318,7 +368,7 @@ Operation not permitted - /usr/bin/xcodeproj</code></p>
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/Xcode/" style="font-size: 16.67px;">Xcode</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/mac/" style="font-size: 13.33px;">mac</a>
+    				<a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Xcode/" style="font-size: 16.67px;">Xcode</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/mac/" style="font-size: 13.33px;">mac</a>
     			</div>
     	</section>
     

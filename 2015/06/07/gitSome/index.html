@@ -8,42 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>常用Git命令 | Geeven&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一般来说，日常使用只要记住6到7个命令，就可以了。但是熟练使用，恐怕要记住很多个命令。
-常用命令
-git clone path:将远程服务器代码clone到本地path路径上
-git status :查文件的状态
-查看某个文件的状态:git status 文件名
-查看当前路径所有文件的状态:git status
-
-
-git init:初始化一个空的本地仓库，生成一个.git目录，用于维护版本信息">
+  <meta name="description" content="一般来说，日常使用只要记住6到7个命令，就可以了。但是熟练使用，恐怕要记住很多个命令。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常用Git命令">
 <meta property="og:url" content="http://yoursite.com/2015/06/07/gitSome/index.html">
 <meta property="og:site_name" content="Geeven'blog">
-<meta property="og:description" content="一般来说，日常使用只要记住6到7个命令，就可以了。但是熟练使用，恐怕要记住很多个命令。
-常用命令
-git clone path:将远程服务器代码clone到本地path路径上
-git status :查文件的状态
-查看某个文件的状态:git status 文件名
-查看当前路径所有文件的状态:git status
-
-
-git init:初始化一个空的本地仓库，生成一个.git目录，用于维护版本信息">
-<meta property="og:image" content="http://i2.piimg.com/4851/77b59134d4dcc75c.jpg">
-<meta property="og:updated_time" content="2016-09-21T16:27:14.000Z">
+<meta property="og:description" content="一般来说，日常使用只要记住6到7个命令，就可以了。但是熟练使用，恐怕要记住很多个命令。">
+<meta property="og:updated_time" content="2016-11-17T15:24:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用Git命令">
-<meta name="twitter:description" content="一般来说，日常使用只要记住6到7个命令，就可以了。但是熟练使用，恐怕要记住很多个命令。
-常用命令
-git clone path:将远程服务器代码clone到本地path路径上
-git status :查文件的状态
-查看某个文件的状态:git status 文件名
-查看当前路径所有文件的状态:git status
-
-
-git init:初始化一个空的本地仓库，生成一个.git目录，用于维护版本信息">
-<meta name="twitter:image" content="http://i2.piimg.com/4851/77b59134d4dcc75c.jpg">
+<meta name="twitter:description" content="一般来说，日常使用只要记住6到7个命令，就可以了。但是熟练使用，恐怕要记住很多个命令。">
   
     <link rel="alternative" href="/atom.xml" title="Geeven&#39;blog" type="application/atom+xml">
   
@@ -181,31 +155,34 @@ git init:初始化一个空的本地仓库，生成一个.git目录，用于维�
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>一般来说，日常使用只要记住6到7个命令，就可以了。但是熟练使用，恐怕要记住很多个命令。</p>
-<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><ul>
-<li><code>git clone path</code>:将远程服务器代码clone到本地path路径上</li>
-<li><code>git status</code> :查文件的状态<ul>
-<li>查看某个文件的状态:<code>git status 文件名</code></li>
-<li>查看当前路径所有文件的状态:<code>git status</code></li>
-</ul>
-</li>
-<li><p><code>git init</code>:初始化一个空的本地仓库，生成一个.git目录，用于维护版本信息</p>
-<ul>
-<li>在当前路径初始化仓库:<code>git init</code></li>
-<li>在其他路径初始化仓库:<code>git init 仓库路径</code></li>
-</ul>
-</li>
-<li><p><code>git add</code> : 将工作区的文件保存到暂缓区<br>  保存某个文件到暂缓区: <code>git add 文件名</code><br>  保存当前路径的所有文件到暂缓区: <code>git add .</code></p>
-</li>
-<li><p><code>git commit</code> :将暂缓区的文件提交到当前分支<br>  提交某个文件到分支:<code>git commit -m ”注释” 文件名</code><br>  保存当前路径的所有文件到分支:<code>git commit -m ”注释”</code></p>
-</li>
-<li><p><code>git pull</code>:相当于是从远程获取最新版本并merge到本地</p>
-</li>
-<li><code>git fetch path</code>:相当于是从远程获取最新版本到本地，不会自动merge</li>
-<li><code>git push</code>:将本地分支推送到远程服务器，保持远程与本地一致</li>
-</ul>
-<a id="more"></a>
-<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">git config:	git的配置信息相关（修改的是.git/config文件）</div><div class="line">配置用户名:git config &quot;user.name&quot; 用户名（用于跟踪修改记录）</div><div class="line">配置邮箱:git config &quot;user.email&quot; 邮箱（用于多人开发间的沟通）</div><div class="line">查看配置信息:git config –l</div><div class="line">编辑配置信息:git config –e（用vim编辑，:wq是退出vim编辑器）</div><div class="line">设置指令的别名:git config alias.别名 原指令名称</div><div class="line">设置带参数指令的别名:git config alias.别名 “原指令名称 参数”</div><div class="line">将此设置应用到整个系统中:git config ––gloabal</div><div class="line"></div><div class="line">//配置全局信息，这样不用每次都再次配置</div><div class="line">git config --global &quot;user.name&quot; 用户名（用于跟踪修改记录）</div><div class="line">git config --global &quot;user.email&quot; 邮箱（用于多人开发间的沟通）</div></pre></td></tr></table></figure>
+        <blockquote>
+<p>一般来说，日常使用只要记住6到7个命令，就可以了。但是熟练使用，恐怕要记住很多个命令。</p>
+</blockquote>
+<!--more->
+####    常用命令
+
+- `git clone path`:将远程服务器代码clone到本地path路径上
+- `git status` :查文件的状态
+    - 查看某个文件的状态:`git status 文件名`
+    - 查看当前路径所有文件的状态:`git status`
+- `git init`:初始化一个空的本地仓库，生成一个.git目录，用于维护版本信息
+    - 在当前路径初始化仓库:`git init`
+    - 在其他路径初始化仓库:`git init 仓库路径`
+
+- `git add` : 将工作区的文件保存到暂缓区
+    保存某个文件到暂缓区: `git add 文件名`
+    保存当前路径的所有文件到暂缓区: `git add .`
+
+- `git commit` :将暂缓区的文件提交到当前分支
+    提交某个文件到分支:`git commit -m ”注释” 文件名`
+    保存当前路径的所有文件到分支:`git commit -m ”注释”`
+
+- `git pull`:相当于是从远程获取最新版本并merge到本地
+- `git fetch path`:相当于是从远程获取最新版本到本地，不会自动merge
+- `git push`:将本地分支推送到远程服务器，保持远程与本地一致
+
+#### 配置
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">git config:	git的配置信息相关（修改的是.git/config文件）</div><div class="line">配置用户名:git config &quot;user.name&quot; 用户名（用于跟踪修改记录）</div><div class="line">配置邮箱:git config &quot;user.email&quot; 邮箱（用于多人开发间的沟通）</div><div class="line">查看配置信息:git config –l</div><div class="line">编辑配置信息:git config –e（用vim编辑，:wq是退出vim编辑器）</div><div class="line">设置指令的别名:git config alias.别名 原指令名称</div><div class="line">设置带参数指令的别名:git config alias.别名 “原指令名称 参数”</div><div class="line">将此设置应用到整个系统中:git config ––gloabal</div><div class="line"></div><div class="line">//配置全局信息，这样不用每次都再次配置</div><div class="line">git config --global &quot;user.name&quot; 用户名（用于跟踪修改记录）</div><div class="line">git config --global &quot;user.email&quot; 邮箱（用于多人开发间的沟通）</div></pre></td></tr></table></figure>
 <h4 id="查看文件修改日志-git-log"><a href="#查看文件修改日志-git-log" class="headerlink" title="查看文件修改日志 git log"></a>查看文件修改日志 <code>git log</code></h4><ul>
 <li>查看文件的修改日志:<code>git log</code></li>
 <li>查看某个文件的修改日志:<code>git log 文件名</code></li>
@@ -233,9 +210,9 @@ git init:初始化一个空的本地仓库，生成一个.git目录，用于维�
 </ul>
 <h5 id="合并两个分支之git-rebase"><a href="#合并两个分支之git-rebase" class="headerlink" title="合并两个分支之git rebase"></a>合并两个分支之<code>git rebase</code></h5><p>作为merge的替代选择，你可以像下面这样将feature分支并入master分支:<code>git checkout feature</code>    <code>git rebase master</code></p>
 <p>它会把整个feature分支移动到master分支的后面，有效地把所有master分支上新的提交并入过来。但是，rebase为原分支上每一个提交创建一个新的提交，重写了项目历史，并且不会带来合并提交。</p>
-<p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/" target="_blank" rel="external">参考1</a><br><a href="">参考2</a></p>
+<p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/">参考1</a><br><a href="">参考2</a></p>
 <h4 id="Git相关开源许可证"><a href="#Git相关开源许可证" class="headerlink" title="Git相关开源许可证"></a>Git相关开源许可证</h4><p><img src="http://i2.piimg.com/4851/77b59134d4dcc75c.jpg" alt="开源许可证"><br>注:本文中图片由网络获取</p>
-
+-->
       
     </div>
     <div class="article-info article-info-index">
@@ -383,7 +360,7 @@ git init:初始化一个空的本地仓库，生成一个.git目录，用于维�
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/Xcode/" style="font-size: 16.67px;">Xcode</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/mac/" style="font-size: 13.33px;">mac</a>
+    				<a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Xcode/" style="font-size: 16.67px;">Xcode</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/mac/" style="font-size: 13.33px;">mac</a>
     			</div>
     	</section>
     

@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://i4.piimg.com/4851/1efdd2db211824fb.png">
 <meta property="og:image" content="http://i4.piimg.com/4851/693acee3c322291d.png">
 <meta property="og:image" content="http://i4.piimg.com/4851/043b4c5f83d898b6.png">
-<meta property="og:updated_time" content="2016-09-21T16:28:41.000Z">
+<meta property="og:updated_time" content="2016-11-17T15:26:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发在同一工程中创建不同版本的应用">
 <meta name="twitter:description" content="在工作中会遇到这种情况，需要在某个地区单独进行一个版本发布用于适应区域设备，该怎么简单的实现，并方便后期的维护呢？
@@ -167,8 +167,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在工作中会遇到这种情况，需要在某个地区单独进行一个版本发布用于适应区域设备，该怎么简单的实现，并方便后期的维护呢？</p>
-<p>把当前工程拷贝后再修改就不用说了，此方法维护成本太高，不做考虑。可以在同一个Project里面创建两个Target,然后通过判断Target来修改代码，这样都是基于同一套代码修改，只是不同的地方通过Target判断来区分不同的代码，维护成本低。<br><a id="more"></a></p>
+        <blockquote>
+<p>在工作中会遇到这种情况，需要在某个地区单独进行一个版本发布用于适应区域设备，该怎么简单的实现，并方便后期的维护呢？</p>
+<p>把当前工程拷贝后再修改就不用说了，此方法维护成本太高，不做考虑。可以在同一个Project里面创建两个Target,然后通过判断Target来修改代码，这样都是基于同一套代码修改，只是不同的地方通过Target判断来区分不同的代码，维护成本低。</p>
+</blockquote>
+<a id="more"></a>
 <h2 id="一、新增Target"><a href="#一、新增Target" class="headerlink" title="一、新增Target"></a>一、新增Target</h2><h4 id="1-选中原有的Target，右键-Duplicate"><a href="#1-选中原有的Target，右键-Duplicate" class="headerlink" title="1.选中原有的Target，右键 Duplicate"></a>1.选中原有的Target，右键 <code>Duplicate</code></h4><p><img src="http://i4.piimg.com/4851/f37d0852bedb09b3.png" alt="Mou icon"></p>
 <h4 id="2-在弹框中选择-Duplicate-Only"><a href="#2-在弹框中选择-Duplicate-Only" class="headerlink" title="2.在弹框中选择 Duplicate Only"></a>2.在弹框中选择 <code>Duplicate Only</code></h4><p><img src="http://i4.piimg.com/4851/de52f1055f670a2d.png" alt="Mou icon"></p>
 <h4 id="3-创建好后如下，再修改Target-Scheme-info-plist-如图"><a href="#3-创建好后如下，再修改Target-Scheme-info-plist-如图" class="headerlink" title="3.创建好后如下，再修改Target,Scheme,info-plist,如图"></a>3.创建好后如下，再修改Target,Scheme,info-plist,如图</h4><p><img src="http://i4.piimg.com/4851/cee7afdc9461c509.png" alt="0"><br><img src="http://i4.piimg.com/4851/968367c744d18ac2.png" alt="1"><br><img src="http://i4.piimg.com/4851/5f2f242d0cd347bc.png" alt="2"></p>
@@ -209,8 +212,8 @@
     </a>
   
   
-    <a href="/2016/06/07/encryRSA/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">加密之RSA</div>
+    <a href="/2016/06/07/mac-LocalServer/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mac本地服务器配置</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -323,7 +326,7 @@
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/Xcode/" style="font-size: 16.67px;">Xcode</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/mac/" style="font-size: 13.33px;">mac</a>
+    				<a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Xcode/" style="font-size: 16.67px;">Xcode</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/mac/" style="font-size: 13.33px;">mac</a>
     			</div>
     	</section>
     

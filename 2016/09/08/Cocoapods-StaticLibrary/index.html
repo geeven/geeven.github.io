@@ -9,15 +9,15 @@
   <title>利用CocoaPods打包静态库 | Geeven&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="CocoaPods作为OS X和iOS开发平台的类为管理工具，目前非常完善。通常我们用pod来管理第三方开源类库，同时在公司内部也会利用pod管理依赖关系的静态库给其它人使用，以及开发相关SDK(不愿意公开源代码),那么就需要打包成.a文件。这次的GDLib Demo是以一个依赖于AFNetworking的静态类库。
-关于CocoaPods的资料参考:
-cocoapods官方文档">
+
+关于CocoaPods的资料参考:cocoapods官方文档">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用CocoaPods打包静态库">
 <meta property="og:url" content="http://yoursite.com/2016/09/08/Cocoapods-StaticLibrary/index.html">
 <meta property="og:site_name" content="Geeven'blog">
 <meta property="og:description" content="CocoaPods作为OS X和iOS开发平台的类为管理工具，目前非常完善。通常我们用pod来管理第三方开源类库，同时在公司内部也会利用pod管理依赖关系的静态库给其它人使用，以及开发相关SDK(不愿意公开源代码),那么就需要打包成.a文件。这次的GDLib Demo是以一个依赖于AFNetworking的静态类库。
-关于CocoaPods的资料参考:
-cocoapods官方文档">
+
+关于CocoaPods的资料参考:cocoapods官方文档">
 <meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/CocoaPods01.png">
 <meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/CocoaPods02.png">
 <meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/CocoaPods03.png">
@@ -27,12 +27,12 @@ cocoapods官方文档">
 <meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/CocoaPods08.png">
 <meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/CocoaPods09.png">
 <meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/CocoaPods06.png">
-<meta property="og:updated_time" content="2016-11-10T13:08:50.000Z">
+<meta property="og:updated_time" content="2016-11-17T15:08:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用CocoaPods打包静态库">
 <meta name="twitter:description" content="CocoaPods作为OS X和iOS开发平台的类为管理工具，目前非常完善。通常我们用pod来管理第三方开源类库，同时在公司内部也会利用pod管理依赖关系的静态库给其它人使用，以及开发相关SDK(不愿意公开源代码),那么就需要打包成.a文件。这次的GDLib Demo是以一个依赖于AFNetworking的静态类库。
-关于CocoaPods的资料参考:
-cocoapods官方文档">
+
+关于CocoaPods的资料参考:cocoapods官方文档">
 <meta name="twitter:image" content="http://oatg8ax1c.bkt.clouddn.com/CocoaPods01.png">
   
     <link rel="alternative" href="/atom.xml" title="Geeven&#39;blog" type="application/atom+xml">
@@ -171,13 +171,14 @@ cocoapods官方文档">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><code>CocoaPods</code>作为OS X和iOS开发平台的类为管理工具，目前非常完善。通常我们用pod来管理第三方开源类库，同时在公司内部也会利用pod管理依赖关系的静态库给其它人使用，以及开发相关SDK(不愿意公开源代码),那么就需要打包成<code>.a</code>文件。这次的<a href="https://github.com/geeven/BlogDemo.git" target="_blank" rel="external">GDLib Demo</a>是以一个依赖于<code>AFNetworking</code>的静态类库。</p>
-<p>关于CocoaPods的资料参考:</p>
-<p><a href="https://guides.cocoapods.org" target="_blank" rel="external">cocoapods官方文档</a></p>
+        <blockquote>
+<p><code>CocoaPods</code>作为OS X和iOS开发平台的类为管理工具，目前非常完善。通常我们用pod来管理第三方开源类库，同时在公司内部也会利用pod管理依赖关系的静态库给其它人使用，以及开发相关SDK(不愿意公开源代码),那么就需要打包成<code>.a</code>文件。这次的<a href="https://github.com/geeven/BlogDemo.git" target="_blank" rel="external">GDLib Demo</a>是以一个依赖于<code>AFNetworking</code>的静态类库。</p>
+</blockquote>
+<p>关于CocoaPods的资料参考:<a href="https://guides.cocoapods.org" target="_blank" rel="external">cocoapods官方文档</a></p>
 <hr>
 <a id="more"></a>
 <h2 id="开发静态库-Static-Library"><a href="#开发静态库-Static-Library" class="headerlink" title="开发静态库(Static Library)"></a>开发静态库(Static Library)</h2><p>创建静态库有两种方式。这里介绍基于pod自动创建，以<code>GDLib</code>为项目演示。</p>
-<h3 id="1-在终端执行命令pod-lib-create-GDlib。"><a href="#1-在终端执行命令pod-lib-create-GDlib。" class="headerlink" title="1.在终端执行命令pod lib create GDlib。"></a>1.在终端执行命令<code>pod lib create GDlib</code>。</h3><p><img src="http://oatg8ax1c.bkt.clouddn.com/CocoaPods01.png" alt="执行命令结果"><br>这样会创建一个<code>GDLib</code>的项目,GDLib文件二级目录结构:<br><img src="http://oatg8ax1c.bkt.clouddn.com/CocoaPods02.png" alt="GDLib文件二级目录结构"></p>
+<h3 id="1-在终端执行命令pod-lib-create-GDlib。"><a href="#1-在终端执行命令pod-lib-create-GDlib。" class="headerlink" title="1.在终端执行命令pod lib create GDlib。"></a>1.在终端执行命令<a><code>pod lib create GDlib</code></a>。</h3><p><img src="http://oatg8ax1c.bkt.clouddn.com/CocoaPods01.png" alt="执行命令结果"><br>这样会创建一个<code>GDLib</code>的项目,GDLib文件二级目录结构:<br><img src="http://oatg8ax1c.bkt.clouddn.com/CocoaPods02.png" alt="GDLib文件二级目录结构"></p>
 <h3 id="2-打开GDLib-xcworkspace文件。"><a href="#2-打开GDLib-xcworkspace文件。" class="headerlink" title="2.打开GDLib.xcworkspace文件。"></a>2.打开<code>GDLib.xcworkspace</code>文件。</h3><p>配置信息如下，可根据需求进行修改。</p>
 <pre><code>#
 # Be sure to run `pod lib lint GDLib.podspec&apos; to ensure this is a
@@ -400,7 +401,7 @@ git tag -a 0.1.0 -m &apos;v0.1.0&apos;
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/Xcode/" style="font-size: 16.67px;">Xcode</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/mac/" style="font-size: 13.33px;">mac</a>
+    				<a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/Xcode/" style="font-size: 16.67px;">Xcode</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/mac/" style="font-size: 13.33px;">mac</a>
     			</div>
     	</section>
     
