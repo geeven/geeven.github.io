@@ -6,24 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>encryKey_SSKeyChain | Geeven&#39;blog</title>
+  <title>解决警告warning 01 | Geeven&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介苹果在 iOS 7.0.3 版本以后公布钥匙串访问的SDK,钥匙串访问接口是纯C语言的, 密码可以直接使用明文,钥匙串访问本身是使用 AES256加密,就是安全的.所以使用的时候,直接传递密码明文就可以了.钥匙串访问的第三方框架(SSKeychain),是对 C语言框架 的封装.钥匙串访问的密码保存在哪里只有苹果才知道.这样进一步保障了用户的密码安全.
-使用步骤:
-导入第三方框架SSkeych">
+  <meta name="description" content="在iOS开发过程中，在编译时有时会碰到警告，看着很不爽.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="encryKey_SSKeyChain">
-<meta property="og:url" content="http://yoursite.com/2015/07/31/encryKey-SSKeyChain/index.html">
+<meta property="og:title" content="解决警告warning 01">
+<meta property="og:url" content="http://yoursite.com/2015/09/09/Warning_NotFound/index.html">
 <meta property="og:site_name" content="Geeven'blog">
-<meta property="og:description" content="简介苹果在 iOS 7.0.3 版本以后公布钥匙串访问的SDK,钥匙串访问接口是纯C语言的, 密码可以直接使用明文,钥匙串访问本身是使用 AES256加密,就是安全的.所以使用的时候,直接传递密码明文就可以了.钥匙串访问的第三方框架(SSKeychain),是对 C语言框架 的封装.钥匙串访问的密码保存在哪里只有苹果才知道.这样进一步保障了用户的密码安全.
-使用步骤:
-导入第三方框架SSkeych">
-<meta property="og:updated_time" content="2016-09-21T16:28:14.000Z">
+<meta property="og:description" content="在iOS开发过程中，在编译时有时会碰到警告，看着很不爽.">
+<meta property="og:updated_time" content="2016-12-12T15:35:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="encryKey_SSKeyChain">
-<meta name="twitter:description" content="简介苹果在 iOS 7.0.3 版本以后公布钥匙串访问的SDK,钥匙串访问接口是纯C语言的, 密码可以直接使用明文,钥匙串访问本身是使用 AES256加密,就是安全的.所以使用的时候,直接传递密码明文就可以了.钥匙串访问的第三方框架(SSKeychain),是对 C语言框架 的封装.钥匙串访问的密码保存在哪里只有苹果才知道.这样进一步保障了用户的密码安全.
-使用步骤:
-导入第三方框架SSkeych">
+<meta name="twitter:title" content="解决警告warning 01">
+<meta name="twitter:description" content="在iOS开发过程中，在编译时有时会碰到警告，看着很不爽.">
   
     <link rel="alternative" href="/atom.xml" title="Geeven&#39;blog" type="application/atom+xml">
   
@@ -143,7 +137,7 @@
 </nav>
 
       <div class="body-wrap">
-        <article id="post-encryKey-SSKeyChain" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Warning_NotFound" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -153,7 +147,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      encryKey_SSKeyChain
+      解决警告warning 01
     </h1>
   
 
@@ -161,28 +155,33 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>苹果在 iOS 7.0.3 版本以后公布钥匙串访问的SDK,钥匙串访问接口是纯C语言的, 密码可以直接使用明文,钥匙串访问本身是使用 AES256加密,就是安全的.所以使用的时候,直接传递密码明文就可以了.<br>钥匙串访问的第三方框架(SSKeychain),是对 C语言框架 的封装.<br>钥匙串访问的密码保存在哪里只有苹果才知道.这样进一步保障了用户的密码安全.</p>
-<h3 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤:"></a>使用步骤:</h3><ol>
-<li>导入第三方框架<a href="https://github.com/geeven/SSKeychain" target="_blank" rel="external">SSkeychain</a></li>
-<li>利用钥匙串存储密码，将用户密码保存在钥匙串中</li>
-</ol>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="comment">// Service: app 的唯一标识符.告诉钥匙串是哪一个app中的信息.</span></div><div class="line">    <span class="comment">// account: 账号 哪一个账号的信息.</span></div><div class="line">    <span class="comment">// 取出 app 的唯一标识符</span></div><div class="line">    <span class="built_in">NSString</span> *bundleId = [<span class="built_in">NSBundle</span> mainBundle].bundleIdentifier;</div><div class="line">    <span class="built_in">BOOL</span> is_Yes = [SSKeychain setPassword:password forService:bundleId account:kUserNameKey];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li>利用钥匙串取密码</li>
-</ol>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="comment">// 取出 app 的唯一标识符</span></div><div class="line">    <span class="built_in">NSString</span> *bundleId = [<span class="built_in">NSBundle</span> mainBundle].bundleIdentifier;</div><div class="line">    <span class="comment">// 取出钥匙串中存储的密码</span></div><div class="line">    <span class="built_in">NSString</span> *password = [SSKeychain passwordForService:bundleId account:kUserNameKey]; </div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,password);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <blockquote>
+<p>在iOS开发过程中，在编译时有时会碰到警告，看着很不爽.</p>
+</blockquote>
+<a id="more"></a>
+<ul>
+<li><p><a>warning: directory not found for option “XXXXXX”</a><br>  这个经常是我们将从项目中删除了文件和文件夹报的这个警告</p>
+</li>
+<li><p><a>解决办法</a></p>
+<ul>
+<li>选择工程, 编译的 (targets)</li>
+<li>选择 Build Settings 菜单</li>
+<li>查找 Library Search Paths 和 Framework Search Paths， 删掉编译报warning的路径即OK</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2015/07/31/encryKey-SSKeyChain/" class="archive-article-date">
-  	<time datetime="2015-07-31T05:00:20.000Z" itemprop="datePublished"><i class="icon-clock"></i>2015-07-31</time>
+      <a href="/2015/09/09/Warning_NotFound/" class="archive-article-date">
+  	<time datetime="2015-09-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2015-09-09</time>
 </a>
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
 	</div>
 
       
@@ -195,18 +194,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2015/09/09/Warning_NotFound/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/11/12/CocoLumberjack/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          解决警告warning 01
+          利用CocoLumberjack实现调试分级Log
         
       </div>
     </a>
   
   
-    <a href="/2015/06/09/aboutIDFA/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">app上架(一) IDFA</div>
+    <a href="/2015/07/31/encryKey-SSKeyChain/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">encryKey_SSKeyChain</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -240,7 +239,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="encryKey-SSKeyChain" data-title="encryKey_SSKeyChain" data-url="http://yoursite.com/2015/07/31/encryKey-SSKeyChain/"></div>
+	<div class="ds-thread" data-thread-key="Warning_NotFound" data-title="解决警告warning 01" data-url="http://yoursite.com/2015/09/09/Warning_NotFound/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
