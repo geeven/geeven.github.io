@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>常用Git命令 | Geeven&#39;blog</title>
+  <title>控件不接受用户交互 | Geeven&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一般来说，日常使用只要记住6到7个命令，就可以了。但是熟练使用，恐怕要记住很多个命令。">
+  <meta name="description" content="在开发过程中，会遇到视图无法进行交互情况，有哪些情况呢？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常用Git命令">
-<meta property="og:url" content="http://yoursite.com/2015/06/07/gitSome/index.html">
+<meta property="og:title" content="控件不接受用户交互">
+<meta property="og:url" content="http://yoursite.com/2015/06/09/UserInterface/index.html">
 <meta property="og:site_name" content="Geeven'blog">
-<meta property="og:description" content="一般来说，日常使用只要记住6到7个命令，就可以了。但是熟练使用，恐怕要记住很多个命令。">
-<meta property="og:image" content="http://i2.piimg.com/4851/77b59134d4dcc75c.jpg">
-<meta property="og:updated_time" content="2016-12-12T13:21:26.000Z">
+<meta property="og:description" content="在开发过程中，会遇到视图无法进行交互情况，有哪些情况呢？">
+<meta property="og:updated_time" content="2016-12-12T15:57:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常用Git命令">
-<meta name="twitter:description" content="一般来说，日常使用只要记住6到7个命令，就可以了。但是熟练使用，恐怕要记住很多个命令。">
-<meta name="twitter:image" content="http://i2.piimg.com/4851/77b59134d4dcc75c.jpg">
+<meta name="twitter:title" content="控件不接受用户交互">
+<meta name="twitter:description" content="在开发过程中，会遇到视图无法进行交互情况，有哪些情况呢？">
   
     <link rel="alternative" href="/atom.xml" title="Geeven&#39;blog" type="application/atom+xml">
   
@@ -139,7 +137,7 @@
 </nav>
 
       <div class="body-wrap">
-        <article id="post-gitSome" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-UserInterface" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -149,7 +147,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      常用Git命令
+      控件不接受用户交互
     </h1>
   
 
@@ -158,73 +156,30 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>一般来说，日常使用只要记住6到7个命令，就可以了。但是熟练使用，恐怕要记住很多个命令。</p>
+<p>在开发过程中，会遇到视图无法进行交互情况，有哪些情况呢？</p>
 </blockquote>
 <a id="more"></a>
-<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><ul>
-<li><code>git clone path</code>:将远程服务器代码clone到本地path路径上</li>
-<li><code>git status</code> :查文件的状态<ul>
-<li>查看某个文件的状态:<code>git status 文件名</code></li>
-<li>查看当前路径所有文件的状态:<code>git status</code></li>
-</ul>
-</li>
-<li><p><code>git init</code>:初始化一个空的本地仓库，生成一个.git目录，用于维护版本信息</p>
+<p>详情:</p>
 <ul>
-<li>在当前路径初始化仓库:<code>git init</code></li>
-<li>在其他路径初始化仓库:<code>git init 仓库路径</code></li>
+<li>1.当<code>view.hidden = YES;</code>时;</li>
+<li>2.当<code>view.userInteractionEnabled = NO;</code>时</li>
+<li>3.view透明度小于等于0.01的时候</li>
+<li>4.当<code>view.clipsToBounds = NO;</code>时，若view的frame超出父容器的Bounds，超出的部分不能交互</li>
+<li>5.如果父容器不能交互，那么子容器也不能</li>
 </ul>
-</li>
-<li><p><code>git add</code> : 将工作区的文件保存到暂缓区<br>  保存某个文件到暂缓区: <code>git add 文件名</code><br>  保存当前路径的所有文件到暂缓区: <code>git add .</code></p>
-</li>
-<li><p><code>git commit</code> :将暂缓区的文件提交到当前分支<br>  提交某个文件到分支:<code>git commit -m ”注释” 文件名</code><br>  保存当前路径的所有文件到分支:<code>git commit -m ”注释”</code></p>
-</li>
-<li><p><code>git pull</code>:相当于是从远程获取最新版本并merge到本地</p>
-</li>
-<li><code>git fetch path</code>:相当于是从远程获取最新版本到本地，不会自动merge</li>
-<li><code>git push</code>:将本地分支推送到远程服务器，保持远程与本地一致</li>
-</ul>
-<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">git config:	git的配置信息相关（修改的是.git/config文件）</div><div class="line">配置用户名:git config &quot;user.name&quot; 用户名（用于跟踪修改记录）</div><div class="line">配置邮箱:git config &quot;user.email&quot; 邮箱（用于多人开发间的沟通）</div><div class="line">查看配置信息:git config –l</div><div class="line">编辑配置信息:git config –e（用vim编辑，:wq是退出vim编辑器）</div><div class="line">设置指令的别名:git config alias.别名 原指令名称</div><div class="line">设置带参数指令的别名:git config alias.别名 “原指令名称 参数”</div><div class="line">将此设置应用到整个系统中:git config ––gloabal</div><div class="line"></div><div class="line">//配置全局信息，这样不用每次都再次配置</div><div class="line">git config --global &quot;user.name&quot; 用户名（用于跟踪修改记录）</div><div class="line">git config --global &quot;user.email&quot; 邮箱（用于多人开发间的沟通）</div></pre></td></tr></table></figure>
-<h4 id="查看文件修改日志-git-log"><a href="#查看文件修改日志-git-log" class="headerlink" title="查看文件修改日志 git log"></a>查看文件修改日志 <code>git log</code></h4><ul>
-<li>查看文件的修改日志:<code>git log</code></li>
-<li>查看某个文件的修改日志:<code>git log 文件名</code></li>
-<li>用一行的方式查看简单的日志信息:<code>git log ––pretty=oneline</code></li>
-<li>查看最近的N次修改:<code>git log –N（N是一个整数）</code></li>
-<li>查看文件最新改动的地方:<code>git diff</code></li>
-<li>查看某个文件的最新改动的地方:<code>git diff 文件名</code></li>
-<li>用于配置有色彩的 命令将是<code>git lg</code> 不再是<code>git log</code>:<br><code>git config --global alias.lg &quot;log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit&quot;</code></li>
-</ul>
-<h4 id="版本回退-git-reset-or-git-revert"><a href="#版本回退-git-reset-or-git-revert" class="headerlink" title="版本回退 git reset or git revert"></a>版本回退 <code>git reset</code> or <code>git revert</code></h4><ul>
-<li>回退到上一个版本:<code>git reset --hard Head^</code></li>
-<li>回退到上上一个版本:<code>git reset --hard HEAD^^</code></li>
-<li>回退到上N个版本:<code>git reset --hard HEAD~N</code>（N是一个整数）</li>
-<li>回退到任意一个版本:<code>git reset --hard</code> 版本号（版本号用7位即可）</li>
-</ul>
-<p><code>git revert</code>:是生成一个新的提交来撤销某次提交，此次提交之前的commit都会被保留</p>
-<h4 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h4><h5 id="查看分支-git-branch"><a href="#查看分支-git-branch" class="headerlink" title="查看分支 git branch"></a>查看分支 <code>git branch</code></h5><ul>
-<li><code>git branch -a</code>:查看所有分支及当前所在分支 </li>
-<li><code>git checkout nameX</code>:切换到nameX分支上</li>
-<li><code>git branch -d branch-nameX</code>:删除分支nameX</li>
-</ul>
-<h5 id="合并两个分支git-merge"><a href="#合并两个分支git-merge" class="headerlink" title="合并两个分支git merge"></a>合并两个分支<code>git merge</code></h5><ul>
-<li>将master分支合并到feature分支最简单的办法就是用下面这些命令：<code>git checkout feature</code>    <code>git merge master</code></li>
-<li>你也可以把它们压缩在一行里:<code>git merge master feature</code></li>
-</ul>
-<h5 id="合并两个分支之git-rebase"><a href="#合并两个分支之git-rebase" class="headerlink" title="合并两个分支之git rebase"></a>合并两个分支之<code>git rebase</code></h5><p>作为merge的替代选择，你可以像下面这样将feature分支并入master分支:<code>git checkout feature</code>    <code>git rebase master</code></p>
-<p>它会把整个feature分支移动到master分支的后面，有效地把所有master分支上新的提交并入过来。但是，rebase为原分支上每一个提交创建一个新的提交，重写了项目历史，并且不会带来合并提交。</p>
-<p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/" target="_blank" rel="external">参考1</a><br><a href="">参考2</a></p>
-<h4 id="Git相关开源许可证"><a href="#Git相关开源许可证" class="headerlink" title="Git相关开源许可证"></a>Git相关开源许可证</h4><p><img src="http://i2.piimg.com/4851/77b59134d4dcc75c.jpg" alt="开源许可证"><br>注:本文中图片由网络获取</p>
+<p>Tips:UILabel/UIImageView默认不能交互。</p>
 
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2015/06/07/gitSome/" class="archive-article-date">
-  	<time datetime="2015-06-06T16:00:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2015-06-07</time>
+      <a href="/2015/06/09/UserInterface/" class="archive-article-date">
+  	<time datetime="2015-06-09T14:54:24.000Z" itemprop="datePublished"><i class="icon-clock"></i>2015-06-09</time>
 </a>
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
 	</div>
 
       
@@ -237,18 +192,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2015/06/09/UserInterface/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/06/09/aboutIDFA/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          控件不接受用户交互
+          app上架(一) IDFA
         
       </div>
     </a>
   
   
-    <a href="/2015/05/09/XcodeSomePath/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Xcode相关路径</div>
+    <a href="/2015/06/07/gitSome/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">常用Git命令</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -282,7 +237,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="gitSome" data-title="常用Git命令" data-url="http://yoursite.com/2015/06/07/gitSome/"></div>
+	<div class="ds-thread" data-thread-key="UserInterface" data-title="控件不接受用户交互" data-url="http://yoursite.com/2015/06/09/UserInterface/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
