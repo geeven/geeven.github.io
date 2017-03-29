@@ -8,37 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>利用CocoLumberjack实现调试分级Log | Geeven&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Xcode的日志打印没有太多的区分,利用CoclLumberjack和XcodeClolrs可以实现这种效果。
-
-1. CocoLumberjack
-CocoaLumberjack是一个开源项目，为Xcode提供分级打印的策略，源码地址就是CocoaLumberjack
-CocoaLumberjack基本介绍CocoaLumberjack包含几个对象分别可以把Log输出到不同的地方：
-
-DDAS">
+  <meta name="description" content="Xcode的日志打印没有太多的区分,利用CoclLumberjack和XcodeClolrs可以实现这种效果。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用CocoLumberjack实现调试分级Log">
 <meta property="og:url" content="http://yoursite.com/2015/11/12/CocoLumberjack/index.html">
 <meta property="og:site_name" content="Geeven'blog">
-<meta property="og:description" content="Xcode的日志打印没有太多的区分,利用CoclLumberjack和XcodeClolrs可以实现这种效果。
-
-1. CocoLumberjack
-CocoaLumberjack是一个开源项目，为Xcode提供分级打印的策略，源码地址就是CocoaLumberjack
-CocoaLumberjack基本介绍CocoaLumberjack包含几个对象分别可以把Log输出到不同的地方：
-
-DDAS">
+<meta property="og:description" content="Xcode的日志打印没有太多的区分,利用CoclLumberjack和XcodeClolrs可以实现这种效果。">
 <meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/CocoLumberjack01.png">
 <meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/CocoLumberjack03.png">
 <meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/CocoLumberjack02.png">
-<meta property="og:updated_time" content="2016-11-17T15:08:26.000Z">
+<meta property="og:updated_time" content="2017-02-28T03:05:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用CocoLumberjack实现调试分级Log">
-<meta name="twitter:description" content="Xcode的日志打印没有太多的区分,利用CoclLumberjack和XcodeClolrs可以实现这种效果。
-
-1. CocoLumberjack
-CocoaLumberjack是一个开源项目，为Xcode提供分级打印的策略，源码地址就是CocoaLumberjack
-CocoaLumberjack基本介绍CocoaLumberjack包含几个对象分别可以把Log输出到不同的地方：
-
-DDAS">
+<meta name="twitter:description" content="Xcode的日志打印没有太多的区分,利用CoclLumberjack和XcodeClolrs可以实现这种效果。">
 <meta name="twitter:image" content="http://oatg8ax1c.bkt.clouddn.com/CocoLumberjack01.png">
   
     <link rel="alternative" href="/atom.xml" title="Geeven&#39;blog" type="application/atom+xml">
@@ -178,7 +160,7 @@ DDAS">
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>Xcode的日志打印没有太多的区分,利用CoclLumberjack和XcodeClolrs可以实现这种效果。</p>
+<p>Xcode的日志打印没有太多的区分,利用CoclLumberjack和XcodeClolrs可以实现这种效果。<br><a id="more"></a></p>
 </blockquote>
 <h2 id="1-CocoLumberjack"><a href="#1-CocoLumberjack" class="headerlink" title="1. CocoLumberjack"></a>1. CocoLumberjack</h2><hr>
 <p>CocoaLumberjack是一个开源项目，为Xcode提供分级打印的策略，源码地址就是<a href="https://github.com/CocoaLumberjack/CocoaLumberjack" target="_blank" rel="external">CocoaLumberjack</a></p>
@@ -187,12 +169,11 @@ DDAS">
 <li>DDASLLogger 输出到Console.app</li>
 <li>DDTTYLogger 输出到Xcode控制台</li>
 <li>DDLogFileManager 输出到文件</li>
-<li><p>DDAbstractDatabaseLogger 输出到DB</p>
-<a id="more"></a>
+<li>DDAbstractDatabaseLogger 输出到DB</li>
+</ul>
 <p>通过ddLogLevel的int型变量或常量来定义打印等级</p>
-</li>
-<li><p>DDLogLevelOff 关闭Log</p>
-</li>
+<ul>
+<li>DDLogLevelOff 关闭Log</li>
 <li>DDLogLevelError 只打印Error级别的Log</li>
 <li>DDLogLevelWarning 打印Error和Warning级别的Log</li>
 <li>DDLogLevelInfo 打印Error、Warn、Info级别的Log</li>
@@ -221,7 +202,6 @@ DDAS">
 <li>直接用代码开启环境 </li>
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">setenv(<span class="string">"XcodeColors"</span>, <span class="string">"YES"</span>, <span class="number">0</span>);</div><div class="line"><span class="comment">//用于检测是否开启XcodeClolrs</span></div><div class="line"><span class="keyword">char</span> *xcode_colors = getenv(<span class="string">"XcodeColors"</span>);</div><div class="line"><span class="keyword">if</span> (xcode_colors &amp;&amp; (strcmp(xcode_colors, <span class="string">"YES"</span>) == <span class="number">0</span>)) &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"XcodeColors is installed and enabled"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>补充说明:由于打印是异步的且数据不安全:经常会出现此打印结果被另一结果截断现像，在Xcode7.3中并不好用，并且色彩可能一样有截断现像。</p>
 
       
     </div>
@@ -246,11 +226,11 @@ DDAS">
   
 <nav id="article-nav">
   
-    <a href="/2016/04/07/cocopods/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/02/27/someTipsAboutDevelop/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Cocoapods
+          开发中的一些小tips
         
       </div>
     </a>
@@ -317,7 +297,7 @@ DDAS">
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 Geeven(文飞)
+    		&copy; 2017 Geeven(文飞)
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -370,7 +350,7 @@ DDAS">
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/WebKit/" style="font-size: 13.33px;">WebKit</a> <a href="/tags/Xcode/" style="font-size: 16.67px;">Xcode</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/mac/" style="font-size: 13.33px;">mac</a>
+    				<a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/WebKit/" style="font-size: 13.33px;">WebKit</a> <a href="/tags/Xcode/" style="font-size: 16.67px;">Xcode</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/mac/" style="font-size: 13.33px;">mac</a>
     			</div>
     	</section>
     

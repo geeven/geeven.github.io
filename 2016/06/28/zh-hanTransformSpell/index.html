@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>中文转拼音-iOS | Geeven&#39;blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近需要将中文转换成拼音，经查找资料发现iOS在CoreFoundation中提供了CFStringTransform函数。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中文转拼音-iOS">
+<meta property="og:url" content="http://yoursite.com/2016/06/28/zh-hanTransformSpell/index.html">
+<meta property="og:site_name" content="Geeven'blog">
+<meta property="og:description" content="最近需要将中文转换成拼音，经查找资料发现iOS在CoreFoundation中提供了CFStringTransform函数。">
+<meta property="og:updated_time" content="2017-02-28T03:06:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="中文转拼音-iOS">
+<meta name="twitter:description" content="最近需要将中文转换成拼音，经查找资料发现iOS在CoreFoundation中提供了CFStringTransform函数。">
+  
+    <link rel="alternative" href="/atom.xml" title="Geeven&#39;blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="null" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Geeven(文飞)</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">文飞的小窝！！！</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="3" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/geeven" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/u/5793705309?is_all=1" title="weibo">weibo</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Geeven(文飞)</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="null" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Geeven(文飞)</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">文飞的小窝！！！</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/geeven" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/5793705309?is_all=1" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-zh-hanTransformSpell" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      中文转拼音-iOS
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>最近需要将中文转换成拼音，经查找资料发现iOS在CoreFoundation中提供了CFStringTransform函数。<br><a id="more"></a></p>
+</blockquote>
+<h3 id="1-CFStringTransform函数介绍"><a href="#1-CFStringTransform函数介绍" class="headerlink" title="1.CFStringTransform函数介绍"></a>1.<code>CFStringTransform</code>函数介绍</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Boolean <span class="built_in">CFStringTransform</span>(<span class="built_in">CFMutableStringRef</span> string, <span class="built_in">CFRange</span> *range, <span class="built_in">CFStringRef</span> transform, Boolean reverse);</div></pre></td></tr></table></figure>
+<ul>
+<li><p>string参数是要CFMutableStringRef类型,需要将NSString转换:</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">CFMutableStringRef</span> <span class="built_in">CFStringCreateMutableCopy</span>(<span class="built_in">CFAllocatorRef</span> alloc, <span class="built_in">CFIndex</span> maxLength, <span class="built_in">CFStringRef</span> theString);</div></pre></td></tr></table></figure>
+</li>
+<li><p>range是要转换的范围，同时输出转换后改变的范围，如果为<code>NULL</code>，视为全部转换。</p>
+</li>
+<li>transform:可以指定要进行什么样的转换，这里可以指定多种语言的拼写转换。见下面详情.</li>
+<li>reverse:指定该转换是否必须是可逆向转换的。<br>如果转换成功就返回true，否则返回false。</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Transform identifiers for CFStringTransform()</span></div><div class="line">*/</div><div class="line"><span class="built_in">CF_EXPORT</span> <span class="keyword">const</span> <span class="built_in">CFStringRef</span> kCFStringTransformStripCombiningMarks;</div><div class="line"><span class="built_in">CF_EXPORT</span> <span class="keyword">const</span> <span class="built_in">CFStringRef</span> kCFStringTransformToLatin;</div><div class="line"><span class="built_in">CF_EXPORT</span> <span class="keyword">const</span> <span class="built_in">CFStringRef</span> kCFStringTransformFullwidthHalfwidth;</div><div class="line"><span class="built_in">CF_EXPORT</span> <span class="keyword">const</span> <span class="built_in">CFStringRef</span> kCFStringTransformLatinKatakana;</div><div class="line"><span class="built_in">CF_EXPORT</span> <span class="keyword">const</span> <span class="built_in">CFStringRef</span> kCFStringTransformLatinHiragana;</div><div class="line"><span class="built_in">CF_EXPORT</span> <span class="keyword">const</span> <span class="built_in">CFStringRef</span> kCFStringTransformHiraganaKatakana;</div><div class="line"><span class="built_in">CF_EXPORT</span> <span class="keyword">const</span> <span class="built_in">CFStringRef</span> kCFStringTransformMandarinLatin;</div><div class="line"><span class="built_in">CF_EXPORT</span> <span class="keyword">const</span> <span class="built_in">CFStringRef</span> kCFStringTransformLatinHangul;</div><div class="line"><span class="built_in">CF_EXPORT</span> <span class="keyword">const</span> <span class="built_in">CFStringRef</span> kCFStringTransformLatinArabic;</div><div class="line"><span class="built_in">CF_EXPORT</span> <span class="keyword">const</span> <span class="built_in">CFStringRef</span> kCFStringTransformLatinHebrew;</div><div class="line"><span class="built_in">CF_EXPORT</span> <span class="keyword">const</span> <span class="built_in">CFStringRef</span> kCFStringTransformLatinThai;</div><div class="line"><span class="built_in">CF_EXPORT</span> <span class="keyword">const</span> <span class="built_in">CFStringRef</span> kCFStringTransformLatinCyrillic;</div><div class="line"><span class="built_in">CF_EXPORT</span> <span class="keyword">const</span> <span class="built_in">CFStringRef</span> kCFStringTransformLatinGreek;</div><div class="line"><span class="built_in">CF_EXPORT</span> <span class="keyword">const</span> <span class="built_in">CFStringRef</span> kCFStringTransformToXMLHex;</div><div class="line"><span class="built_in">CF_EXPORT</span> <span class="keyword">const</span> <span class="built_in">CFStringRef</span> kCFStringTransformToUnicodeName;</div><div class="line"><span class="built_in">CF_EXPORT</span> <span class="keyword">const</span> <span class="built_in">CFStringRef</span> kCFStringTransformStripDiacritics <span class="built_in">CF_AVAILABLE</span>(<span class="number">10</span>_5, <span class="number">2</span>_0);</div></pre></td></tr></table></figure>
+<h3 id="2-实例"><a href="#2-实例" class="headerlink" title="2.实例:"></a>2.实例:</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">CFMutableStringRef</span> string = <span class="built_in">CFStringCreateMutableCopy</span>(<span class="literal">NULL</span>, <span class="number">0</span>, <span class="built_in">CFSTR</span>(<span class="string">"你好，中国！"</span>));</div><div class="line"><span class="comment">//汉字转拼音,</span></div><div class="line"><span class="built_in">CFStringTransform</span>(string, <span class="literal">NULL</span>, kCFStringTransformMandarinLatin, <span class="literal">NO</span>);</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, string);<span class="comment">//输出带音标,kCFStringTransformToLatin也可</span></div><div class="line"><span class="comment">//去掉音标，再转换一次</span></div><div class="line"><span class="built_in">CFStringTransform</span>(string, <span class="literal">NULL</span>, kCFStringTransformStripDiacritics, <span class="literal">NO</span>);</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, string);</div></pre></td></tr></table></figure>
+<p>控制台打印结果如下:<br><code>2016-06-28 10:41:06.913 testSome[2517:40168] nǐ hǎo， zhōng guó！</code><br><code>2016-06-28 10:41:06.915 testSome[2517:40168] ni hao， zhong guo！</code></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/06/28/zh-hanTransformSpell/" class="archive-article-date">
+  	<time datetime="2016-06-28T02:43:36.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-06-28</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/09/08/Cocoapods-StaticLibrary/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          利用CocoaPods打包静态库
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/07/mac-LocalServer/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mac本地服务器配置</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="zh-hanTransformSpell" data-title="中文转拼音-iOS" data-url="http://yoursite.com/2016/06/28/zh-hanTransformSpell/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"geeven"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Geeven(文飞)
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/WebKit/" style="font-size: 13.33px;">WebKit</a> <a href="/tags/Xcode/" style="font-size: 16.67px;">Xcode</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/mac/" style="font-size: 13.33px;">mac</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.ibireme.com/">郭曜源</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://onevcat.com/#blog/">王巍</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://nshipster.cn/">NSHipster</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.devtang.com/">唐巧</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://swift.org/">Swift.org</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/">Swift3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://objccn.io">ObjC 中国</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

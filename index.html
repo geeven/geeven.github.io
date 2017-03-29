@@ -138,6 +138,183 @@
       <div class="body-wrap">
         
   
+    <article id="post-regular" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/27/regular/">正则表达式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、校验数字的表达式"><a href="#一、校验数字的表达式" class="headerlink" title="一、校验数字的表达式"></a>一、校验数字的表达式</h3><ol>
+<li>数字：^[0-9]*$</li>
+<li>n位的数字：^\d{n}$</li>
+<li>至少n位的数字：^\d{n,}$</li>
+<li>m-n位的数字：^\d{m,n}$</li>
+<li>零和非零开头的数字：^(0|[1-9][0-9]*)$</li>
+<li>非零开头的最多带两位小数的数字：^([1-9][0-9]*)+(.[0-9]{1,2})?$</li>
+<li>带1-2位小数的正数或负数：^(-)?\d+(.\d{1,2})?$</li>
+<li>正数、负数、和小数：^(-|+)?\d+(.\d+)?$</li>
+<li>有两位小数的正实数：^[0-9]+(.[0-9]{2})?$</li>
+<li>有1~3位小数的正实数：^[0-9]+(.[0-9]{1,3})?$</li>
+<li>非零的正整数：^[1-9]\d<em>$ 或 ^([1-9][0-9]</em>){1,3}$ 或 ^+?[1-9][0-9]*$</li>
+<li>非零的负整数：^-[1-9][]0-9”<em>$ 或 ^-[1-9]\d</em>$</li>
+<li>非负整数：^\d+$ 或 ^[1-9]\d*|0$</li>
+<li>非正整数：^-[1-9]\d*|0$ 或 ^((-\d+)|(0+))$</li>
+<li>非负浮点数：^\d+(.\d+)?$ 或 ^[1-9]\d<em>.\d</em>|0.\d<em>[1-9]\d</em>|0?.0+|0$</li>
+<li>非正浮点数：^((-\d+(.\d+)?)|(0+(.0+)?))$ 或 ^(-([1-9]\d<em>.\d</em>|0.\d<em>[1-9]\d</em>))|0?.0+|0$</li>
+<li>正浮点数：^[1-9]\d<em>.\d</em>|0.\d<em>[1-9]\d</em>$ 或 ^(([0-9]+.[0-9]<em>[1-9][0-9]</em>)|([0-9]<em>[1-9][0-9]</em>.[0-9]+)|([0-9]<em>[1-9][0-9]</em>))$</li>
+<li>负浮点数：^-([1-9]\d<em>.\d</em>|0.\d<em>[1-9]\d</em>)$ 或 ^(-(([0-9]+.[0-9]<em>[1-9][0-9]</em>)|([0-9]<em>[1-9][0-9]</em>.[0-9]+)|([0-9]<em>[1-9][0-9]</em>)))$</li>
+<li>浮点数：^(-?\d+)(.\d+)?$ 或 ^-?([1-9]\d<em>.\d</em>|0.\d<em>[1-9]\d</em>|0?.0+|0)$</li>
+</ol>
+<h3 id="二、校验字符的表达式"><a href="#二、校验字符的表达式" class="headerlink" title="二、校验字符的表达式"></a>二、校验字符的表达式</h3><ol>
+<li>汉字：^[\u4e00-\u9fa5]{0,}$</li>
+<li>英文和数字：^[A-Za-z0-9]+$ 或 ^[A-Za-z0-9]{4,40}$</li>
+<li>长度为3-20的所有字符：^.{3,20}$</li>
+<li>由26个英文字母组成的字符串：^[A-Za-z]+$</li>
+<li>由26个大写英文字母组成的字符串：^[A-Z]+$</li>
+<li>由26个小写英文字母组成的字符串：^[a-z]+$</li>
+<li>由数字和26个英文字母组成的字符串：^[A-Za-z0-9]+$</li>
+<li>由数字、26个英文字母或者下划线组成的字符串：^\w+$ 或 ^\w{3,20}$</li>
+<li>中文、英文、数字包括下划线：^[\u4E00-\u9FA5A-Za-z0-9_]+$</li>
+<li>中文、英文、数字但不包括下划线等符号：^[\u4E00-\u9FA5A-Za-z0-9]+$ 或 ^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$</li>
+<li>可以输入含有^%&amp;’,;=?$\”等字符：[^%&amp;’,;=?$\x22]+</li>
+<li>禁止输入含有~的字符：[^~\x22]+</li>
+</ol>
+<h3 id="三、特殊需求表达式"><a href="#三、特殊需求表达式" class="headerlink" title="三、特殊需求表达式"></a>三、特殊需求表达式</h3><ol>
+<li>Email地址：^\w+([-+.]\w+)<em>@\w+([-.]\w+)</em>.\w+([-.]\w+)*$</li>
+<li>域名：[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(/.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+/.?</li>
+<li>InternetURL：[a-zA-z]+://[^\s]<em> 或 ^<a href="http://([\w-]+\.)+[\w-]+(/[\w-./?%&amp;=" target="_blank" rel="external">http://([\w-]+\.)+[\w-]+(/[\w-./?%&amp;=</a>]</em>)?$</li>
+<li>手机号码：^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$</li>
+<li>电话号码(“XXX-XXXXXXX”、”XXXX-XXXXXXXX”、”XXX-XXXXXXX”、”XXX-XXXXXXXX”、”XXXXXXX”和”XXXXXXXX)：^((\d{3,4}-)|\d{3.4}-)?\d{7,8}$</li>
+<li>国内电话号码(0511-4405222、021-87888822)：\d{3}-\d{8}|\d{4}-\d{7}</li>
+<li>身份证号(15位、18位数字)：^\d{15}|\d{18}$</li>
+<li>短身份证号码(数字、字母x结尾)：^([0-9]){7,18}(x|X)?$ 或 ^\d{8,18}|[0-9x]{8,18}|[0-9X]{8,18}?$</li>
+<li>帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)：^[a-zA-Z][a-zA-Z0-9_]{4,15}$</li>
+<li>密码(以字母开头，长度在6~18之间，只能包含字母、数字和下划线)：^[a-zA-Z]\w{5,17}$</li>
+<li>强密码(必须包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间)：^(?=.<em>\d)(?=.</em>[a-z])(?=.*[A-Z]).{8,10}$</li>
+<li>日期格式：^\d{4}-\d{1,2}-\d{1,2}</li>
+<li>一年的12个月(01～09和1～12)：^(0?[1-9]|1[0-2])$</li>
+<li>一个月的31天(01～09和1～31)：^((0?[1-9])|((1|2)[0-9])|30|31)$</li>
+<li>钱的输入格式：<ol>
+<li>有四种钱的表示形式我们可以接受:”10000.00” 和 “10,000.00”, 和没有 “分” 的 “10000” 和 “10,000”：^[1-9][0-9]*$</li>
+<li>这表示任意一个不以0开头的数字,但是,这也意味着一个字符”0”不通过,所以我们采用下面的形式：^(0|[1-9][0-9]*)$</li>
+<li>一个0或者一个不以0开头的数字.我们还可以允许开头有一个负号：^(0|-?[1-9][0-9]*)$</li>
+<li>这表示一个0或者一个可能为负的开头不为0的数字.让用户以0开头好了.把负号的也去掉,因为钱总不能是负的吧.下面我们要加的是说明可能的小数部分：^[0-9]+(.[0-9]+)?$</li>
+<li>必须说明的是,小数点后面至少应该有1位数,所以”10.”是不通过的,但是 “10” 和 “10.2” 是通过的：^[0-9]+(.[0-9]{2})?$</li>
+<li>这样我们规定小数点后面必须有两位,如果你认为太苛刻了,可以这样：^[0-9]+(.[0-9]{1,2})?$</li>
+<li>这样就允许用户只写一位小数.下面我们该考虑数字中的逗号了,我们可以这样：^[0-9]{1,3}(,[0-9]{3})*(.[0-9]{1,2})?$</li>
+<li>1到3个数字,后面跟着任意个 逗号+3个数字,逗号成为可选,而不是必须：^([0-9]+|[0-9]{1,3}(,[0-9]{3})*)(.[0-9]{1,2})?$</li>
+<li>备注：这就是最终结果了,别忘了”+”可以用”*”替代如果你觉得空字符串也可以接受的话(奇怪,为什么?)最后,别忘了在用函数时去掉去掉那个反斜杠,一般的错误都在这里</li>
+</ol>
+</li>
+<li>xml文件：^([a-zA-Z]+-?)+[a-zA-Z0-9]+\.[x|X][m|M][l|L]$</li>
+<li>中文字符的正则表达式：[\u4e00-\u9fa5]</li>
+<li>双字节字符：[^\x00-\xff]    (包括汉字在内，可以用来计算字符串的长度(一个双字节字符长度计2，ASCII字符计1))</li>
+<li>空白行的正则表达式：\n\s*\r    (可以用来删除空白行)</li>
+<li>HTML标记的正则表达式：&lt;(\S<em>?)[^&gt;]</em>&gt;.<em>?&lt;/\1&gt;|&lt;.</em>? /&gt;    (网上流传的版本太糟糕，上面这个也仅仅能部分，对于复杂的嵌套标记依旧无能为力)</li>
+<li>首尾空白字符的正则表达式：^\s<em>|\s</em>$或(^\s<em>)|(\s</em>$)    (可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等)，非常有用的表达式)</li>
+<li>腾讯QQ号：[1-9][0-9]{4,}    (腾讯QQ号从10000开始)</li>
+<li>中国邮政编码：[1-9]\d{5}(?!\d)    (中国邮政编码为6位数字)</li>
+<li>IP地址：\d+.\d+.\d+.\d+    (提取IP地址时有用)</li>
+<li>IP地址：((?:(?:25[0-5]|2[0-4]\d|[01]?\d?\d)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d?\d))</li>
+</ol>
+<hr>
+<p>注:本文取自网络</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2017/02/27/regular/" class="archive-article-date">
+  	<time datetime="2017-02-27T06:16:09.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-02-27</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-androConfig" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/27/androConfig/">Android环境变量配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在mac下Android环境变量设置<br>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/2017/02/27/androConfig/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2017/02/27/androConfig/" class="archive-article-date">
+  	<time datetime="2017-02-27T05:59:58.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-02-27</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-XcodeAboutSwift" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -148,7 +325,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/17/XcodeAboutSwift/">XcodeAboutSwift</a>
+      <a class="article-title" href="/2016/11/17/XcodeAboutSwift/">查看当前Swift版本</a>
     </h1>
   
 
@@ -365,7 +542,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/09/Tree/">mac在终端显示当前目录及color</a>
+      <a class="article-title" href="/2016/09/09/Tree/">tree及终端配color</a>
     </h1>
   
 
@@ -465,7 +642,7 @@
 
 
   
-    <article id="post-oneProjectMorTargets" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-zh-hanTransformSpell" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -475,7 +652,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/07/oneProjectMorTargets/">iOS开发在同一工程中创建不同版本的应用</a>
+      <a class="article-title" href="/2016/06/28/zh-hanTransformSpell/">中文转拼音-iOS</a>
     </h1>
   
 
@@ -484,18 +661,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>在工作中会遇到这种情况，需要在某个地区单独进行一个版本发布用于适应区域设备，该怎么简单的实现，并方便后期的维护呢？</p>
-<p>把当前工程拷贝后再修改就不用说了，此方法维护成本太高，不做考虑。可以在同一个Project里面创建两个Target,然后通过判断Target来修改代码，这样都是基于同一套代码修改，只是不同的地方通过Target判断来区分不同的代码，维护成本低。</p>
-</blockquote>
+<p>最近需要将中文转换成拼音，经查找资料发现iOS在CoreFoundation中提供了CFStringTransform函数。<br>
         <p class="article-more-link">
-          <a class="article-more-a"  href="/2016/06/07/oneProjectMorTargets/#more">more >></a>
+          <a class="article-more-a"  href="/2016/06/28/zh-hanTransformSpell/#more">more >></a>
         </p>
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2016/06/07/oneProjectMorTargets/" class="archive-article-date">
-  	<time datetime="2016-06-06T16:00:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-06-07</time>
+      <a href="/2016/06/28/zh-hanTransformSpell/" class="archive-article-date">
+  	<time datetime="2016-06-28T02:43:36.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-06-28</time>
 </a>
       
 	<div class="article-tag tagcloud">
@@ -555,6 +730,61 @@
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/">mac</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-oneProjectMorTargets" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/07/oneProjectMorTargets/">iOS开发在同一工程中创建不同版本的应用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在工作中会遇到这种情况，需要在某个地区单独进行一个版本发布用于适应区域设备，该怎么简单的实现，并方便后期的维护呢？</p>
+<p>把当前工程拷贝后再修改就不用说了，此方法维护成本太高，不做考虑。可以在同一个Project里面创建两个Target,然后通过判断Target来修改代码，这样都是基于同一套代码修改，只是不同的地方通过Target判断来区分不同的代码，维护成本低。</p>
+</blockquote>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/2016/06/07/oneProjectMorTargets/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/06/07/oneProjectMorTargets/" class="archive-article-date">
+  	<time datetime="2016-06-06T16:00:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-06-07</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
 	</div>
 
       
@@ -682,6 +912,60 @@
 
 
   
+    <article id="post-someTipsAboutDevelop" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/27/someTipsAboutDevelop/">开发中的一些小tips</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-统计代码"><a href="#1-统计代码" class="headerlink" title="1. 统计代码"></a>1. 统计代码</h2><ul>
+<li>测试Swift相关代码：<code>find . -name &quot;*swift&quot; | xargs wc -l</code></li>
+<li>测试OC相关代码：<code>find . -name &quot;*m&quot; | xargs wc -l</code>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/2016/02/27/someTipsAboutDevelop/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/02/27/someTipsAboutDevelop/" class="archive-article-date">
+  	<time datetime="2016-02-27T07:53:34.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-02-27</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-CocoLumberjack" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -701,16 +985,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>Xcode的日志打印没有太多的区分,利用CoclLumberjack和XcodeClolrs可以实现这种效果。</p>
-</blockquote>
-<h2 id="1-CocoLumberjack"><a href="#1-CocoLumberjack" class="headerlink" title="1. CocoLumberjack"></a>1. CocoLumberjack</h2><hr>
-<p>CocoaLumberjack是一个开源项目，为Xcode提供分级打印的策略，源码地址就是<a href="https://github.com/CocoaLumberjack/CocoaLumberjack">CocoaLumberjack</a></p>
-<h3 id="CocoaLumberjack基本介绍"><a href="#CocoaLumberjack基本介绍" class="headerlink" title="CocoaLumberjack基本介绍"></a>CocoaLumberjack基本介绍</h3><p>CocoaLumberjack包含几个对象分别可以把Log输出到不同的地方：</p>
-<ul>
-<li>DDASLLogger 输出到Console.app</li>
-<li>DDTTYLogger 输出到Xcode控制台</li>
-<li>DDLogFileManager 输出到文件</li>
-<li><p>DDAbstractDatabaseLogger 输出到DB</p>
+<p>Xcode的日志打印没有太多的区分,利用CoclLumberjack和XcodeClolrs可以实现这种效果。<br>
         <p class="article-more-link">
           <a class="article-more-a"  href="/2015/11/12/CocoLumberjack/#more">more >></a>
         </p>
@@ -816,17 +1091,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>苹果在 iOS 7.0.3 版本以后公布钥匙串访问的SDK,钥匙串访问接口是纯C语言的, 密码可以直接使用明文,钥匙串访问本身是使用 AES256加密,就是安全的.所以使用的时候,直接传递密码明文就可以了.<br>钥匙串访问的第三方框架(SSKeychain),是对 C语言框架 的封装.<br>钥匙串访问的密码保存在哪里只有苹果才知道.这样进一步保障了用户的密码安全.</p>
-<h3 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤:"></a>使用步骤:</h3><ol>
-<li>导入第三方框架<a href="https://github.com/geeven/SSKeychain" target="_blank" rel="external">SSkeychain</a></li>
-<li>利用钥匙串存储密码，将用户密码保存在钥匙串中</li>
-</ol>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="comment">// Service: app 的唯一标识符.告诉钥匙串是哪一个app中的信息.</span></div><div class="line">    <span class="comment">// account: 账号 哪一个账号的信息.</span></div><div class="line">    <span class="comment">// 取出 app 的唯一标识符</span></div><div class="line">    <span class="built_in">NSString</span> *bundleId = [<span class="built_in">NSBundle</span> mainBundle].bundleIdentifier;</div><div class="line">    <span class="built_in">BOOL</span> is_Yes = [SSKeychain setPassword:password forService:bundleId account:kUserNameKey];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li>利用钥匙串取密码</li>
-</ol>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="comment">// 取出 app 的唯一标识符</span></div><div class="line">    <span class="built_in">NSString</span> *bundleId = [<span class="built_in">NSBundle</span> mainBundle].bundleIdentifier;</div><div class="line">    <span class="comment">// 取出钥匙串中存储的密码</span></div><div class="line">    <span class="built_in">NSString</span> *password = [SSKeychain passwordForService:bundleId account:kUserNameKey]; </div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,password);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+        <blockquote>
+<p>苹果在 iOS 7.0.3 版本以后公布钥匙串访问的SDK,钥匙串访问接口是纯C语言的, 密码可以直接使用明文,钥匙串访问本身是使用 AES256加密,就是安全的.所以使用的时候,直接传递密码明文就可以了.<br>钥匙串访问的第三方框架(SSKeychain),是对 C语言框架 的封装.<br>钥匙串访问的密码保存在哪里只有苹果才知道.这样进一步保障了用户的密码安全.<br>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/2015/07/31/encryKey-SSKeyChain/#more">more >></a>
+        </p>
       
     </div>
     <div class="article-info article-info-index">
@@ -1020,170 +1289,10 @@
 
 
   
-    <article id="post-XcodeSomePath" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/09/XcodeSomePath/">Xcode相关路径</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>在开发中经常有需要调整Xcode相关设置，需要了解其路径.</p>
-</blockquote>
-<h3 id="模拟器的位置"><a href="#模拟器的位置" class="headerlink" title="模拟器的位置"></a>模拟器的位置</h3><p><code>/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs</code><br>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/2015/05/09/XcodeSomePath/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/2015/05/09/XcodeSomePath/" class="archive-article-date">
-  	<time datetime="2015-05-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2015-05-09</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Image_stretch" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/09/Image_stretch/">图片拉伸</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>在iOS开发中为了减小包文件会对图片进行处理，采用非常小的图片同时利用进行代码拉伸处理。</p>
-</blockquote>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/2015/05/09/Image_stretch/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/2015/05/09/Image_stretch/" class="archive-article-date">
-  	<time datetime="2015-05-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2015-05-09</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-sandboxPath" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/07/sandboxPath/">沙盒路径</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="目录介绍"><a href="#目录介绍" class="headerlink" title="目录介绍"></a>目录介绍</h3><p><code>Documents</code>:保存应用运行时生成的需要持久化的数据，iTunes同步设备时会备份该目录，会被备份到 iCloud</p>
-<ul>
-<li>如果保存<code>下载</code>文件，无法上架！</li>
-<li><p>由应用程序本身生成的文件，例如：用户登录之后的个人信息、游戏进度记录</p>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/2015/05/07/sandboxPath/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/2015/05/07/sandboxPath/" class="archive-article-date">
-  	<time datetime="2015-05-06T16:00:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2015-05-07</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -1192,7 +1301,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 Geeven(文飞)
+    		&copy; 2017 Geeven(文飞)
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1245,7 +1354,7 @@
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/WebKit/" style="font-size: 13.33px;">WebKit</a> <a href="/tags/Xcode/" style="font-size: 16.67px;">Xcode</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/mac/" style="font-size: 13.33px;">mac</a>
+    				<a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/WebKit/" style="font-size: 13.33px;">WebKit</a> <a href="/tags/Xcode/" style="font-size: 16.67px;">Xcode</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/mac/" style="font-size: 13.33px;">mac</a>
     			</div>
     	</section>
     
