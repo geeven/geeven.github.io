@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://geeven.cn/blog">
+  <title>常用Git命令 | Geeven&#39;blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一般来说，日常使用只要记住6到7个命令，就可以了。但是熟练使用，恐怕要记住很多个命令。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用Git命令">
+<meta property="og:url" content="http://geeven.cn/blog/2015/06/07/git-SomeInfo/index.html">
+<meta property="og:site_name" content="Geeven'blog">
+<meta property="og:description" content="一般来说，日常使用只要记住6到7个命令，就可以了。但是熟练使用，恐怕要记住很多个命令。">
+<meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/gitLiscener00.png">
+<meta property="og:updated_time" content="2017-03-29T09:17:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用Git命令">
+<meta name="twitter:description" content="一般来说，日常使用只要记住6到7个命令，就可以了。但是熟练使用，恐怕要记住很多个命令。">
+<meta name="twitter:image" content="http://oatg8ax1c.bkt.clouddn.com/gitLiscener00.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Geeven&#39;blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://oatg8ax1c.bkt.clouddn.com/avatarTmp.jpeg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Geeven(文飞)</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">文飞的小窝！！！</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="3" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/geeven" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/u/5793705309?is_all=1" title="weibo">weibo</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Geeven(文飞)</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://oatg8ax1c.bkt.clouddn.com/avatarTmp.jpeg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Geeven(文飞)</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">文飞的小窝！！！</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/geeven" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/5793705309?is_all=1" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-git-SomeInfo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      常用Git命令
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>一般来说，日常使用只要记住6到7个命令，就可以了。但是熟练使用，恐怕要记住很多个命令。</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><ul>
+<li><code>git clone path</code>:将远程服务器代码clone到本地path路径上</li>
+<li><code>git status</code> :查文件的状态<ul>
+<li>查看某个文件的状态:<code>git status 文件名</code></li>
+<li>查看当前路径所有文件的状态:<code>git status</code></li>
+</ul>
+</li>
+<li><p><code>git init</code>:初始化一个空的本地仓库，生成一个.git目录，用于维护版本信息</p>
+<ul>
+<li>在当前路径初始化仓库:<code>git init</code></li>
+<li>在其他路径初始化仓库:<code>git init 仓库路径</code></li>
+</ul>
+</li>
+<li><p><code>git add</code> : 将工作区的文件保存到暂缓区<br>  保存某个文件到暂缓区: <code>git add 文件名</code><br>  保存当前路径的所有文件到暂缓区: <code>git add .</code></p>
+</li>
+<li><p><code>git commit</code> :将暂缓区的文件提交到当前分支<br>  提交某个文件到分支:<code>git commit -m ”注释” 文件名</code><br>  保存当前路径的所有文件到分支:<code>git commit -m ”注释”</code></p>
+</li>
+<li><p><code>git pull</code>:相当于是从远程获取最新版本并merge到本地</p>
+</li>
+<li><code>git fetch path</code>:相当于是从远程获取最新版本到本地，不会自动merge</li>
+<li><code>git push</code>:将本地分支推送到远程服务器，保持远程与本地一致</li>
+</ul>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">git config:	git的配置信息相关（修改的是.git/config文件）</div><div class="line">配置用户名:git config &quot;user.name&quot; 用户名（用于跟踪修改记录）</div><div class="line">配置邮箱:git config &quot;user.email&quot; 邮箱（用于多人开发间的沟通）</div><div class="line">查看配置信息:git config –l</div><div class="line">编辑配置信息:git config –e（用vim编辑，:wq是退出vim编辑器）</div><div class="line">设置指令的别名:git config alias.别名 原指令名称</div><div class="line">设置带参数指令的别名:git config alias.别名 “原指令名称 参数”</div><div class="line">将此设置应用到整个系统中:git config ––gloabal</div><div class="line"></div><div class="line">//配置全局信息，这样不用每次都再次配置</div><div class="line">git config --global &quot;user.name&quot; 用户名（用于跟踪修改记录）</div><div class="line">git config --global &quot;user.email&quot; 邮箱（用于多人开发间的沟通）</div></pre></td></tr></table></figure>
+<h4 id="查看文件修改日志-git-log"><a href="#查看文件修改日志-git-log" class="headerlink" title="查看文件修改日志 git log"></a>查看文件修改日志 <code>git log</code></h4><ul>
+<li>查看文件的修改日志:<code>git log</code></li>
+<li>查看某个文件的修改日志:<code>git log 文件名</code></li>
+<li>用一行的方式查看简单的日志信息:<code>git log ––pretty=oneline</code></li>
+<li>查看最近的N次修改:<code>git log –N（N是一个整数）</code></li>
+<li>查看文件最新改动的地方:<code>git diff</code></li>
+<li>查看某个文件的最新改动的地方:<code>git diff 文件名</code></li>
+<li>用于配置有色彩的 命令将是<code>git lg</code> 不再是<code>git log</code>:<br><code>git config --global alias.lg &quot;log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit&quot;</code></li>
+</ul>
+<h4 id="版本回退-git-reset-or-git-revert"><a href="#版本回退-git-reset-or-git-revert" class="headerlink" title="版本回退 git reset or git revert"></a>版本回退 <code>git reset</code> or <code>git revert</code></h4><ul>
+<li>回退到上一个版本:<code>git reset --hard Head^</code></li>
+<li>回退到上上一个版本:<code>git reset --hard HEAD^^</code></li>
+<li>回退到上N个版本:<code>git reset --hard HEAD~N</code>（N是一个整数）</li>
+<li>回退到任意一个版本:<code>git reset --hard</code> 版本号（版本号用7位即可）</li>
+</ul>
+<p><code>git revert</code>:是生成一个新的提交来撤销某次提交，此次提交之前的commit都会被保留</p>
+<h4 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h4><h5 id="查看分支-git-branch"><a href="#查看分支-git-branch" class="headerlink" title="查看分支 git branch"></a>查看分支 <code>git branch</code></h5><ul>
+<li><code>git branch -a</code>:查看所有分支及当前所在分支 </li>
+<li><code>git checkout nameX</code>:切换到nameX分支上</li>
+<li><code>git branch -d branch-nameX</code>:删除分支nameX</li>
+</ul>
+<h5 id="合并两个分支git-merge"><a href="#合并两个分支git-merge" class="headerlink" title="合并两个分支git merge"></a>合并两个分支<code>git merge</code></h5><ul>
+<li>将master分支合并到feature分支最简单的办法就是用下面这些命令：<code>git checkout feature</code>    <code>git merge master</code></li>
+<li>你也可以把它们压缩在一行里:<code>git merge master feature</code></li>
+</ul>
+<h5 id="合并两个分支之git-rebase"><a href="#合并两个分支之git-rebase" class="headerlink" title="合并两个分支之git rebase"></a>合并两个分支之<code>git rebase</code></h5><p>作为merge的替代选择，你可以像下面这样将feature分支并入master分支:<code>git checkout feature</code>    <code>git rebase master</code></p>
+<p>它会把整个feature分支移动到master分支的后面，有效地把所有master分支上新的提交并入过来。但是，rebase为原分支上每一个提交创建一个新的提交，重写了项目历史，并且不会带来合并提交。</p>
+<p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/" target="_blank" rel="external">参考1</a><br><a href="">参考2</a></p>
+<h4 id="Git相关开源许可证"><a href="#Git相关开源许可证" class="headerlink" title="Git相关开源许可证"></a>Git相关开源许可证</h4><p><img src="http://oatg8ax1c.bkt.clouddn.com/gitLiscener00.png" alt="开源许可证"><br>注:本文中图片由网络获取</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2015/06/07/git-SomeInfo/" class="archive-article-date">
+  	<time datetime="2015-06-06T16:00:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2015-06-07</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2015/06/09/iOS-UserInterface/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          控件不接受用户交互
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/05/09/Xcode-SomePath/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Xcode相关路径</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Geeven(文飞)
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/WebKit/" style="font-size: 12px;">WebKit</a> <a href="/tags/Xcode/" style="font-size: 18px;">Xcode</a> <a href="/tags/cocos2d-x/" style="font-size: 16px;">cocos2d-x</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/lua/" style="font-size: 14px;">lua</a> <a href="/tags/mac/" style="font-size: 14px;">mac</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.ibireme.com/">郭曜源</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://onevcat.com/#blog/">王巍</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://nshipster.cn/">NSHipster</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.devtang.com/">唐巧</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://swift.org/">Swift.org</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/">Swift3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://objccn.io">ObjC 中国</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">记录点滴&lt;br&gt;&lt;br&gt;爱生活！爱学习！爱尝试！爱挑战！&lt;br&gt;</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

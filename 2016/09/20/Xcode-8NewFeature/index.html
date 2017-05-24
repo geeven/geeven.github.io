@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://geeven.cn/blog">
+  <title>Xcode8NewFeature | Geeven&#39;blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="苹果在9月14日正式推送了iOS 10,同时也推送了Xcode8正式版，正式版与beat版还是有很大的改变。关于Xcode8及iOS 10的新特性进行一个简单的概述。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Xcode8NewFeature">
+<meta property="og:url" content="http://geeven.cn/blog/2016/09/20/Xcode-8NewFeature/index.html">
+<meta property="og:site_name" content="Geeven'blog">
+<meta property="og:description" content="苹果在9月14日正式推送了iOS 10,同时也推送了Xcode8正式版，正式版与beat版还是有很大的改变。关于Xcode8及iOS 10的新特性进行一个简单的概述。">
+<meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/Xcode8LogClosed.png">
+<meta property="og:updated_time" content="2016-11-17T15:27:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Xcode8NewFeature">
+<meta name="twitter:description" content="苹果在9月14日正式推送了iOS 10,同时也推送了Xcode8正式版，正式版与beat版还是有很大的改变。关于Xcode8及iOS 10的新特性进行一个简单的概述。">
+<meta name="twitter:image" content="http://oatg8ax1c.bkt.clouddn.com/Xcode8LogClosed.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Geeven&#39;blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://oatg8ax1c.bkt.clouddn.com/avatarTmp.jpeg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Geeven(文飞)</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">文飞的小窝！！！</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="3" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/geeven" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/u/5793705309?is_all=1" title="weibo">weibo</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Geeven(文飞)</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://oatg8ax1c.bkt.clouddn.com/avatarTmp.jpeg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Geeven(文飞)</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">文飞的小窝！！！</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/geeven" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/5793705309?is_all=1" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Xcode-8NewFeature" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Xcode8NewFeature
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>苹果在9月14日正式推送了iOS 10,同时也推送了Xcode8正式版，正式版与beat版还是有很大的改变。关于Xcode8及iOS 10的新特性进行一个简单的概述。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="Xcode8"><a href="#Xcode8" class="headerlink" title="Xcode8"></a>Xcode8</h2><h3 id="部分优秀插件已集成入Xcode8"><a href="#部分优秀插件已集成入Xcode8" class="headerlink" title="部分优秀插件已集成入Xcode8"></a>部分优秀插件已集成入Xcode8</h3><ul>
+<li><a href="https://github.com/ksuther?tab=overview&amp;from=2016-08-01&amp;to=2016-08-31&amp;utf8=✓" target="_blank" rel="external">Kent Sutherland</a>开发的插件<a href="https://github.com/ksuther/KSImageNamed-Xcode" target="_blank" rel="external">KSImageNamed</a>能够在Xcode中帮助图片代码自动完成,已集成Xcode</li>
+<li><a href="https://onevcat.com" target="_blank" rel="external">王巍 (@onevcat)</a>开发的快速生成文档<a href="https://github.com/onevcat/VVDocumenter-Xcode" target="_blank" rel="external"></a>已集成，快捷键为<code>Command+Optional+/</code></li>
+</ul>
+<h3 id="文档查看更加方便及快捷"><a href="#文档查看更加方便及快捷" class="headerlink" title="文档查看更加方便及快捷"></a>文档查看更加方便及快捷</h3><p>Xcode 8 的新的文档格式看起来漂亮极了，且文档浏览会变得简单和快捷。苹果也针对内存问题做了相关优化，新版的内存占用会少很多。具体自己打开Xcode 瞅瞅吧。就不上图了！</p>
+<h3 id="新的迷人字体，新的Log"><a href="#新的迷人字体，新的Log" class="headerlink" title="新的迷人字体，新的Log"></a>新的迷人字体，新的Log</h3><p>Xcode 8 会打印很多Log,有时很不利于调试，如需关掉，按如下步步骤:</p>
+<p>打开<code>Edit Scheme</code>界面，选中<code>Arguments</code>选项，在<code>Environment Variables</code>中配置一个参数<code>OS_ACTIVITY_MODE</code>设置成<code>disable</code>，默认打勾，如果没有你就打上吧。<br><img src="http://oatg8ax1c.bkt.clouddn.com/Xcode8LogClosed.png" alt=""></p>
+<h3 id="Xcode-8兼容iOS7以及低版本Xcode调试高版本iOS系统"><a href="#Xcode-8兼容iOS7以及低版本Xcode调试高版本iOS系统" class="headerlink" title="Xcode 8兼容iOS7以及低版本Xcode调试高版本iOS系统"></a>Xcode 8兼容iOS7以及低版本Xcode调试高版本iOS系统</h3><p>Xcode 8 默认支持的最低系统是iOS8，我们可以手动更改版本到7.0</p>
+<ul>
+<li>打开Xcode7，可以先将调试需要的配置文件拷贝出来:打开Xcode 7 包文件路径下<code>/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/DeviceSupport</code>进入，将里面7.0,7.1低版文件拷贝出来</li>
+<li>打开Xcode8，将之前拷贝出来的文件放入之前的同样路径Xcode8下的文件夹中，<code>/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk</code> ，在文件列表中<code>SDKSettings.plist</code>这个文件，先将其拷到桌面，更改桌面上的<code>SDKSettings.plist</code>(不能直接修改原文件):在配置中的数组增加7.0,7.1配置.之后将桌面上的文件替换原文件，在弹框中选择鉴定.重启Xcode8，之后在工程的Deployment Target里面就可以选择7.0了。</li>
+</ul>
+<p>//未完，后续增加</p>
+<h2 id="iOS-10"><a href="#iOS-10" class="headerlink" title="iOS 10"></a>iOS 10</h2><h3 id="众多的Extension"><a href="#众多的Extension" class="headerlink" title="众多的Extension"></a>众多的Extension</h3><h3 id="User-Notifications"><a href="#User-Notifications" class="headerlink" title="User Notifications"></a>User Notifications</h3><p>待测试使用，<a href="https://onevcat.com/2016/08/notification/" target="_blank" rel="external">优秀blog链接</a></p>
+<h3 id="SiriKit"><a href="#SiriKit" class="headerlink" title="SiriKit"></a>SiriKit</h3><h3 id="iMessage-Apps"><a href="#iMessage-Apps" class="headerlink" title="iMessage Apps"></a>iMessage Apps</h3><h2 id="macOS提带一点"><a href="#macOS提带一点" class="headerlink" title="macOS提带一点"></a>macOS提带一点</h2><p>不少人在升级之后，发现「系统偏好设置 - 安全与隐私 - 通用」中「允许任何来源应用运行」的选项消失了，这是因为 macOS Sierra 加强了系统安全性，降低不良应用威胁电脑安全的几率，但是这也导致某些未经过开发者签名的应用无法在电脑上正常运行。</p>
+<p>要想找回这个选项，可以在终端中输入指令:<br><code>sudo spctl --master-disable</code><br>验证密码之后即可重新开启这个选项。</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/09/20/Xcode-8NewFeature/" class="archive-article-date">
+  	<time datetime="2016-09-19T16:00:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-20</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/11/17/Xcode-AboutSwift/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          查看当前Swift版本
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/09/18/iOS-WebKit_UA/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">WebKit--UserAgent</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Geeven(文飞)
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/WebKit/" style="font-size: 12px;">WebKit</a> <a href="/tags/Xcode/" style="font-size: 18px;">Xcode</a> <a href="/tags/cocos2d-x/" style="font-size: 16px;">cocos2d-x</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/lua/" style="font-size: 14px;">lua</a> <a href="/tags/mac/" style="font-size: 14px;">mac</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.ibireme.com/">郭曜源</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://onevcat.com/#blog/">王巍</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://nshipster.cn/">NSHipster</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.devtang.com/">唐巧</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://swift.org/">Swift.org</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/">Swift3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://objccn.io">ObjC 中国</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">记录点滴&lt;br&gt;&lt;br&gt;爱生活！爱学习！爱尝试！爱挑战！&lt;br&gt;</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
