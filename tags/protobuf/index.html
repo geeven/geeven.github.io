@@ -6,18 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://geeven.cn/blog">
-  <title>Cocoapods | Geeven&#39;blog</title>
+  <title>Tag: protobuf | Geeven&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Cocoapods">
-<meta property="og:url" content="http://geeven.cn/blog/2016/04/07/iOS-cocopods/index.html">
+  <meta name="description" content="点滴积累，汇聚如海！">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Geeven'blog">
+<meta property="og:url" content="http://geeven.cn/blog/tags/protobuf/index.html">
 <meta property="og:site_name" content="Geeven'blog">
-<meta property="og:description" content="在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。">
-<meta property="og:updated_time" content="2016-11-17T15:20:53.000Z">
+<meta property="og:description" content="点滴积累，汇聚如海！">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cocoapods">
-<meta name="twitter:description" content="在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。">
+<meta name="twitter:title" content="Geeven'blog">
+<meta name="twitter:description" content="点滴积累，汇聚如海！">
   
     <link rel="alternative" href="/atom.xml" title="Geeven&#39;blog" type="application/atom+xml">
   
@@ -137,157 +136,54 @@
 </nav>
 
       <div class="body-wrap">
-        <article id="post-iOS-cocopods" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      Cocoapods
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/04/28/cocos2dX-protobuf/" class="archive-article-date">
+  	<time datetime="2017-04-27T16:00:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-04-28</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/04/28/cocos2dX-protobuf/">cocos2d-X 集成protobuf</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>在iOS开发中，我们经常利用Cocoapods来管理相关库，利用gem来安装Cocoapods。</p>
-</blockquote>
-<a id="more"></a>
-<blockquote>
-<p>因部分源因需要taobao镜像更改为oschina镜像:<a href="https://gems.ruby-china.org" target="_blank" rel="external">RubyGems 镜像- Ruby China</a></p>
-</blockquote>
-<h4 id="利用oschina镜像来安装"><a href="#利用oschina镜像来安装" class="headerlink" title="利用oschina镜像来安装"></a>利用oschina镜像来安装</h4><pre><code>{
-https://ruby.taobao.org/    #已不再维护
-//  删除源
-      $ sudo gem sources --remove https://rubygems.org/
-//  添加源
-    $ sudo gem sources -a     https://gems.ruby-china.org/ 
-//  查看gem源    
-    $ gem sources -l
-    *** CURRENT SOURCES ***
-    https://ruby.taobao.org/ 
-//  安装
-    $ sudo gem install cocoapods
-    //  设置
-    $ pod setup
-}
-</code></pre><h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><pre><code>{
-//  查看版本
-    $ gem --version
-//  创建默认的 Podfile
-    $ pod init
-//  第一次使用安装框架
-    $ pod install
-//  安装框架，不更新本地索引，速度快
-    $ pod install --no-repo-update
-//  今后升级、添加、删除框架，或者框架不好用都使用这个命令
-    $ pod update
-//  更新框架，不更新本地索引，速度快
-    $ pod update --no-repo-update
-//  搜索框架
-    $ pod search XXX    
-//  帮助
-    $ pod --help
-}
-</code></pre><p>当执行<code>$ pod search XXX</code>时发现显示的tag版本低于最新版时，需要升级Cocoapods，升级过程和重新安装基本一样</p>
-<h4 id="安装出错解决"><a href="#安装出错解决" class="headerlink" title="安装出错解决"></a>安装出错解决</h4><p>当执行如下运行时出错时</p>
-<p><a><code>$ sudo gem install cocoapods</code></a></p>
-<pre><code>ERROR:  While executing gem ... (Errno::EPERM)
-Operation not permitted - /usr/bin/xcodeproj
-</code></pre><p>用如下命令即可解决</p>
-<p><a><code>$ sudo gem install -n /usr/local/bin/ cocoapods --pre</code></a></p>
-<h4 id="gem服务器在国外，原本安装方式但需要翻墙-不建议使用-太耗时"><a href="#gem服务器在国外，原本安装方式但需要翻墙-不建议使用-太耗时" class="headerlink" title="gem服务器在国外，原本安装方式但需要翻墙(不建议使用,太耗时)"></a>gem服务器在国外，原本安装方式但需要翻墙(不建议使用,太耗时)</h4><pre><code>{
-//  查看gem源
-    $ gem sources –l
-//  gem自身升级
-    $ sudo gem update --system
-//  查看版本
-    $ gem --version
-//  清除过期的gem
-    $ sudo gem cleanup
-//  安装包
-    $ sudo gem install cocoapods
-//  删除包
-    $ gem uninstall cocoapods
-//  更新包
-    $ sudo gem update
-//  列出本地安装的包
-    $ gem list
-}
-</code></pre>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/2016/04/07/iOS-cocopods/" class="archive-article-date">
-  	<time datetime="2016-04-06T16:00:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-04-07</time>
-</a>
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cocos2d-x/">cocos2d-x</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/protobuf/">protobuf</a></li></ul>
 	</div>
 
-      
+          
 
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2016/06/07/iOS-encryRSA/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          加密之RSA
-        
-      </div>
-    </a>
   
   
-    <a href="/2016/02/27/mac-someTipsAboutDevelop/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">开发中的一些小tips</div>
-      <i class="icon-circle-right"></i>
-    </a>
+    </div></section>
   
-</nav>
 
-
-
-
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">Share to: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-	    <a class="jiathis_button_twitter"></a>
-	    <a class="jiathis_button_plus"></a> 
-	    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
-
-
-
-
-
-
-
+    
 
 
       </div>
@@ -310,9 +206,9 @@ Operation not permitted - /usr/bin/xcodeproj
 		mathjax: false,
 		animate: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		root: "/",

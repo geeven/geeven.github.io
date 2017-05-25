@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://geeven.cn/blog">
+  <title>cocos2d-X 集成protobuf | Geeven&#39;blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在开发cocos2d-x中，目前最常用的就是利用lua开发，常用的传输数据模型是protobuf。本文主要介绍cocos2d-3.14集成protobuf(云风pbc)。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cocos2d-X 集成protobuf">
+<meta property="og:url" content="http://geeven.cn/blog/2017/04/28/cocos2dX-protobuf/index.html">
+<meta property="og:site_name" content="Geeven'blog">
+<meta property="og:description" content="在开发cocos2d-x中，目前最常用的就是利用lua开发，常用的传输数据模型是protobuf。本文主要介绍cocos2d-3.14集成protobuf(云风pbc)。">
+<meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/pbc01.png">
+<meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/protobuf-01.png">
+<meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/protobuf-002.png">
+<meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/protobuf-003.png">
+<meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/protobuf-04.png">
+<meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/protobuf-05.png">
+<meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/protobuf-006.png">
+<meta property="og:image" content="http://oatg8ax1c.bkt.clouddn.com/protobuf-07.png">
+<meta property="og:updated_time" content="2017-05-25T02:32:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cocos2d-X 集成protobuf">
+<meta name="twitter:description" content="在开发cocos2d-x中，目前最常用的就是利用lua开发，常用的传输数据模型是protobuf。本文主要介绍cocos2d-3.14集成protobuf(云风pbc)。">
+<meta name="twitter:image" content="http://oatg8ax1c.bkt.clouddn.com/pbc01.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Geeven&#39;blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://oatg8ax1c.bkt.clouddn.com/avatarTmp.jpeg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Geeven(文飞)</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">文飞的小窝！！！</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="3" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/geeven" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/u/5793705309?is_all=1" title="weibo">weibo</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Geeven(文飞)</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://oatg8ax1c.bkt.clouddn.com/avatarTmp.jpeg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Geeven(文飞)</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">文飞的小窝！！！</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/geeven" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/5793705309?is_all=1" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-cocos2dX-protobuf" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      cocos2d-X 集成protobuf
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在开发cocos2d-x中，目前最常用的就是利用lua开发，常用的传输数据模型是protobuf。本文主要介绍cocos2d-3.14集成protobuf(云风pbc)。</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h4><p>利用命令行来创建项目</p>
+<ul>
+<li>命令生成c++项目:<br><code>cocos new game -p com.MyCompany.game -l cpp -d ./</code></li>
+<li>命令生成lua项目:<br><code>cocos new game -p com.MyCompany.game -l lua -d ./</code></li>
+<li>命令生成js项目:<br><code>cocos new game -p com.MyCompany.game -l js -d ./</code></li>
+</ul>
+<h4 id="下载pbc源码"><a href="#下载pbc源码" class="headerlink" title="下载pbc源码"></a>下载pbc源码</h4><ul>
+<li>下载地址 <a href="https://github.com/cloudwu/pbc" target="_blank" rel="external">pbc</a>源码</li>
+<li>解压后的文件列表如图，我们需果标记中的三个文件<br><img src="http://oatg8ax1c.bkt.clouddn.com/pbc01.png" alt=""><br><br>说明:因cocos2dx集成的lua版本是5.1，所以我们使用lua文件夹）</li>
+<li>其实就分两部分，一部分是C++部分(pbc.h和src文件夹)，一部分就是C++绑定到lua部分(binding文件夹中lua文件夹)</li>
+</ul>
+<h4 id="2-将C-部分的代码集成到libcocos2d项目中"><a href="#2-将C-部分的代码集成到libcocos2d项目中" class="headerlink" title="2.将C++部分的代码集成到libcocos2d项目中"></a>2.将C++部分的代码集成到libcocos2d项目中</h4><p>①在libcocos2d项目external文件夹中增加新的pbc文件夹，将pbc.h文件和src文件夹中的文件拷贝到里面去，并添加到项目中:<br><b>添加时注意文件路径，不要copy</b><br><img src="http://oatg8ax1c.bkt.clouddn.com/protobuf-01.png" alt=""><br>②修改pbc.h文件</p>
+<p>因为libcocos2d项目是一个dll项目，所以需要导出必要的函数让libluacocos2d项目进行调用，导出的函数前需要增加<code>CC_DLL</code>前缀。<br>首先include相应头文件，<br><img src="http://oatg8ax1c.bkt.clouddn.com/protobuf-002.png" alt=""><br>因为CC_DLL的定义在<code>CCPlatformMacros.h</code>中,<br>然后给所有（所有！）函数前增加CC_DLL前缀，如下图只罗列了其中几个<br><img src="http://oatg8ax1c.bkt.clouddn.com/protobuf-003.png" alt=""><br>③编译libcocos2d项目 </p>
+<h4 id="3-将C-绑定到lua部分集成到libluacocos2d项目中"><a href="#3-将C-绑定到lua部分集成到libluacocos2d项目中" class="headerlink" title="3.将C++绑定到lua部分集成到libluacocos2d项目中"></a>3.将C++绑定到lua部分集成到libluacocos2d项目中</h4><p>①在libluacocos2d项目中manual文件夹中增加新的pbc文件夹，并将<code>pbc-lua.c</code>文件拷贝（从bunding/lua中拷贝）进去，并新增（新增！）三个用于绑定的文件<code>pbc-lua.h/lua_cocos2dx_pbc_manual.h/lua_cocos2dx_pbc_manual.cpp</code>。如下图<br><img src="http://oatg8ax1c.bkt.clouddn.com/protobuf-04.png" alt=""><br>②修改pbc-lua.c文件（只修改前面部分），入下图<br><img src="http://oatg8ax1c.bkt.clouddn.com/protobuf-05.png" alt=""><br>代码:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"scripting/lua-bindings/manual/pbc/pbc-lua.h"</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></div><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"lua.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"lualib.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"lauxlib.h"</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"external/pbc/pbc.h"</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></div><div class="line">&#125;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdbool.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(__APPLE__)</span></div><div class="line">    <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;malloc/malloc.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line">    <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;malloc.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+<p>③pbc-lua.h内容</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//  pbc-lua.h</span></div><div class="line"><span class="comment">//  cocos2d_lua_bindings</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//  Created by Geeven on 2017/4/6.</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> pbc_lua_h</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> pbc_lua_h</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></div><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"lua.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"lualib.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"lauxlib.h"</span></span></div><div class="line">    </div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></div><div class="line">&#125;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></div><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">luaopen_protobuf_c</span><span class="params">(lua_State *L)</span></span>;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></div><div class="line">&#125;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">/* pbc_lua_h */</span></span></div></pre></td></tr></table></figure>
+<p>④lua_cocos2dx_pbc_manual.h内容</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//  lua_cocos2dx_pbc_manual.hpp</span></div><div class="line"><span class="comment">//  cocos2d_lua_bindings</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//  Created by Geeven on 2017/4/6.</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> lua_cocos2dx_pbc_manual_hpp</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> lua_cocos2dx_pbc_manual_hpp</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></div><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"tolua++.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></div><div class="line">&#125;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="function">TOLUA_API <span class="keyword">int</span>  <span class="title">register_pbc_module</span><span class="params">(lua_State* L)</span></span>;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">/* lua_cocos2dx_pbc_manual_hpp */</span></span></div></pre></td></tr></table></figure>
+<p>⑤lua_cocos2dx_pbc_manual.cpp内容</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//  lua_cocos2dx_pbc_manual.cpp</span></div><div class="line"><span class="comment">//  cocos2d_lua_bindings</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//  Created by Geeven on 2017/4/6.</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="comment">//#include "lua_cocos2dx_pbc_manual.hpp"</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"scripting/lua-bindings/manual/pbc/lua_cocos2dx_pbc_manual.hpp"</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"platform/CCPlatformConfig.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"base/ccConfig.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"scripting/lua-bindings/manual/tolua_fix.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"scripting/lua-bindings/manual/LuaBasicConversions.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"scripting/lua-bindings/manual/CCLuaEngine.h"</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"scripting/lua-bindings/manual/pbc/pbc-lua.h"</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"cocos/platform/CCFileUtils.h"</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">read_protobuf_file</span><span class="params">(lua_State *L)</span></span>&#123;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *buff = luaL_checkstring(L, <span class="number">-1</span>);</div><div class="line">    Data data = cocos2d::FileUtils::getInstance()-&gt;getDataFromFile(buff);</div><div class="line">    lua_pushlstring(L, (<span class="keyword">const</span> <span class="keyword">char</span>*)data.getBytes(), data.getSize());</div><div class="line">    <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">TOLUA_API <span class="keyword">int</span> <span class="title">register_pbc_module</span><span class="params">(lua_State* L)</span></span></div><div class="line">&#123;</div><div class="line">    lua_getglobal(L, <span class="string">"_G"</span>);</div><div class="line">    <span class="keyword">if</span> (lua_istable(L, <span class="number">-1</span>))<span class="comment">//stack:...,_G,</span></div><div class="line">    &#123;</div><div class="line">        lua_register(L, <span class="string">"read_protobuf_file_c"</span>, read_protobuf_file);</div><div class="line">        luaopen_protobuf_c(L);</div><div class="line">    &#125;</div><div class="line">    lua_pop(L, <span class="number">1</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>⑥在<code>cocos2d-x\cocos\scripting\lua-bindings\manual\lua_module_register.cpp</code>中进行注册<br><img src="http://oatg8ax1c.bkt.clouddn.com/protobuf-006.png" alt=""><br>⑦编译libluacocos2d项目<br>以上，lua的在项目中的集成就完成了。下面来进行lua项目的验证</p>
+<h4 id="4-在lua项目中的使用"><a href="#4-在lua项目中的使用" class="headerlink" title="4.在lua项目中的使用"></a>4.在lua项目中的使用</h4><p>①在bunding/lua中拷贝两个文件<code>parser.lua/protobuf.lua</code>到lua项目src中，然后在init.lua中进行require。<br><img src="http://oatg8ax1c.bkt.clouddn.com/protobuf-07.png" alt=""></p>
+<p>②定义<code>auth.proto</code>文件,测试用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">syntax = &quot;proto2&quot;;</div><div class="line"></div><div class="line">package game_auth;</div><div class="line"></div><div class="line">message UserInfoQueryRequest &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">message UserInfoQueryResponse &#123;</div><div class="line">    required int32 result_code = 1;</div><div class="line">    required string result_msg = 2; </div><div class="line">    optional string nick_name = 3;</div><div class="line">    optional string gender = 4; </div><div class="line">    optional string birthday = 5;</div><div class="line">    optional string avatar_url = 6;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>③window使用protoc.exe(这个工具需要到protobuf<a href="https://github.com/google/protobuf/releases" target="_blank" rel="external">官方网站</a>下载或者编译得到),mac请安装protoc命令工具 生成auth.pb文件</p>
+<p>window:<br>    <code>protoc.exe --descriptor_set_out=./auth.pb ./auth.proto</code><br>mac :<br>    <code>protoc —descriptor_set_out=./xx.pb ./xx.proto</code></p>
+<p>④将生成的<code>auth.pb</code>放到资源res文件夹中！</p>
+<p>⑤相关验证使用的Lua代码</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">print</span>(<span class="string">"--------strart test protobuf---------"</span>)</div><div class="line"><span class="keyword">local</span> gatewayFilePath = cc.FileUtils:getInstance():fullPathForFilename(<span class="string">"auth.pb"</span>)</div><div class="line"><span class="keyword">local</span> gatewayBuffer = read_protobuf_file_c(gatewayFilePath)</div><div class="line">protobuf.register(gatewayBuffer)</div><div class="line"></div><div class="line"><span class="keyword">local</span> resBuff = protobuf.encode(<span class="string">"game_auth.UserInfoQueryResponse"</span>,</div><div class="line">                           &#123;result_code = <span class="number">0</span>,</div><div class="line">                           result_msg = <span class="string">"测试用"</span>,</div><div class="line">                           nick_name = <span class="string">"小飞天"</span>,</div><div class="line">                           gender = <span class="string">"1"</span>,</div><div class="line">                           birthday = <span class="string">"2000-10-11"</span>,</div><div class="line">                           avatar_url = <span class="string">"http:www.baidu.com/test"</span></div><div class="line">                           &#125;)</div><div class="line"><span class="keyword">local</span> slen = <span class="built_in">string</span>.len(resBuff)</div><div class="line">release_print(<span class="string">"resBuff len = "</span>..slen)</div><div class="line">release_print(<span class="string">"resBuff:"</span>,resBuff)</div><div class="line"><span class="built_in">print</span>(<span class="string">"-----start decode--------"</span>)</div><div class="line"><span class="keyword">local</span> result = protobuf.decode(<span class="string">"game_auth.UserInfoQueryResponse"</span>, resBuff)</div><div class="line"><span class="keyword">if</span> DEBUG &gt; <span class="number">1</span> <span class="keyword">then</span></div><div class="line">    release_print(<span class="string">"UserInfoQueryResponse result_code: "</span>..result.result_code)</div><div class="line">    release_print(<span class="string">"UserInfoQueryResponse result_msg: "</span>..result.result_msg)</div><div class="line">    release_print(<span class="string">"UserInfoQueryResponse nick_name: "</span>..result.nick_name)</div><div class="line">    release_print(<span class="string">"UserInfoQueryResponse gender: "</span>..result.gender)</div><div class="line">    release_print(<span class="string">"UserInfoQueryResponse birthday: "</span>..result.birthday)</div><div class="line">    release_print(<span class="string">"UserInfoQueryResponse avatar_url: "</span>..result.avatar_url)</div><div class="line"><span class="keyword">end</span></div><div class="line"><span class="built_in">print</span>(<span class="string">"--------end test protobuf---------"</span>)</div></pre></td></tr></table></figure>
+<p>⑥输出正确的结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[LUA-print] --------strart test protobuf---------</div><div class="line">[LUA-print] resBuff len = 64</div><div class="line">[LUA-print] resBuff:		测试用&quot;1*</div><div class="line">2000-10-112http:www.baidu.com/test</div><div class="line">[LUA-print] -----start decode--------</div><div class="line">[LUA-print] UserInfoQueryResponse result_code: 0</div><div class="line">[LUA-print] UserInfoQueryResponse result_msg: 测试用</div><div class="line">[LUA-print] UserInfoQueryResponse nick_name: 小飞天</div><div class="line">[LUA-print] UserInfoQueryResponse gender: 1</div><div class="line">[LUA-print] UserInfoQueryResponse birthday: 2000-10-11</div><div class="line">[LUA-print] UserInfoQueryResponse avatar_url: http:www.baidu.com/test</div><div class="line">[LUA-print] --------end test protobuf---------</div></pre></td></tr></table></figure>
+<h4 id="5-在mac-windows上是能正确使用了，下面内容为修改mk文件，让protobuf在android上也能正常使用"><a href="#5-在mac-windows上是能正确使用了，下面内容为修改mk文件，让protobuf在android上也能正常使用" class="headerlink" title="5.在mac/windows上是能正确使用了，下面内容为修改mk文件，让protobuf在android上也能正常使用"></a>5.在mac/windows上是能正确使用了，下面内容为修改mk文件，让protobuf在android上也能正常使用</h4><p>①修改libcocos2d项目对应的<code>cocos2d-x\cocos\Android.mk</code>文件，增加对应文件引用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">../external/clipper/clipper.cpp \</div><div class="line">../external/pbc/alloc.c \</div><div class="line">../external/pbc/array.c \</div><div class="line">../external/pbc/bootstrap.c \</div><div class="line">../external/pbc/context.c \</div><div class="line">../external/pbc/decode.c \</div><div class="line">../external/pbc/map.c \</div><div class="line">../external/pbc/pattern.c \</div><div class="line">../external/pbc/proto.c \</div><div class="line">../external/pbc/register.c \</div><div class="line">../external/pbc/rmessage.c \</div><div class="line">../external/pbc/stringpool.c \</div><div class="line">../external/pbc/varint.c \</div><div class="line">../external/pbc/wmessage.c </div><div class="line"></div><div class="line"></div><div class="line">LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH) \</div></pre></td></tr></table></figure>
+<p>②修改libluacocos2d项目对应的<code>cocos2d-x\cocos\scripting\lua-bindings\proj.android\Android.mk</code>文件，增加对应文件引用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#pbc</div><div class="line">LOCAL_SRC_FILES += ../manual/pbc/lua_cocos2dx_pbc_manual.cpp \</div><div class="line">				   ../manual/pbc/pbc-lua.c</div></pre></td></tr></table></figure>
+<p>③android上正常编译完成。</p>
+<h6 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h6><p><a href="http://www.cnblogs.com/chevin/p/6001872.html" target="_blank" rel="external">Chevin’s blog</a></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2017/04/28/cocos2dX-protobuf/" class="archive-article-date">
+  	<time datetime="2017-04-27T16:00:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-04-28</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cocos2d-x/">cocos2d-x</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/protobuf/">protobuf</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/04/28/lua-time/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          time
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/28/lua-sortList/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">sortList</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Geeven(文飞)
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/WebKit/" style="font-size: 11.67px;">WebKit</a> <a href="/tags/Xcode/" style="font-size: 18.33px;">Xcode</a> <a href="/tags/cocos2d-x/" style="font-size: 16.67px;">cocos2d-x</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/lua/" style="font-size: 15px;">lua</a> <a href="/tags/mac/" style="font-size: 13.33px;">mac</a> <a href="/tags/protobuf/" style="font-size: 10px;">protobuf</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.ibireme.com/">郭曜源</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://onevcat.com/#blog/">王巍</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://nshipster.cn/">NSHipster</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.devtang.com/">唐巧</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://swift.org/">Swift.org</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/">Swift3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://objccn.io">ObjC 中国</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">记录点滴&lt;br&gt;&lt;br&gt;爱生活！爱学习！爱尝试！爱挑战！&lt;br&gt;</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
