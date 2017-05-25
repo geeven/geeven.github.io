@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://geeven.cn/blog">
-  <title>解决警告warning 01 | Geeven&#39;blog</title>
+  <title>cocos2d-X 开发中global引起的error | Geeven&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在iOS开发过程中，在编译时有时会碰到警告，看着很不爽.">
+  <meta name="description" content="Cocos2d-x 3.5的lua项目生成后，变成了MVC模式，并且加入了一个全局变量的检测功能。如果你不小心用了全局变量，它会提示你出错！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解决警告warning 01">
-<meta property="og:url" content="http://geeven.cn/blog/2015/09/09/iOS-Warning_NotFound/index.html">
+<meta property="og:title" content="cocos2d-X 开发中global引起的error">
+<meta property="og:url" content="http://geeven.cn/blog/2017/04/28/cocos2dX-global-error/index.html">
 <meta property="og:site_name" content="Geeven'blog">
-<meta property="og:description" content="在iOS开发过程中，在编译时有时会碰到警告，看着很不爽.">
-<meta property="og:updated_time" content="2016-12-12T15:35:03.000Z">
+<meta property="og:description" content="Cocos2d-x 3.5的lua项目生成后，变成了MVC模式，并且加入了一个全局变量的检测功能。如果你不小心用了全局变量，它会提示你出错！">
+<meta property="og:updated_time" content="2017-05-25T07:55:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解决警告warning 01">
-<meta name="twitter:description" content="在iOS开发过程中，在编译时有时会碰到警告，看着很不爽.">
+<meta name="twitter:title" content="cocos2d-X 开发中global引起的error">
+<meta name="twitter:description" content="Cocos2d-x 3.5的lua项目生成后，变成了MVC模式，并且加入了一个全局变量的检测功能。如果你不小心用了全局变量，它会提示你出错！">
   
     <link rel="alternative" href="/atom.xml" title="Geeven&#39;blog" type="application/atom+xml">
   
@@ -137,7 +137,7 @@
 </nav>
 
       <div class="body-wrap">
-        <article id="post-iOS-Warning_NotFound" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-cocos2dX-global-error" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -147,7 +147,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      解决警告warning 01
+      cocos2d-X 开发中global引起的error
     </h1>
   
 
@@ -156,32 +156,35 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>在iOS开发过程中，在编译时有时会碰到警告，看着很不爽.</p>
+<p>Cocos2d-x 3.5的lua项目生成后，变成了MVC模式，并且加入了一个全局变量的检测功能。如果你不小心用了全局变量，它会提示你出错！</p>
 </blockquote>
 <a id="more"></a>
+<p>就像下面这样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">local temp = 1</div><div class="line">temp = 10 -- 你写成了tepm = 10</div><div class="line">print(temp)</div></pre></td></tr></table></figure></p>
+<p>这时print结果肯定是不同的，同时你还会创建一个全局的<code>tepm</code>永远不会被释放。</p>
+<p>因此，在cocos2d中加入了一个全局命名空间的检测，通过<code>setmetatable</code>的方式有效的帮助开发者避免上述错误！。该函数在<code>src/cocos/framework/init.lua</code>,源码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">-- export global variable</div><div class="line">local __g = _G</div><div class="line">cc.exports = &#123;&#125;</div><div class="line">setmetatable(cc.exports, &#123;</div><div class="line">    __newindex = function(_, name, value)</div><div class="line">        rawset(__g, name, value)</div><div class="line">    end,</div><div class="line"></div><div class="line">    __index = function(_, name)</div><div class="line">        return rawget(__g, name)</div><div class="line">    end</div><div class="line">&#125;)</div><div class="line"></div><div class="line">-- disable create unexpected global variable</div><div class="line">function cc.disable_global()</div><div class="line">    setmetatable(__g, &#123;</div><div class="line">        __newindex = function(_, name, value)</div><div class="line">            error(string.format(&quot;USE \&quot; cc.exports.%s = value \&quot; INSTEAD OF SET GLOBAL VARIABLE&quot;, name), 0)</div><div class="line">        end</div><div class="line">    &#125;)</div><div class="line">end</div><div class="line"></div><div class="line">if CC_DISABLE_GLOBAL then</div><div class="line">    cc.disable_global()</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>那么如果我一定要用到全局变量才行呢？例如 <code>require &quot;socket&quot;</code>的<code>luasocket</code>库。</p>
+<p>这个问题解决办法:</p>
 <ul>
-<li><p><a>warning: directory not found for option “XXXXXX”</a><br>  这个经常是我们将从项目中删除了文件和文件夹报的这个警告</p>
+<li><p>最简单粗暴的就是直接注释掉着一块,将<code>CC_DISABLE_GLOBAL</code>设置为<code>False</code>,在mian.lua的<code>require &quot;cocos.init&quot;</code>之前 require 所需的库和全局的变量</p>
 </li>
-<li><p><a>解决办法</a></p>
-<ul>
-<li>选择工程, 编译的 (targets)</li>
-<li>选择 Build Settings 菜单</li>
-<li>查找 Library Search Paths 和 Framework Search Paths， 删掉编译报warning的路径即OK</li>
-</ul>
+<li><p>如果是开发者自己需要使用全局变量,而不是其他库需要用到全局变量的话,请使用官方推荐的方法cc.exports.<em> 来充当全局变量！<br>在使用全局变量时直接写变量名即可，即cc.exports.</em>中的星号.</p>
 </li>
 </ul>
+<p><b>USE “ cc.exports.* = value “ INSTEAD OF SET GLOBAL VARIABLE”</b></p>
+<p>注：本文是碰到此问题网络查资料简单整理所成.</p>
 
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2015/09/09/iOS-Warning_NotFound/" class="archive-article-date">
-  	<time datetime="2015-09-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2015-09-09</time>
+      <a href="/2017/04/28/cocos2dX-global-error/" class="archive-article-date">
+  	<time datetime="2017-04-27T16:00:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-04-28</time>
 </a>
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Xcode/">Xcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cocos2d-x/">cocos2d-x</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li></ul>
 	</div>
 
       
@@ -194,18 +197,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2015/11/12/iOS-CocoLumberjack/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          利用CocoLumberjack实现调试分级Log
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/07/31/iOS-encryKey-SSKeyChain/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">encryKey_SSKeyChain</div>
+    <a href="/2017/04/28/cocos2dX-lpack/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">cocos2d-x-lua 扩展库lpack的使用指南</div>
       <i class="icon-circle-right"></i>
     </a>
   
