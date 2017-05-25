@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://geeven.cn/blog">
+  <title>cocos2d-x-lua 扩展库lpack的使用指南 | Geeven&#39;blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近开始做游戏研究luasocket,需要进行二进制解析，粘包，半包问题。在网上查资料，利用lua的一个二进制扩展库〜lpack，经过部分调整，调试能够使用后，做个记录。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cocos2d-x-lua 扩展库lpack的使用指南">
+<meta property="og:url" content="http://geeven.cn/blog/2017/04/28/cocos2dX-lpack/index.html">
+<meta property="og:site_name" content="Geeven'blog">
+<meta property="og:description" content="最近开始做游戏研究luasocket,需要进行二进制解析，粘包，半包问题。在网上查资料，利用lua的一个二进制扩展库〜lpack，经过部分调整，调试能够使用后，做个记录。">
+<meta property="og:updated_time" content="2017-05-25T07:15:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cocos2d-x-lua 扩展库lpack的使用指南">
+<meta name="twitter:description" content="最近开始做游戏研究luasocket,需要进行二进制解析，粘包，半包问题。在网上查资料，利用lua的一个二进制扩展库〜lpack，经过部分调整，调试能够使用后，做个记录。">
+  
+    <link rel="alternative" href="/atom.xml" title="Geeven&#39;blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://oatg8ax1c.bkt.clouddn.com/avatarTmp.jpeg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Geeven(文飞)</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">文飞的小窝！！！</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="3" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/geeven" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/u/5793705309?is_all=1" title="weibo">weibo</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Geeven(文飞)</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://oatg8ax1c.bkt.clouddn.com/avatarTmp.jpeg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Geeven(文飞)</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">文飞的小窝！！！</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/geeven" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/5793705309?is_all=1" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-cocos2dX-lpack" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      cocos2d-x-lua 扩展库lpack的使用指南
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>最近开始做游戏研究luasocket,需要进行二进制解析，粘包，半包问题。在网上查资料，利用lua的一个二进制扩展库〜lpack，经过部分调整，调试能够使用后，做个记录。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p>lua_pack.h</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//  lua_pack.h</span></div><div class="line"><span class="comment">//  MyGameLua</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//  Created by Geeven on 2017/4/20.</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> lua_pack_h</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> lua_pack_h</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></div><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"lua.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"lualib.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"lauxlib.h"</span></span></div><div class="line">    </div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></div><div class="line">&#125;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></div><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">luaopen_lua_pack</span><span class="params">(lua_State *L)</span></span>;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></div><div class="line">&#125;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">/* lua_pack_h */</span></span></div></pre></td></tr></table></figure>
+<p>lua_pack.c</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div><div class="line">339</div><div class="line">340</div><div class="line">341</div><div class="line">342</div><div class="line">343</div><div class="line">344</div><div class="line">345</div><div class="line">346</div><div class="line">347</div><div class="line">348</div><div class="line">349</div><div class="line">350</div><div class="line">351</div><div class="line">352</div><div class="line">353</div><div class="line">354</div><div class="line">355</div><div class="line">356</div><div class="line">357</div><div class="line">358</div><div class="line">359</div><div class="line">360</div><div class="line">361</div><div class="line">362</div><div class="line">363</div><div class="line">364</div><div class="line">365</div><div class="line">366</div><div class="line">367</div><div class="line">368</div><div class="line">369</div><div class="line">370</div><div class="line">371</div><div class="line">372</div><div class="line">373</div><div class="line">374</div><div class="line">375</div><div class="line">376</div><div class="line">377</div><div class="line">378</div><div class="line">379</div><div class="line">380</div><div class="line">381</div><div class="line">382</div><div class="line">383</div><div class="line">384</div><div class="line">385</div><div class="line">386</div><div class="line">387</div><div class="line">388</div><div class="line">389</div><div class="line">390</div><div class="line">391</div><div class="line">392</div><div class="line">393</div><div class="line">394</div><div class="line">395</div><div class="line">396</div><div class="line">397</div><div class="line">398</div><div class="line">399</div><div class="line">400</div><div class="line">401</div><div class="line">402</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"lua_pack.h"</span></span></div><div class="line"><span class="comment">/***</span></div><div class="line">This is a simple Lua library for packing and unpacking binary data.</div><div class="line">@license MIT</div><div class="line">@module lua_pack</div><div class="line">*/</div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	OP_ZSTRING	<span class="meta-string">'z'</span>		<span class="comment">/* zero-terminated string */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	OP_BSTRING	<span class="meta-string">'p'</span>		<span class="comment">/* string preceded by length byte */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	OP_WSTRING	<span class="meta-string">'P'</span>		<span class="comment">/* string preceded by length word */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	OP_SSTRING	<span class="meta-string">'a'</span>		<span class="comment">/* string preceded by length size_t */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	OP_STRING	<span class="meta-string">'A'</span>		<span class="comment">/* string */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	OP_FLOAT	<span class="meta-string">'f'</span>		<span class="comment">/* float */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	OP_DOUBLE	<span class="meta-string">'d'</span>		<span class="comment">/* double */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	OP_NUMBER	<span class="meta-string">'n'</span>		<span class="comment">/* Lua number */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	OP_CHAR		<span class="meta-string">'c'</span>		<span class="comment">/* char */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	OP_BYTE		<span class="meta-string">'b'</span>		<span class="comment">/* byte = unsigned char */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	OP_SHORT	<span class="meta-string">'h'</span>		<span class="comment">/* short */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	OP_USHORT	<span class="meta-string">'H'</span>		<span class="comment">/* unsigned short */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	OP_INT		<span class="meta-string">'i'</span>		<span class="comment">/* int */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	OP_UINT		<span class="meta-string">'I'</span>		<span class="comment">/* unsigned int */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	OP_LONG		<span class="meta-string">'l'</span>		<span class="comment">/* long */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	OP_ULONG	<span class="meta-string">'L'</span>		<span class="comment">/* unsigned long */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	OP_LITTLEENDIAN	<span class="meta-string">'&lt;'</span>		<span class="comment">/* little endian */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	OP_BIGENDIAN	<span class="meta-string">'&gt;'</span>		<span class="comment">/* big endian */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span>	OP_NATIVE	<span class="meta-string">'='</span>		<span class="comment">/* native endian */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> OP_BINMSB <span class="meta-string">'B'</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> OP_HEX <span class="meta-string">'X'</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> OP_NULL <span class="meta-string">'x'</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"lua.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"lualib.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"lauxlib.h"</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">badcode</span><span class="params">(lua_State *L, <span class="keyword">int</span> c)</span></span></div><div class="line">&#123;</div><div class="line"> <span class="keyword">char</span> s[]=<span class="string">"bad code `?'"</span>;</div><div class="line"> s[<span class="keyword">sizeof</span>(s)<span class="number">-3</span>]=c;</div><div class="line"> luaL_argerror(L,<span class="number">1</span>,s);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">doendian</span><span class="params">(<span class="keyword">int</span> c)</span></span></div><div class="line">&#123;</div><div class="line"> <span class="keyword">int</span> x=<span class="number">1</span>;</div><div class="line"> <span class="keyword">int</span> e=*(<span class="keyword">char</span>*)&amp;x;</div><div class="line"> <span class="keyword">if</span> (c==OP_LITTLEENDIAN) <span class="keyword">return</span> !e;</div><div class="line"> <span class="keyword">if</span> (c==OP_BIGENDIAN) <span class="keyword">return</span> e;</div><div class="line"> <span class="keyword">if</span> (c==OP_NATIVE) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"> <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">doswap</span><span class="params">(<span class="keyword">int</span> swap, <span class="keyword">void</span> *p, <span class="keyword">size_t</span> n)</span></span></div><div class="line">&#123;</div><div class="line"> <span class="keyword">if</span> (swap)</div><div class="line"> &#123;</div><div class="line">  <span class="keyword">char</span> *a=p;</div><div class="line">  <span class="keyword">int</span> i,j;</div><div class="line">  <span class="keyword">for</span> (i=<span class="number">0</span>, j=n<span class="number">-1</span>, n=n/<span class="number">2</span>; n--; i++, j--)</div><div class="line">  &#123;</div><div class="line">   <span class="keyword">char</span> t=a[i]; a[i]=a[j]; a[j]=t;</div><div class="line">  &#125;</div><div class="line"> &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> UNPACKNUMBER(OP,T)		\</span></div><div class="line">   case OP:				\</div><div class="line">   &#123;					\</div><div class="line">    T a;				\</div><div class="line">    int m=sizeof(a);			\</div><div class="line">    <span class="meta-keyword">if</span> (i+m&gt;len) goto done;		\</div><div class="line">    memcpy(&amp;a,s+i,m);			\</div><div class="line">    i+=m;				\</div><div class="line">    doswap(swap,&amp;a,m);			\</div><div class="line">    lua_pushnumber(L,(lua_Number)a);	\</div><div class="line">    ++n;				\</div><div class="line">    break;				\</div><div class="line">   &#125;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> UNPACKSTRING(OP,T)		\</span></div><div class="line">   case OP:				\</div><div class="line">   &#123;					\</div><div class="line">    T l;				\</div><div class="line">    int m=sizeof(l);			\</div><div class="line">    <span class="meta-keyword">if</span> (i+m&gt;len) goto done;		\</div><div class="line">    memcpy(&amp;l,s+i,m);			\</div><div class="line">    doswap(swap,&amp;l,m);			\</div><div class="line">    <span class="meta-keyword">if</span> (i+m+l&gt;len) goto done;		\</div><div class="line">    i+=m;				\</div><div class="line">    lua_pushlstring(L,s+i,l);		\</div><div class="line">    i+=l;				\</div><div class="line">    ++n;				\</div><div class="line">    break;				\</div><div class="line">   &#125;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> HEXDIGITS(DIG) \</span></div><div class="line"> <span class="meta-string">"0123456789ABCDEF"</span>[DIG]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">l_unpack</span><span class="params">(lua_State *L)</span> 		<span class="comment">/** unpack(s,f,[init]) */</span></span></div><div class="line">&#123;</div><div class="line"> <span class="keyword">size_t</span> len;</div><div class="line"> <span class="keyword">const</span> <span class="keyword">char</span> *s=luaL_checklstring(L,<span class="number">1</span>,&amp;len);</div><div class="line"> <span class="keyword">const</span> <span class="keyword">char</span> *f=luaL_checkstring(L,<span class="number">2</span>);</div><div class="line"> <span class="keyword">int</span> i=luaL_optnumber(L,<span class="number">3</span>,<span class="number">1</span>)<span class="number">-1</span>;</div><div class="line"> <span class="keyword">int</span> n=<span class="number">0</span>;</div><div class="line"> <span class="keyword">int</span> swap=<span class="number">0</span>;</div><div class="line"> lua_pushnil(L);</div><div class="line"> <span class="keyword">while</span> (*f)</div><div class="line"> &#123;</div><div class="line">  <span class="keyword">int</span> c=*f++;</div><div class="line">  <span class="keyword">int</span> N=<span class="number">1</span>;</div><div class="line">  <span class="keyword">if</span> (<span class="built_in">isdigit</span>(*f)) </div><div class="line">  &#123;</div><div class="line">   N=<span class="number">0</span>;</div><div class="line">   <span class="keyword">while</span> (<span class="built_in">isdigit</span>(*f)) N=<span class="number">10</span>*N+(*f++)-<span class="string">'0'</span>;</div><div class="line">   <span class="keyword">if</span> (N==<span class="number">0</span> &amp;&amp; c==OP_STRING) &#123; lua_pushliteral(L,<span class="string">""</span>); ++n; &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">while</span> (N--) <span class="keyword">switch</span> (c)</div><div class="line">  &#123;</div><div class="line">   <span class="keyword">case</span> OP_LITTLEENDIAN:</div><div class="line">   <span class="keyword">case</span> OP_BIGENDIAN:</div><div class="line">   <span class="keyword">case</span> OP_NATIVE:</div><div class="line">   &#123;</div><div class="line">    swap=doendian(c);</div><div class="line">    N=<span class="number">0</span>;</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">case</span> OP_STRING:</div><div class="line">   &#123;</div><div class="line">    ++N;</div><div class="line">    <span class="keyword">if</span> (i+N&gt;len) <span class="keyword">goto</span> done;</div><div class="line">    lua_pushlstring(L,s+i,N);</div><div class="line">    i+=N;</div><div class="line">    ++n;</div><div class="line">    N=<span class="number">0</span>;</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">case</span> OP_ZSTRING:</div><div class="line">   &#123;</div><div class="line">    <span class="keyword">size_t</span> l;</div><div class="line">    <span class="keyword">if</span> (i&gt;=len) <span class="keyword">goto</span> done;</div><div class="line">    l=<span class="built_in">strlen</span>(s+i);</div><div class="line">    lua_pushlstring(L,s+i,l);</div><div class="line">    i+=l+<span class="number">1</span>;</div><div class="line">    ++n;</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">   &#125;</div><div class="line">   UNPACKSTRING(OP_BSTRING, <span class="keyword">unsigned</span> <span class="keyword">char</span>)</div><div class="line">   UNPACKSTRING(OP_WSTRING, <span class="keyword">unsigned</span> <span class="keyword">short</span>)</div><div class="line">   UNPACKSTRING(OP_SSTRING, <span class="keyword">size_t</span>)</div><div class="line">   UNPACKNUMBER(OP_NUMBER, lua_Number)</div><div class="line">   UNPACKNUMBER(OP_DOUBLE, <span class="keyword">double</span>)</div><div class="line">   UNPACKNUMBER(OP_FLOAT, <span class="keyword">float</span>)</div><div class="line">   UNPACKNUMBER(OP_CHAR, <span class="keyword">char</span>)</div><div class="line">   UNPACKNUMBER(OP_BYTE, <span class="keyword">unsigned</span> <span class="keyword">char</span>)</div><div class="line">   UNPACKNUMBER(OP_SHORT, <span class="keyword">short</span>)</div><div class="line">   UNPACKNUMBER(OP_USHORT, <span class="keyword">unsigned</span> <span class="keyword">short</span>)</div><div class="line">   UNPACKNUMBER(OP_INT, <span class="keyword">int</span>)</div><div class="line">   UNPACKNUMBER(OP_UINT, <span class="keyword">unsigned</span> <span class="keyword">int</span>)</div><div class="line">   UNPACKNUMBER(OP_LONG, <span class="keyword">long</span>)</div><div class="line">   UNPACKNUMBER(OP_ULONG, <span class="keyword">unsigned</span> <span class="keyword">long</span>)</div><div class="line">   <span class="keyword">case</span> OP_BINMSB:</div><div class="line">     &#123;</div><div class="line">       luaL_Buffer buf;</div><div class="line">       luaL_buffinit(L,&amp;buf);</div><div class="line">       <span class="keyword">unsigned</span> <span class="keyword">char</span> sbyte = <span class="number">0x80</span>;</div><div class="line">       N++;</div><div class="line">       <span class="keyword">if</span> (i+N &gt; len) <span class="keyword">goto</span> done;</div><div class="line">       <span class="keyword">unsigned</span> <span class="keyword">int</span> ii;</div><div class="line">       <span class="keyword">for</span> (ii = i; ii &lt; i+N; ii++) &#123;</div><div class="line">         sbyte = <span class="number">0x80</span>;</div><div class="line">         <span class="keyword">int</span> ij;</div><div class="line">         <span class="keyword">for</span> (ij = <span class="number">0</span>; ij &lt; <span class="number">8</span>; ij++) &#123;</div><div class="line">           <span class="keyword">if</span> (s[ii] &amp; sbyte) &#123;</div><div class="line">             luaL_addlstring(&amp;buf, <span class="string">"1"</span>, <span class="number">1</span>);</div><div class="line">           &#125; <span class="keyword">else</span> &#123;</div><div class="line">             luaL_addlstring(&amp;buf, <span class="string">"0"</span>, <span class="number">1</span>);</div><div class="line">           &#125;</div><div class="line">           sbyte = sbyte &gt;&gt; <span class="number">1</span>;</div><div class="line">         &#125;</div><div class="line">       &#125;</div><div class="line">       luaL_pushresult(&amp;buf);</div><div class="line">       n++;</div><div class="line">       i += N;</div><div class="line">       N = <span class="number">0</span>;</div><div class="line">       <span class="keyword">break</span>;</div><div class="line">     &#125;</div><div class="line">   <span class="keyword">case</span> OP_HEX:</div><div class="line">     &#123;</div><div class="line">       luaL_Buffer buf;</div><div class="line">       <span class="keyword">char</span> hdigit = <span class="string">'0'</span>;</div><div class="line">       <span class="keyword">int</span> val = <span class="number">0</span>;</div><div class="line">       luaL_buffinit(L,&amp;buf);</div><div class="line">       N++;</div><div class="line">       <span class="keyword">if</span> (i+N &gt; len) <span class="keyword">goto</span> done;</div><div class="line">       <span class="keyword">unsigned</span> <span class="keyword">int</span> ii;</div><div class="line">       <span class="keyword">for</span> (ii = i; ii &lt; i+N; ii++) &#123;</div><div class="line">         val = s[ii] &amp; <span class="number">0xF0</span>;</div><div class="line">         val = val &gt;&gt; <span class="number">4</span>;</div><div class="line">         hdigit = HEXDIGITS(val);</div><div class="line">         luaL_addlstring(&amp;buf, &amp;hdigit, <span class="number">1</span>);</div><div class="line"></div><div class="line">         val = s[ii] &amp; <span class="number">0x0F</span>;</div><div class="line">         hdigit = HEXDIGITS(val);</div><div class="line">         luaL_addlstring(&amp;buf, &amp;hdigit, <span class="number">1</span>);</div><div class="line">       &#125;</div><div class="line">       luaL_pushresult(&amp;buf);</div><div class="line">       n++;</div><div class="line">       i += N;</div><div class="line">       N = <span class="number">0</span>;</div><div class="line">       <span class="keyword">break</span>;</div><div class="line">     &#125;</div><div class="line">   <span class="keyword">case</span> OP_NULL:</div><div class="line">    &#123;</div><div class="line">      i+= N + <span class="number">1</span>;</div><div class="line">      N = <span class="number">0</span>;</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">   <span class="keyword">case</span> <span class="string">' '</span>: <span class="keyword">case</span> <span class="string">','</span>:</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">   <span class="keyword">default</span>:</div><div class="line">    badcode(L,c);</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  &#125;</div><div class="line"> &#125;</div><div class="line">done:</div><div class="line"> lua_pushnumber(L,i+<span class="number">1</span>);</div><div class="line"> lua_replace(L,-n<span class="number">-2</span>);</div><div class="line"> <span class="keyword">return</span> n+<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> PACKNUMBER(OP,T)			\</span></div><div class="line">   case OP:					\</div><div class="line">   &#123;						\</div><div class="line">    T a=(T)luaL_checknumber(L,i++);		\</div><div class="line">    doswap(swap,&amp;a,sizeof(a));			\</div><div class="line">    luaL_addlstring(&amp;b,(void*)&amp;a,sizeof(a));	\</div><div class="line">    break;					\</div><div class="line">   &#125;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> PACKSTRING(OP,T)			\</span></div><div class="line">   case OP:					\</div><div class="line">   &#123;						\</div><div class="line">    size_t l;					\</div><div class="line">    const char *a=luaL_checklstring(L,i++,&amp;l);	\</div><div class="line">    T ll=(T)l;					\</div><div class="line">    doswap(swap,&amp;ll,sizeof(ll));		\</div><div class="line">    luaL_addlstring(&amp;b,(void*)&amp;ll,sizeof(ll));	\</div><div class="line">    luaL_addlstring(&amp;b,a,l);			\</div><div class="line">    break;					\</div><div class="line">   &#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">l_pack</span><span class="params">(lua_State *L)</span> 		<span class="comment">/** pack(f,...) */</span></span></div><div class="line">&#123;</div><div class="line"> <span class="keyword">int</span> i=<span class="number">2</span>;</div><div class="line"> <span class="keyword">const</span> <span class="keyword">char</span> *f=luaL_checkstring(L,<span class="number">1</span>);</div><div class="line"> <span class="keyword">int</span> swap=<span class="number">0</span>;</div><div class="line"> luaL_Buffer b;</div><div class="line"> luaL_buffinit(L,&amp;b);</div><div class="line"> <span class="keyword">while</span> (*f)</div><div class="line"> &#123;</div><div class="line">  <span class="keyword">int</span> c=*f++;</div><div class="line">  <span class="keyword">int</span> N=<span class="number">1</span>;</div><div class="line">  <span class="keyword">if</span> (<span class="built_in">isdigit</span>(*f)) </div><div class="line">  &#123;</div><div class="line">   N=<span class="number">0</span>;</div><div class="line">   <span class="keyword">while</span> (<span class="built_in">isdigit</span>(*f)) N=<span class="number">10</span>*N+(*f++)-<span class="string">'0'</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">while</span> (N--) <span class="keyword">switch</span> (c)</div><div class="line">  &#123;</div><div class="line">   <span class="keyword">case</span> OP_LITTLEENDIAN:</div><div class="line">   <span class="keyword">case</span> OP_BIGENDIAN:</div><div class="line">   <span class="keyword">case</span> OP_NATIVE:</div><div class="line">   &#123;</div><div class="line">    swap=doendian(c);</div><div class="line">    N=<span class="number">0</span>;</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">case</span> OP_STRING:</div><div class="line">   <span class="keyword">case</span> OP_ZSTRING:</div><div class="line">   &#123;</div><div class="line">    <span class="keyword">size_t</span> l;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *a=luaL_checklstring(L,i++,&amp;l);</div><div class="line">    luaL_addlstring(&amp;b,a,l+(c==OP_ZSTRING));</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">   &#125;</div><div class="line">   PACKSTRING(OP_BSTRING, <span class="keyword">unsigned</span> <span class="keyword">char</span>)</div><div class="line">   PACKSTRING(OP_WSTRING, <span class="keyword">unsigned</span> <span class="keyword">short</span>)</div><div class="line">   PACKSTRING(OP_SSTRING, <span class="keyword">size_t</span>)</div><div class="line">   PACKNUMBER(OP_NUMBER, lua_Number)</div><div class="line">   PACKNUMBER(OP_DOUBLE, <span class="keyword">double</span>)</div><div class="line">   PACKNUMBER(OP_FLOAT, <span class="keyword">float</span>)</div><div class="line">   PACKNUMBER(OP_CHAR, <span class="keyword">char</span>)</div><div class="line">   PACKNUMBER(OP_BYTE, <span class="keyword">unsigned</span> <span class="keyword">char</span>)</div><div class="line">   PACKNUMBER(OP_SHORT, <span class="keyword">short</span>)</div><div class="line">   PACKNUMBER(OP_USHORT, <span class="keyword">unsigned</span> <span class="keyword">short</span>)</div><div class="line">   PACKNUMBER(OP_INT, <span class="keyword">int</span>)</div><div class="line">   PACKNUMBER(OP_UINT, <span class="keyword">unsigned</span> <span class="keyword">int</span>)</div><div class="line">   PACKNUMBER(OP_LONG, <span class="keyword">long</span>)</div><div class="line">   PACKNUMBER(OP_ULONG, <span class="keyword">unsigned</span> <span class="keyword">long</span>)</div><div class="line">   <span class="keyword">case</span> OP_BINMSB:</div><div class="line">     &#123;</div><div class="line">       <span class="keyword">unsigned</span> <span class="keyword">char</span> sbyte = <span class="number">0</span>;</div><div class="line">       <span class="keyword">size_t</span> l;</div><div class="line">       <span class="keyword">unsigned</span> <span class="keyword">int</span> ii = <span class="number">0</span>, ia = <span class="number">0</span>;</div><div class="line">       <span class="keyword">const</span> <span class="keyword">char</span> *a = luaL_checklstring(L, i++, &amp;l);</div><div class="line">       <span class="keyword">for</span> (ia = <span class="number">0</span>; ia &lt; l; ia+= <span class="number">8</span>) &#123;</div><div class="line">         sbyte = <span class="number">0</span>;</div><div class="line">         <span class="keyword">for</span> (ii = <span class="number">0</span>; ii+ia &lt; l &amp;&amp; ii &lt; <span class="number">8</span>; ii++) &#123;</div><div class="line">           sbyte = sbyte &lt;&lt; <span class="number">1</span>;</div><div class="line">           <span class="keyword">if</span> (a[ii+ia] != <span class="string">'0'</span>) &#123;</div><div class="line">             sbyte++;</div><div class="line">           &#125;</div><div class="line">         &#125;</div><div class="line">         <span class="keyword">for</span> (; ii &lt; <span class="number">8</span>; ii++) &#123;</div><div class="line">           sbyte = sbyte &lt;&lt; <span class="number">1</span>;</div><div class="line">         &#125;</div><div class="line">         luaL_addlstring(&amp;b, (<span class="keyword">char</span> *) &amp;sbyte, <span class="number">1</span>);</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">break</span>;</div><div class="line">     &#125;</div><div class="line"></div><div class="line">  <span class="keyword">case</span> OP_NULL:</div><div class="line">    &#123;</div><div class="line">      <span class="keyword">char</span> nullbyte = <span class="number">0</span>;</div><div class="line">      luaL_addlstring(&amp;b, &amp;nullbyte, <span class="number">1</span>);</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">  <span class="keyword">case</span> OP_HEX:</div><div class="line">    &#123; <span class="comment">// doing digit parsing the lpack way</span></div><div class="line">      <span class="keyword">unsigned</span> <span class="keyword">char</span> sbyte = <span class="number">0</span>;</div><div class="line">      <span class="keyword">size_t</span> l;</div><div class="line">      <span class="keyword">unsigned</span> <span class="keyword">int</span> ii = <span class="number">0</span>;</div><div class="line">      <span class="keyword">int</span> odd = <span class="number">0</span>;</div><div class="line">      <span class="keyword">const</span> <span class="keyword">char</span> *a = luaL_checklstring(L, i++, &amp;l);</div><div class="line">      <span class="keyword">for</span> (ii = <span class="number">0</span>; ii &lt; l; ii++) &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">isxdigit</span>((<span class="keyword">int</span>) (<span class="keyword">unsigned</span> <span class="keyword">char</span>) a[ii])) &#123;</div><div class="line">          <span class="keyword">if</span> (<span class="built_in">isdigit</span>((<span class="keyword">int</span>) (<span class="keyword">unsigned</span> <span class="keyword">char</span>) a[ii])) &#123;</div><div class="line">            sbyte += a[ii] - <span class="string">'0'</span>;</div><div class="line">            odd++;</div><div class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (a[ii] &gt;= <span class="string">'A'</span> &amp;&amp; a[ii] &lt;= <span class="string">'F'</span>) &#123;</div><div class="line">            sbyte += a[ii] - <span class="string">'A'</span> + <span class="number">10</span>;</div><div class="line">            odd++;</div><div class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (a[ii] &gt;= <span class="string">'a'</span> &amp;&amp; a[ii] &lt;= <span class="string">'f'</span>) &#123;</div><div class="line">            sbyte += a[ii] - <span class="string">'a'</span> + <span class="number">10</span>;</div><div class="line">            odd++;</div><div class="line">          &#125;</div><div class="line">          <span class="keyword">if</span> (odd == <span class="number">1</span>) &#123;</div><div class="line">            sbyte = sbyte &lt;&lt; <span class="number">4</span>;</div><div class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (odd == <span class="number">2</span>) &#123;</div><div class="line">            luaL_addlstring(&amp;b, (<span class="keyword">char</span> *) &amp;sbyte, <span class="number">1</span>);</div><div class="line">            sbyte = <span class="number">0</span>;</div><div class="line">            odd = <span class="number">0</span>;</div><div class="line">          &#125;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">isspace</span>(a[ii])) &#123;</div><div class="line">          <span class="comment">/* ignore */</span></div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">          <span class="comment">/* err ... ignore too*/</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">if</span> (odd == <span class="number">1</span>) &#123;</div><div class="line">        luaL_addlstring(&amp;b, (<span class="keyword">char</span> *) &amp;sbyte, <span class="number">1</span>);</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">   <span class="keyword">case</span> <span class="string">' '</span>: <span class="keyword">case</span> <span class="string">','</span>:</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">   <span class="keyword">default</span>:</div><div class="line">    badcode(L,c);</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  &#125;</div><div class="line"> &#125;</div><div class="line"> luaL_pushresult(&amp;b);</div><div class="line"> <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">static</span> <span class="keyword">const</span> luaL_reg R[] =</div><div class="line">&#123;</div><div class="line">	&#123;<span class="string">"pack"</span>,	l_pack&#125;,</div><div class="line">	&#123;<span class="string">"unpack"</span>,	l_unpack&#125;,</div><div class="line">	&#123;<span class="literal">NULL</span>,	<span class="literal">NULL</span>&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">--[[</div><div class="line">lpack扩展库提供了两个接口，pack和unpack。</div><div class="line">但是有两种调用方法，使用宏(USE_GLOBALS)来控制：</div><div class="line">第一种是使用全局接口(pack/unpack)；</div><div class="line">另外一种是将这两个接口插入到<span class="built_in">string</span>的空间里面(<span class="built_in">string</span>.pack/<span class="built_in">string</span>.unpack)</div><div class="line">]]--</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">luaopen_lua_pack</span><span class="params">(lua_State *L)</span></span></div><div class="line">&#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> USE_GLOBALS</span></div><div class="line"> lua_register(L,<span class="string">"bpack"</span>,l_pack);</div><div class="line"> lua_register(L,<span class="string">"bunpack"</span>,l_unpack);</div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line"> luaL_openlib(L, LUA_STRLIBNAME, R, <span class="number">0</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"> <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="注册使用"><a href="#注册使用" class="headerlink" title="注册使用"></a>注册使用</h3><ul>
+<li>将<code>lua_pack.h/lua_pack.c</code>加到主程序<code>Classes</code>里面，然后在<code>AppDelegate.cpp</code>初始化lua的地方调用初始化函数:</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">auto</span> engine = LuaEngine::getInstance();</div><div class="line">ScriptEngineManager::getInstance()-&gt;setScriptEngine(engine);</div><div class="line">lua_State* L = engine-&gt;getLuaStack()-&gt;getLuaState();</div><div class="line">lua_module_register(L);</div><div class="line"></div><div class="line">register_all_packages();</div><div class="line"></div><div class="line">LuaStack* <span class="built_in">stack</span> = engine-&gt;getLuaStack();</div><div class="line"><span class="built_in">stack</span>-&gt;setXXTEAKeyAndSign(<span class="string">"2dxLua"</span>, <span class="built_in">strlen</span>(<span class="string">"2dxLua"</span>), <span class="string">"XXTEA"</span>, <span class="built_in">strlen</span>(<span class="string">"XXTEA"</span>));</div><div class="line"><span class="comment">//在这里调用</span></div><div class="line">luaopen_lua_pack(L);</div></pre></td></tr></table></figure>
+<ul>
+<li>使用举例</li>
+</ul>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">local</span> num = <span class="number">0x11</span></div><div class="line"><span class="keyword">local</span> _ss = <span class="built_in">string</span>.pack(<span class="string">"b"</span>, num)</div><div class="line"><span class="built_in">print</span>(<span class="string">"字节数:"</span>,#_ss)</div><div class="line"><span class="keyword">local</span> neS,valueS = <span class="built_in">string</span>.<span class="built_in">unpack</span>(_ss, <span class="string">"b"</span>)</div><div class="line"><span class="built_in">print</span>(<span class="string">"解包&gt;&gt;"</span>,<span class="string">"?:"</span>,neS,<span class="string">"原数据"</span>,valueS)</div><div class="line"></div><div class="line"><span class="keyword">local</span> _tmp = <span class="built_in">string</span>.pack(<span class="string">"&gt;P"</span>, <span class="string">"世界那么大，我想去看看!!good!"</span>)</div><div class="line"><span class="built_in">print</span>(<span class="string">"字节数:"</span>,#_tmp)</div><div class="line"><span class="keyword">local</span> nesT,valueT = <span class="built_in">string</span>.<span class="built_in">unpack</span>(_tmp,<span class="string">"&gt;P"</span>)</div><div class="line"><span class="built_in">print</span>(<span class="string">"解包&gt;&gt;"</span>,<span class="string">"?:"</span>,nesT,<span class="string">"原数据"</span>,valueT)</div></pre></td></tr></table></figure>
+<p>结果输出:</p>
+<pre><code>[LUA-print] 字节数:    1
+[LUA-print] 解包&gt;&gt;    ?:    2    原数据    17
+[LUA-print] 字节数:    42
+[LUA-print] 解包&gt;&gt;    ?:    43    原数据    世界那么大，我想去看看!!good!
+</code></pre>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2017/04/28/cocos2dX-lpack/" class="archive-article-date">
+  	<time datetime="2017-04-27T16:00:00.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-04-28</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cocos2d-x/">cocos2d-x</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lpack/">lpack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/04/28/lua-time/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          time
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/28/cocos2dX-protobuf/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">cocos2d-X 集成protobuf</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Geeven(文飞)
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/Swift/" style="font-size: 10px;">Swift</a> <a href="/tags/WebKit/" style="font-size: 12px;">WebKit</a> <a href="/tags/Xcode/" style="font-size: 18px;">Xcode</a> <a href="/tags/cocos2d-x/" style="font-size: 18px;">cocos2d-x</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/lpack/" style="font-size: 10px;">lpack</a> <a href="/tags/lua/" style="font-size: 16px;">lua</a> <a href="/tags/mac/" style="font-size: 14px;">mac</a> <a href="/tags/protobuf/" style="font-size: 10px;">protobuf</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.ibireme.com/">郭曜源</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://onevcat.com/#blog/">王巍</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://nshipster.cn/">NSHipster</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.devtang.com/">唐巧</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://swift.org/">Swift.org</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/">Swift3</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://objccn.io">ObjC 中国</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">记录点滴&lt;br&gt;&lt;br&gt;爱生活！爱学习！爱尝试！爱挑战！&lt;br&gt;</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
